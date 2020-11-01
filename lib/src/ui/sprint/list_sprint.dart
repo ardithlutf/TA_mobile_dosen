@@ -1,0 +1,131 @@
+import 'package:flutter/material.dart';
+import '../../models/sprint_model.dart';
+import '../../blocs/sprints_bloc.dart';
+import 'create_sprint.dart';
+import 'detail_sprint.dart';
+
+class SprintList extends StatefulWidget {
+  @override
+  _SprintListState createState() => _SprintListState();
+}
+
+class _SprintListState extends State<SprintList> {
+  void initState() {
+    blocSprint.fetchAllSprints();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    blocSprint.fetchAllSprints();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sprint'),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.add), onPressed: (){
+            openAddPage();
+          })
+        ],
+      ),
+      body: StreamBuilder(
+        stream: blocSprint.allSprints,
+        builder: (context, AsyncSnapshot<ItemModelSprint> snapshot) {
+          if (snapshot.hasData) {
+            return buildList(snapshot);
+          } else if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          }
+          return Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
+  }
+
+  Widget buildList(AsyncSnapshot<ItemModelSprint> snapshot) {
+    return ListView.builder(
+        itemCount: snapshot.data.results.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+              child: Card(
+            clipBehavior: null,
+            semanticContainer: true,
+            margin: EdgeInsets.all(10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    '${snapshot.data.results[index].nama_sprint.toString()}',
+                    style:
+                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      child: const Text('LIHAT DETAIL'),
+                      onPressed: () {
+                        openDetailPage(snapshot.data, index);
+                      },
+                    ),
+                    FlatButton(
+                        child: const Text('HAPUS'),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text('Warning'),
+                                  content: Text(
+                                      'Anda ingin menghapus sprint ${snapshot.data.results[index].nama_sprint.toString()}'),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text("Lanjut"),
+                                      onPressed: () {
+                                        blocSprint.deleteSprint(
+                                            snapshot.data.results[index].id);
+                                        Navigator.of(context).pop();
+                                        setState(() {
+                                          blocSprint.fetchAllSprints();
+                                        });
+                                      },
+                                    ),
+                                    FlatButton(
+                                      child: Text("Batal"),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                        }),
+                  ],
+                ),
+              ],
+            ),
+          ));
+        });
+  }
+
+  openAddPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return CreateSprint();
+      }),
+    );
+  }
+
+  openDetailPage(ItemModelSprint data, int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return SprintDetail(
+          nama_sprint: data.results[index].nama_sprint,
+          desc_sprint: data.results[index].desc_sprint,
+        );
+      }),
+    );
+  }
+}
