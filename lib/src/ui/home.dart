@@ -6,6 +6,10 @@ import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 import 'package:lima_enam/src/models/sprint_model.dart';
 import 'package:lima_enam/src/models/task_model.dart';
+import 'package:lima_enam/src/resources/adapter/json_mahasiswa_adapter.dart';
+import 'package:lima_enam/src/resources/adapter/mahasiswa_adapter.dart';
+import 'package:lima_enam/src/ui/mahasiswa/list_mahasiswa.dart';
+import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_section.dart';
 import 'package:lima_enam/src/ui/sprint/list_sprint.dart';
 import 'package:lima_enam/src/ui/task/list_task.dart';
 import 'file:///C:/Users/ardit/Documents/backup/10Okt-Windows/AndroidStudioProjects/flutter/lima_enam/lib/src/ui/widget/komponen/splashScreen.dart';
@@ -40,7 +44,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData.from(
           colorScheme: ColorScheme.fromSwatch(
               //TODO: Color Hexa = #0EB10E
-              primarySwatch: Colors.green,
+              primarySwatch: Colors.blue,
               cardColor: Colors.white70,
               backgroundColor: Colors.white)),
       home: MyHomePage(title: 'Semester Ganjil 2020/2021'),
@@ -163,6 +167,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => TaskList()));
+                  }
+                  break;
+                case "Mahasiswa":
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => MahasiswaList(adapter: JsonMahasiswaAdapter(), headerText: 'Oke')));
                   }
                   break;
               }

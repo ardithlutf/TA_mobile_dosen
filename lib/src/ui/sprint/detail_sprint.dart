@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 import 'package:lima_enam/src/models/task_model.dart';
 import '../../blocs/sprints_bloc.dart';
+import 'list_sprint.dart';
 
 class SprintDetail extends StatefulWidget {
   final int id;
-  final String desc_sprint;
   final String nama_sprint;
+  final String desc_sprint;
 
   SprintDetail({
     this.id,
@@ -38,8 +39,8 @@ class SprintDetailState extends State<SprintDetail> {
   }
 
   final int id;
-  final String desc_sprint;
   final String nama_sprint;
+  final String desc_sprint;
 
   SprintDetailState({
     this.id,
@@ -50,6 +51,7 @@ class SprintDetailState extends State<SprintDetail> {
   @override
   Widget build(BuildContext context) {
     blocTask.fetchAllTasks();
+    blocSprint.fetchAllSprints();
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: SafeArea(
@@ -61,7 +63,7 @@ class SprintDetailState extends State<SprintDetail> {
               SliverAppBar(
                 title: Text(
                   "$nama_sprint",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white),
                 ),
                 actions: <Widget>[
                   IconButton(icon: Icon(Icons.edit), onPressed: null),
@@ -74,7 +76,7 @@ class SprintDetailState extends State<SprintDetail> {
                               return AlertDialog(
                                 title: Text('Warning'),
                                 content: Text(
-                                    "Anda ingin menghapus sprint $nama_sprint dengan id = $id"),
+                                    "Anda ingin menghapus sprint $nama_sprint"),
                                 actions: <Widget>[
                                   FlatButton(
                                     child: Text("Batal"),
@@ -87,8 +89,10 @@ class SprintDetailState extends State<SprintDetail> {
                                     onPressed: () {
                                       blocSprint.deleteSprint("$id");
                                       setState(() {
-                                        Navigator.of(context).pop();
+                                        Navigator.pop(context);
+                                        blocSprint.fetchAllSprints();
                                       });
+                                      openSprintPage();
                                     },
                                   ),
                                 ],
@@ -163,7 +167,7 @@ class SprintDetailState extends State<SprintDetail> {
                     ),
                     Container(
                       child: Text(
-                        'TASK',
+                        'task',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 15),
                       ),
@@ -180,7 +184,7 @@ class SprintDetailState extends State<SprintDetail> {
                         builder:
                             (context, AsyncSnapshot<ItemModelTask> snapshot) {
                           if (snapshot.hasData) {
-                            return buildListTask(snapshot);
+                            return buildListTask(snapshot, id);
                           } else if (snapshot.hasError) {
                             return Text(snapshot.error.toString());
                           }
@@ -195,6 +199,18 @@ class SprintDetailState extends State<SprintDetail> {
       ),
     );
   }
+
+  // openSprintPage() {
+  //   Navigator.pushNamedAndRemoveUntil(context, '/sprint', (_) => false);
+  // }
+
+  openSprintPage() {
+    var count = 0;
+
+    Navigator.popUntil(context, (route) {
+      return count++ == 1;
+    });
+  }
 }
 
 Widget _myListView(BuildContext context) {
@@ -204,10 +220,6 @@ Widget _myListView(BuildContext context) {
     'bus',
     'car',
     'railway',
-    'run',
-    'subway',
-    'transit',
-    'walk'
   ];
 
   final icons = [
@@ -216,10 +228,6 @@ Widget _myListView(BuildContext context) {
     Icons.directions_bus,
     Icons.directions_car,
     Icons.directions_railway,
-    Icons.directions_run,
-    Icons.directions_subway,
-    Icons.directions_transit,
-    Icons.directions_walk
   ];
 
   return ListView.builder(
@@ -235,28 +243,26 @@ Widget _myListView(BuildContext context) {
   );
 }
 
-Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot) {
+Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
   final icons = [
     Icons.directions_bike,
     Icons.directions_boat,
     Icons.directions_bus,
     Icons.directions_car,
     Icons.directions_railway,
-    Icons.directions_run,
-    Icons.directions_subway,
-    Icons.directions_transit,
-    Icons.directions_walk
   ];
 
   return ListView.builder(
       itemCount: snapshot.data.results.length,
       itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            leading: Icon(icons[index]),
-            title: Text('${snapshot.data.results[index].nama_task.toString()}'),
-            subtitle: Text('${snapshot.data.results[index].sprint_id.toString()}'),
-          ),
-        );
+        if (snapshot.data.results[index].sprint_id == id) {
+          return Card(
+            child: ListTile(
+              leading: Icon(icons[index]),
+              title:
+                  Text('${snapshot.data.results[index].nama_task.toString()}'),
+            ),
+          );
+        }
       });
 }

@@ -29,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        color: Colors.green,
+        color: Colors.blue,
         child: BlocProvider(
           create: (_) => _splashBloc,
           child: BlocListener<SplashBloc, SplashState>(

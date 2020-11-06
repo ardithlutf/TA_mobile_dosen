@@ -82,7 +82,8 @@ class CreateSprintState extends State<CreateSprint> {
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       labelText: "Deskripsi",
-                      errorText: _isFieldDeskripsiValid == null || _isFieldDeskripsiValid
+                      errorText: _isFieldDeskripsiValid == null ||
+                              _isFieldDeskripsiValid
                           ? null
                           : "Deskripsi is required",
                     ),
@@ -100,9 +101,10 @@ class CreateSprintState extends State<CreateSprint> {
                     decoration: InputDecoration(
                       labelText: "Tanggal Mulai",
                       hintText: "YYYY-MM-DD",
-                      errorText: _isFieldTglMulaiValid == null || _isFieldTglMulaiValid
-                          ? null
-                          : "Tanggal Mulai is required",
+                      errorText:
+                          _isFieldTglMulaiValid == null || _isFieldTglMulaiValid
+                              ? null
+                              : "Tanggal Mulai is required",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -118,7 +120,8 @@ class CreateSprintState extends State<CreateSprint> {
                     decoration: InputDecoration(
                       labelText: "Tanggal Selesai",
                       hintText: "YYYY-MM-DD",
-                      errorText: _isFieldTglSelesaiValid == null || _isFieldTglSelesaiValid
+                      errorText: _isFieldTglSelesaiValid == null ||
+                              _isFieldTglSelesaiValid
                           ? null
                           : "Tanggal Selesai is required",
                     ),
@@ -141,8 +144,7 @@ class CreateSprintState extends State<CreateSprint> {
                             !_isFieldNamaValid ||
                             !_isFieldDeskripsiValid ||
                             !_isFieldTglMulaiValid ||
-                            !_isFieldTglSelesaiValid
-                        ) {
+                            !_isFieldTglSelesaiValid) {
                           _scaffoldState.currentState.showSnackBar(
                             SnackBar(
                               content: Text("Please fill all field"),
@@ -185,7 +187,6 @@ class CreateSprintState extends State<CreateSprint> {
                   )
                 : Container(),
           ],
-        )
-    );
+        ));
   }
 }

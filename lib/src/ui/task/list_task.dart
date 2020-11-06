@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/task_model.dart';
 import '../../blocs/tasks_bloc.dart';
 import 'create_task.dart';
+import 'detail_task.dart';
 
 class TaskList extends StatefulWidget {
   @override
@@ -68,6 +69,12 @@ class _TaskListState extends State<TaskList> {
                     ButtonBar(
                       children: <Widget>[
                         FlatButton(
+                          child: const Text('DETAIL'),
+                          onPressed: (){
+                            openDetailPage(snapshot.data, index);
+                          },
+                        ),
+                        FlatButton(
                             child: const Text('HAPUS'),
                             onPressed: () {
                               showDialog(
@@ -105,6 +112,21 @@ class _TaskListState extends State<TaskList> {
                 ),
               ));
         });
+  }
+
+  openDetailPage(ItemModelTask data, int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return TaskDetail(
+          id: data.results[index].id,
+          nama_task: data.results[index].nama_task,
+          sprint_id: data.results[index].sprint_id,
+          kesulitan_id: data.results[index].kesulitan_id,
+          status: data.results[index].status,
+        );
+      }),
+    );
   }
 
   openAddPage() {

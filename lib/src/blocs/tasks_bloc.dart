@@ -13,6 +13,7 @@ class TasksBloc {
   final _status = BehaviorSubject<bool>();
 
   Observable<ItemModelTask> get allTasks => _tasksFetcher.stream;
+  Observable<ItemModelTask> get sprintTasks => _tasksFetcher.stream;
 
   Function(int) get insertSprintID => _sprint_id.sink.add;
   Function(String) get insertJudul => _nama_task.sink.add;

@@ -22,9 +22,11 @@ class _SprintListState extends State<SprintList> {
       appBar: AppBar(
         title: Text('Sprint'),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.add), onPressed: (){
-            openAddPage();
-          })
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                openAddPage();
+              })
         ],
       ),
       body: StreamBuilder(
@@ -80,6 +82,12 @@ class _SprintListState extends State<SprintList> {
                                       'Anda ingin menghapus sprint ${snapshot.data.results[index].nama_sprint.toString()}'),
                                   actions: <Widget>[
                                     FlatButton(
+                                      child: Text("Batal"),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                    FlatButton(
                                       child: Text("Lanjut"),
                                       onPressed: () {
                                         blocSprint.deleteSprint(
@@ -88,12 +96,6 @@ class _SprintListState extends State<SprintList> {
                                         setState(() {
                                           blocSprint.fetchAllSprints();
                                         });
-                                      },
-                                    ),
-                                    FlatButton(
-                                      child: Text("Batal"),
-                                      onPressed: () {
-                                        Navigator.pop(context);
                                       },
                                     )
                                   ],
@@ -122,6 +124,7 @@ class _SprintListState extends State<SprintList> {
       context,
       MaterialPageRoute(builder: (context) {
         return SprintDetail(
+          id: data.results[index].id,
           nama_sprint: data.results[index].nama_sprint,
           desc_sprint: data.results[index].desc_sprint,
         );
