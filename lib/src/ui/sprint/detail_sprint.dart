@@ -61,9 +61,11 @@ class SprintDetailState extends State<SprintDetail> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                title: Text(
-                  "$nama_sprint",
-                  style: TextStyle(color: Colors.white),
+                title: Center(
+                  child: Text(
+                    "$nama_sprint",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 actions: <Widget>[
                   IconButton(icon: Icon(Icons.edit), onPressed: null),
@@ -76,7 +78,7 @@ class SprintDetailState extends State<SprintDetail> {
                               return AlertDialog(
                                 title: Text('Warning'),
                                 content: Text(
-                                    "Anda ingin menghapus sprint $nama_sprint"),
+                                    "Anda ingin menghapus project: $nama_sprint"),
                                 actions: <Widget>[
                                   FlatButton(
                                     child: Text("Batal"),
@@ -114,85 +116,235 @@ class SprintDetailState extends State<SprintDetail> {
           },
           body: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.bookmark,
-                      color: Colors.green,
-                    ),
-                    Container(
-                      child: Text(
-                        'DESKRIPSI',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.chat,
+                        color: Colors.green,
+                      ),
+                      Container(
+                        child: Text(
+                          'Deskripsi',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    height: 150,
+                    width: double.maxFinite,
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      child: Padding(
+                        padding: EdgeInsets.all(1),
+                        child: Stack(children: <Widget>[
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Stack(
+                              children: <Widget>[
+                                Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: Text(desc_sprint))
+                              ],
+                            ),
+                          )
+                        ]),
                       ),
                     ),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  height: 150,
-                  width: double.maxFinite,
-                  child: Card(
-                    clipBehavior: Clip.antiAlias,
-                    child: Padding(
-                      padding: EdgeInsets.all(1),
-                      child: Stack(children: <Widget>[
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Stack(
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
+                  ),
+                  Table(
+                    border: TableBorder.all(
+                        color: Colors.black26,
+                        width: 1,
+                        style: BorderStyle.none),
+                    children: [
+                      TableRow(children: [
+                        TableCell(
+                          child: Row(
                             children: <Widget>[
-                              Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: Text(desc_sprint))
+                              Icon(
+                                Icons.calendar_today,
+                                color: Colors.green,
+                              ),
+                              Container(
+                                child: Text(
+                                  'Tanggal Mulai',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        TableCell(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.calendar_today,
+                                color: Colors.green,
+                              ),
+                              Container(
+                                child: Text(
+                                  'Tanggal Akhir',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ),
                             ],
                           ),
                         )
                       ]),
-                    ),
+                      TableRow(children: [
+                        TableCell(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            width: double.maxFinite,
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: ListTile(
+                                title: Text('DD/MM/YYYY'),
+                              ),
+                            ),
+                          ),
+                        ),
+                        TableCell(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            width: double.maxFinite,
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: ListTile(
+                                title: Text('DD/MM/YYYY'),
+                              ),
+                            ),
+                          ),
+                        )
+                      ])
+                    ],
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.list,
-                      color: Colors.green,
-                    ),
-                    Container(
-                      child: Text(
-                        'task',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.list,
+                        color: Colors.green,
                       ),
-                      margin: EdgeInsets.only(left: 1.0, right: 1.0),
-                    ),
-                  ],
-                ),
-                Container(
-                    margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                    height: 350,
-                    child: Scaffold(
-                      body: StreamBuilder(
-                        stream: blocTask.allTasks,
-                        builder:
-                            (context, AsyncSnapshot<ItemModelTask> snapshot) {
-                          if (snapshot.hasData) {
-                            return buildListTask(snapshot, id);
-                          } else if (snapshot.hasError) {
-                            return Text(snapshot.error.toString());
-                          }
-                          return Center(child: CircularProgressIndicator());
-                        },
+                      Container(
+                        child: Text(
+                          'Sprint',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        margin: EdgeInsets.only(left: 1.0, right: 1.0),
                       ),
-                    ))
-              ],
+                    ],
+                  ),
+                  Container(
+                      height: 141,
+                      child: Scaffold(
+                        body: StreamBuilder(
+                          stream: blocTask.allTasks,
+                          builder:
+                              (context, AsyncSnapshot<ItemModelTask> snapshot) {
+                            if (snapshot.hasData) {
+                              return buildListTask(snapshot, id);
+                            } else if (snapshot.hasError) {
+                              return Text(snapshot.error.toString());
+                            }
+                            return Center(child: CircularProgressIndicator());
+                          },
+                        ),
+                      )),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
+                  ),
+                  Table(
+                    children: [
+                      TableRow(children: [
+                        TableCell(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.monetization_on_sharp,
+                                color: Colors.green,
+                              ),
+                              Container(
+                                child: Text(
+                                  'Budget',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        TableCell(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.access_time_rounded,
+                                color: Colors.green,
+                              ),
+                              Container(
+                                child: Text(
+                                  'Status',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ]),
+                      TableRow(children: [
+                        TableCell(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            width: double.maxFinite,
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: ListTile(
+                                title: Text('Rp.999999,-'),
+                              ),
+                            ),
+                          ),
+                        ),
+                        TableCell(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            width: double.maxFinite,
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: ListTile(
+                                title: Text('Selesai'),
+                              ),
+                            ),
+                          ),
+                        )
+                      ])
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -253,6 +405,8 @@ Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
   ];
 
   return ListView.builder(
+      // primary: false,
+      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
       itemCount: snapshot.data.results.length,
       itemBuilder: (context, index) {
         if (snapshot.data.results[index].sprint_id == id) {

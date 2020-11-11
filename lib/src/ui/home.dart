@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ? Colors.blue
                         : Colors.white,
                 child: Text(
-                  "A",
+                  "AL",
                   style: TextStyle(fontSize: 40.0),
                 ),
               ),
@@ -157,13 +157,13 @@ class _MyHomePageState extends State<MyHomePage> {
           child: new InkWell(
             onTap: () {
               switch (title) {
-                case "Sprint":
+                case "Project":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => SprintList()));
                   }
                   break;
-                case "Tim":
+                case "Sprint":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => TaskList()));

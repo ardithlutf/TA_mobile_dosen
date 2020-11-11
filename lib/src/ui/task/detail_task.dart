@@ -66,8 +66,10 @@ class TaskDetailState extends State<TaskDetail> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                title: Text(
-                  "$nama_task",
+                title: Center(
+                  child: Text(
+                    "$nama_task",
+                  ),
                 ),
                 actions: <Widget>[
                   IconButton(icon: Icon(Icons.edit), onPressed: null),
@@ -80,7 +82,7 @@ class TaskDetailState extends State<TaskDetail> {
                               return AlertDialog(
                                 title: Text('Warning'),
                                 content: Text(
-                                    "Anda ingin menghapus task $nama_task"),
+                                    "Anda ingin menghapus sprint: $nama_task"),
                                 actions: <Widget>[
                                   FlatButton(
                                     child: Text("Batal"),
@@ -119,95 +121,116 @@ class TaskDetailState extends State<TaskDetail> {
           },
           body: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.bookmark,
-                      color: Colors.green,
-                    ),
-                    Container(
-                      child: Text(
-                        'DESKRIPSI',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(margin: EdgeInsets.only(top: 8.0, bottom: 8.0)),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.book,
+                        color: Colors.green,
                       ),
+                      Container(
+                        child: Text(
+                          'Project',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    height: 141,
+                    child: Scaffold(
+                      body: StreamBuilder(
+                          stream: blocSprint.allSprints,
+                          builder: (context, AsyncSnapshot<ItemModelSprint> snapshot) {
+                            if (snapshot.hasData) {
+                              return buildSprint(snapshot, sprint_id);
+                            } else if (snapshot.hasError) {
+                              return Text(snapshot.error.toString());
+                            }
+                            return Center(child: CircularProgressIndicator());
+                          }),
                     ),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  height: 150,
-                  width: double.maxFinite,
-                  child: Card(
-                    clipBehavior: Clip.antiAlias,
-                    child: Padding(
-                      padding: EdgeInsets.all(1),
-                      child: Stack(children: <Widget>[
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Stack(
+                  ),
+                  // Tanggal Mulai
+                  Table(
+                    border: TableBorder.all(
+                        color: Colors.black26,
+                        width: 1,
+                        style: BorderStyle.none),
+                    children: [
+                      TableRow(children: [
+                        TableCell(
+                          child: Row(
                             children: <Widget>[
-                              Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: Text('Test'))
+                              Icon(
+                                Icons.calendar_today,
+                                color: Colors.green,
+                              ),
+                              Container(
+                                child: Text(
+                                  'Tanggal Mulai',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        TableCell(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.calendar_today,
+                                color: Colors.green,
+                              ),
+                              Container(
+                                child: Text(
+                                  'Tanggal Akhir',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                              ),
                             ],
                           ),
                         )
                       ]),
-                    ),
+                      TableRow(children: [
+                        TableCell(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            width: double.maxFinite,
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: ListTile(
+                                title: Text('DD/MM/YYYY'),
+                              ),
+                            ),
+                          ),
+                        ),
+                        TableCell(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                            width: double.maxFinite,
+                            child: Card(
+                              clipBehavior: Clip.antiAlias,
+                              child: ListTile(
+                                title: Text('DD/MM/YYYY'),
+                              ),
+                            ),
+                          ),
+                        )
+                      ])
+                    ],
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.list,
-                      color: Colors.green,
-                    ),
-                    Container(
-                      child: Text(
-                        'sprint',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
-                      ),
-                      margin: EdgeInsets.only(left: 1.0, right: 1.0),
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                  height: 350,
-                  child: Scaffold(
-                    body: StreamBuilder(
-                        stream: blocSprint.allSprints,
-                        builder: (context, AsyncSnapshot<ItemModelSprint> snapshot) {
-                          if (snapshot.hasData) {
-                            return buildSprint(snapshot, sprint_id);
-                            // return Expanded(
-                            //   child: Container(
-                            //     margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
-                            //     height: 150,
-                            //     width: double.maxFinite,
-                            //     child: ListTile(
-                            //       leading: Icon(Icons.wb_sunny),
-                            //       title: Text('$id'),
-                            //     ),
-                            //   ),
-                            // );
-                          } else if (snapshot.hasError) {
-                            return Text(snapshot.error.toString());
-                          }
-                          return Center(child: CircularProgressIndicator());
-                        }),
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -217,6 +240,7 @@ class TaskDetailState extends State<TaskDetail> {
 
   Widget buildSprint(AsyncSnapshot<ItemModelSprint> snapshot, sprint_id) {
     return ListView.builder(
+        padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
         primary: false,
         itemCount: snapshot.data.results.length,
         itemBuilder: (context, index) {
@@ -224,8 +248,8 @@ class TaskDetailState extends State<TaskDetail> {
             return Card(
               child: ListTile(
                 title: Text('${snapshot.data.results[index].nama_sprint.toString()}'),
-                //TODO: Sprint punya bbrp task
-                subtitle: Text('${snapshot.data.results.length}'),
+                //TODO:
+                // subtitle: Text('Jumlah Sprint: ${snapshot.data.results.length}'),
               ),
             );
           }

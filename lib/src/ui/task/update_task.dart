@@ -3,35 +3,43 @@ import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
-class CreateTask extends StatefulWidget {
+class UpdateTask extends StatefulWidget {
+  final int id;
   final int sprint_id;
   final String nama_task;
   final int kesulitan_id;
   final bool status;
 
-  CreateTask({
-    this.nama_task,
-    this.sprint_id,
-    this.kesulitan_id,
-    this.status
-  });
+  UpdateTask(
+      {this.id,
+      this.nama_task,
+      this.sprint_id,
+      this.kesulitan_id,
+      this.status});
 
   @override
-  State<StatefulWidget> createState() {
-    return CreateTaskState(
+  State<StatefulWidget> createState() => UpdateTaskState(
+      id: id,
       sprint_id: sprint_id,
       nama_task: nama_task,
       kesulitan_id: kesulitan_id,
-      status: status
-    );
-  }
+      status: status);
 }
 
-class CreateTaskState extends State<CreateTask> {
-  final int sprint_id;
-  final String nama_task;
-  final int kesulitan_id;
-  final bool status;
+class UpdateTaskState extends State<UpdateTask> {
+  @override
+  void initState() {
+    blocTask.fetchAllTasks();
+    if (widget.sprint_id != null) {
+      _isFieldSprintIDValid = true;
+      _controllerSprintID.text = widget.sprint_id.toString();
+      _isFieldNamaValid = true;
+      _controllerNama.text = widget.nama_task;
+      _isFieldKesulitanIDValid = true;
+      _controllerKesulitanID.text = widget.kesulitan_id.toString();
+    }
+    super.initState();
+  }
 
   bool _isFieldSprintIDValid;
   bool _isFieldNamaValid;
@@ -44,7 +52,18 @@ class CreateTaskState extends State<CreateTask> {
   TextEditingController _controllerKesulitanID = TextEditingController();
   TextEditingController _controllerStatus = TextEditingController();
 
-  CreateTaskState({this.nama_task, this.sprint_id, this.kesulitan_id, this.status});
+  final int id;
+  final int sprint_id;
+  final String nama_task;
+  final int kesulitan_id;
+  final bool status;
+
+  UpdateTaskState(
+      {this.id,
+      this.nama_task,
+      this.sprint_id,
+      this.kesulitan_id,
+      this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +73,7 @@ class CreateTaskState extends State<CreateTask> {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
           title: Text(
-            "Tambah Sprint Baru",
+            widget.nama_task == null ? "Form Sprint" : "Update Sprint",
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -125,10 +144,10 @@ class CreateTaskState extends State<CreateTask> {
                     decoration: InputDecoration(
                       labelText: "Status",
                       hintText: "1/0",
-                      errorText: _isFieldStatusValid == null ||
-                          _isFieldStatusValid
-                          ? null
-                          : "Status is required",
+                      errorText:
+                          _isFieldStatusValid == null || _isFieldStatusValid
+                              ? null
+                              : "Status is required",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -157,7 +176,7 @@ class CreateTaskState extends State<CreateTask> {
                           );
                           return;
                         }
-                        blocTask.addSaveTask();
+                        blocTask.updateSaveTask(id);
                         setState(() => _isLoading = true);
                         await Future.delayed(const Duration(milliseconds: 699));
                         blocTask.fetchAllTasks();

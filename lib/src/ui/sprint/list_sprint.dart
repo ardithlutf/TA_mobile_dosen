@@ -20,7 +20,7 @@ class _SprintListState extends State<SprintList> {
     blocSprint.fetchAllSprints();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sprint'),
+        title: Text('Project'),
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.add),
@@ -79,7 +79,7 @@ class _SprintListState extends State<SprintList> {
                                 return AlertDialog(
                                   title: Text('Warning'),
                                   content: Text(
-                                      'Anda ingin menghapus sprint ${snapshot.data.results[index].nama_sprint.toString()}'),
+                                      'Anda ingin menghapus project: ${snapshot.data.results[index].nama_sprint.toString()}'),
                                   actions: <Widget>[
                                     FlatButton(
                                       child: Text("Batal"),

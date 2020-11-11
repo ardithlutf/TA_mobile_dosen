@@ -44,6 +44,28 @@ class TaskApiProvider {
     }
   }
 
+  Future updateTask(id, sprint_id, nama_task, kesulitan_id, status) async {
+    Map data = {
+      'sprint_id': sprint_id.toString(),
+      'nama_task': nama_task,
+      'kesulitan_id': kesulitan_id.toString(),
+      'status': status,
+    };
+    var body = json.encode(data);
+
+    print("updated");
+    final response = await client
+        .put("$baseurl/api/tasks/$id", headers: <String, String>{
+      'Content-Type': 'application/json',
+    }, body: body);
+
+    if (response.statusCode == 200) {
+      return ItemModelTask.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to insert post');
+    }
+  }
+
   Future deleteTask(id) async {
     final response = await client.delete("$baseurl/api/tasks/$id");
 

@@ -22,6 +22,8 @@ class Repository {
   Future createNewTask(sprint_id, nama_task, kesulitan_id, status) =>
       TasksApiProvider.createNewTask(sprint_id, nama_task, kesulitan_id, status);
 
+  Future updateTask(id, sprint_id, nama_task, kesulitan_id, status) => TasksApiProvider.updateTask(id, sprint_id, nama_task, kesulitan_id, status);
+
   Future deleteOldSprint(id) => SprintsApiProvider.deleteSprint(id);
   Future deleteOldTask(id) => TasksApiProvider.deleteTask(id);
 }

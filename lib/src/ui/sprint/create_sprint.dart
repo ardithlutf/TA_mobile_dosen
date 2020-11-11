@@ -64,7 +64,7 @@ class CreateSprintState extends State<CreateSprint> {
                     controller: _controllerNama,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
-                      labelText: "Judul Sprint",
+                      labelText: "Judul Project",
                       errorText: _isFieldNamaValid == null || _isFieldNamaValid
                           ? null
                           : "Judul is required",

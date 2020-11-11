@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lima_enam/src/ui/task/update_task.dart';
 import '../../models/task_model.dart';
 import '../../blocs/tasks_bloc.dart';
 import 'create_task.dart';
@@ -26,7 +27,7 @@ class _TaskListState extends State<TaskList> {
     blocTask.fetchAllTasks();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Task'),
+        title: Text('Sprint'),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.add), onPressed: (){
             openAddPage();
@@ -106,6 +107,12 @@ class _TaskListState extends State<TaskList> {
                                     );
                                   });
                             }),
+                        FlatButton(
+                          child: const Text('EDIT'),
+                          onPressed: (){
+                            openUpdatePage(snapshot.data, index);
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -134,6 +141,21 @@ class _TaskListState extends State<TaskList> {
       context,
       MaterialPageRoute(builder: (context) {
         return CreateTask();
+      }),
+    );
+  }
+
+  openUpdatePage(ItemModelTask data, int index){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return UpdateTask(
+          id: data.results[index].id,
+          nama_task: data.results[index].nama_task,
+          sprint_id: data.results[index].sprint_id,
+          kesulitan_id: data.results[index].kesulitan_id,
+          status: data.results[index].status,
+        );
       }),
     );
   }
