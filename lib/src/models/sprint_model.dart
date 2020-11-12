@@ -2,8 +2,6 @@ class ItemModelSprint {
   List<_Sprint> _results = [];
 
   ItemModelSprint.fromJson(Map<String, dynamic> parsedJson) {
-    // print(parsedJson['results'].length);
-
     List<_Sprint> temp = [];
 
     for (int i = 0; i < parsedJson['results'].length; i++) {

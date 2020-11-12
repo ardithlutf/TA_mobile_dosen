@@ -11,6 +11,7 @@ import 'package:lima_enam/src/resources/adapter/mahasiswa_adapter.dart';
 import 'package:lima_enam/src/ui/mahasiswa/list_mahasiswa.dart';
 import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_section.dart';
 import 'package:lima_enam/src/ui/sprint/list_sprint.dart';
+import 'package:lima_enam/src/ui/task/create_task3.dart';
 import 'package:lima_enam/src/ui/task/list_task.dart';
 import 'file:///C:/Users/ardit/Documents/backup/10Okt-Windows/AndroidStudioProjects/flutter/lima_enam/lib/src/ui/widget/komponen/splashScreen.dart';
 import 'package:lima_enam/src/ui/widget/login.dart';
@@ -172,9 +173,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 case "Mahasiswa":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => MahasiswaList(adapter: JsonMahasiswaAdapter(), headerText: 'Oke')));
+                        builder: (BuildContext context) => MahasiswaList(
+                            adapter: JsonMahasiswaAdapter(),
+                            headerText: 'Oke')));
                   }
                   break;
+                case "Profile":
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => HomeScreensss()));
+                  }
               }
             },
             child: Column(

@@ -20,8 +20,6 @@ class TaskApiProvider {
     }
   }
 
-
-
   Future createNewTask(sprint_id, nama_task, kesulitan_id, status) async {
     Map data = {
       'sprint_id': sprint_id.toString(),

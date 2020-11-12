@@ -3,6 +3,7 @@ import 'package:lima_enam/src/ui/task/update_task.dart';
 import '../../models/task_model.dart';
 import '../../blocs/tasks_bloc.dart';
 import 'create_task.dart';
+import 'create_task2.dart';
 import 'detail_task.dart';
 
 class TaskList extends StatefulWidget {
@@ -152,7 +153,7 @@ class _TaskListState extends State<TaskList> {
         return UpdateTask(
           id: data.results[index].id,
           nama_task: data.results[index].nama_task,
-          sprint_id: data.results[index].sprint_id,
+          sprint_id: data.results[index].sprint_id.toString(),
           kesulitan_id: data.results[index].kesulitan_id,
           status: data.results[index].status,
         );

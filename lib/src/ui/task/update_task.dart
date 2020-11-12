@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
 class UpdateTask extends StatefulWidget {
   final int id;
-  final int sprint_id;
+  final String sprint_id;
   final String nama_task;
   final int kesulitan_id;
   final bool status;
@@ -27,8 +30,30 @@ class UpdateTask extends StatefulWidget {
 }
 
 class UpdateTaskState extends State<UpdateTask> {
+  final String baseurl = 'https://limastt.herokuapp.com';
+  int _valProvince;
+
+  List<dynamic> _dataProvince = List();
+
+  void getProvince() async {
+    final response = await http.get("$baseurl/api/sprints");
+    Map<String, dynamic> map = jsonDecode(response.body);
+    List<dynamic> data = map["results"];
+    setState(() {
+      _dataProvince = data;
+    });
+    print(data[0]["id"]);
+  }
+
+  final int id;
+  final String sprint_id;
+  final String nama_task;
+  final int kesulitan_id;
+  final bool status;
+
   @override
   void initState() {
+    blocSprint.fetchAllSprints();
     blocTask.fetchAllTasks();
     if (widget.sprint_id != null) {
       _isFieldSprintIDValid = true;
@@ -39,6 +64,7 @@ class UpdateTaskState extends State<UpdateTask> {
       _controllerKesulitanID.text = widget.kesulitan_id.toString();
     }
     super.initState();
+    getProvince();
   }
 
   bool _isFieldSprintIDValid;
@@ -51,12 +77,6 @@ class UpdateTaskState extends State<UpdateTask> {
   TextEditingController _controllerNama = TextEditingController();
   TextEditingController _controllerKesulitanID = TextEditingController();
   TextEditingController _controllerStatus = TextEditingController();
-
-  final int id;
-  final int sprint_id;
-  final String nama_task;
-  final int kesulitan_id;
-  final bool status;
 
   UpdateTaskState(
       {this.id,
@@ -84,22 +104,20 @@ class UpdateTaskState extends State<UpdateTask> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  TextField(
-                    controller: _controllerSprintID,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: "ProjectID",
-                      errorText:
-                          _isFieldSprintIDValid == null || _isFieldSprintIDValid
-                              ? null
-                              : "ProjectID is required",
-                    ),
+                  DropdownButton(
+                    hint: Text("Pilih Sprint"),
+                    value: _valProvince,
+                    items: _dataProvince.map((item) {
+                      return DropdownMenuItem(
+                        child: Text(item['nama_sprint']),
+                        value: item['id'],
+                      );
+                    }).toList(),
                     onChanged: (value) {
-                      bool isFieldValid = value.trim().isNotEmpty;
-                      if (isFieldValid != _isFieldSprintIDValid) {
-                        setState(() => _isFieldSprintIDValid = isFieldValid);
-                      }
-                      blocTask.insertSprintID(int.parse(value));
+                      setState(() {
+                        _valProvince = value;
+                      });
+                      blocTask.insertSprintID(value);
                     },
                   ),
                   TextField(

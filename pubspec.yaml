@@ -28,6 +28,7 @@ dependencies:
   rxdart: ^0.18.0
   http: ^0.12.0+1
   shared_preferences: ^0.5.6+3
+  dropdownfield: 1.0.0
 
 dev_dependencies:
   flutter_test:

@@ -36,14 +36,25 @@ class SprintApiProvider {
   }
 
   Future deleteSprint(id) async {
-    final response = await client.delete(
-      "$baseurl/api/sprints/$id"
-    );
+    final response = await client.delete("$baseurl/api/sprints/$id");
 
     if (response.statusCode == 200) {
       return true;
     } else {
       throw Exception();
+    }
+  }
+
+  Future ambilSprintID() async {
+
+    final response = await client.get("$baseurl/api/sprints");
+
+    var listData = ItemModelSprint.fromJson(json.decode(response.body));
+
+    if (response.statusCode == 200) {
+      return listData;
+    } else {
+      throw Exception('Failed to load post');
     }
   }
 }
