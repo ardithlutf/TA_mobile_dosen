@@ -26,6 +26,4 @@ class Repository {
 
   Future deleteOldSprint(id) => SprintsApiProvider.deleteSprint(id);
   Future deleteOldTask(id) => TasksApiProvider.deleteTask(id);
-
-  Future ambilSprintID() => SprintsApiProvider.ambilSprintID();
 }

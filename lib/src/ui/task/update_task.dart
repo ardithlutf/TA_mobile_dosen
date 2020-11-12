@@ -8,8 +8,8 @@ final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
 class UpdateTask extends StatefulWidget {
   final int id;
-  final String sprint_id;
   final String nama_task;
+  final String sprint_id;
   final int kesulitan_id;
   final bool status;
 
@@ -23,8 +23,8 @@ class UpdateTask extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => UpdateTaskState(
       id: id,
-      sprint_id: sprint_id,
       nama_task: nama_task,
+      sprint_id: sprint_id,
       kesulitan_id: kesulitan_id,
       status: status);
 }
@@ -65,6 +65,7 @@ class UpdateTaskState extends State<UpdateTask> {
     }
     super.initState();
     getProvince();
+    blocTask.insertSprintID(_valProvince);
   }
 
   bool _isFieldSprintIDValid;
@@ -105,6 +106,7 @@ class UpdateTaskState extends State<UpdateTask> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   DropdownButton(
+                    isExpanded: true,
                     hint: Text("Pilih Sprint"),
                     value: _valProvince,
                     items: _dataProvince.map((item) {
@@ -120,6 +122,8 @@ class UpdateTaskState extends State<UpdateTask> {
                       blocTask.insertSprintID(value);
                     },
                   ),
+                  Text('ID Project yang dipilih: $_valProvince'),
+                  Text('ID Project saat ini: $sprint_id'),
                   TextField(
                     controller: _controllerNama,
                     keyboardType: TextInputType.text,

@@ -44,17 +44,4 @@ class SprintApiProvider {
       throw Exception();
     }
   }
-
-  Future ambilSprintID() async {
-
-    final response = await client.get("$baseurl/api/sprints");
-
-    var listData = ItemModelSprint.fromJson(json.decode(response.body));
-
-    if (response.statusCode == 200) {
-      return listData;
-    } else {
-      throw Exception('Failed to load post');
-    }
-  }
 }

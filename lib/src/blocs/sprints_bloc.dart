@@ -32,10 +32,6 @@ class SprintsBloc {
     _repository.deleteOldSprint(_id);
   }
 
-  ambilIDSprint(){
-    _repository.ambilSprintID();
-  }
-
   dispose() {
     _sprintsFetcher.close();
     _id.close();
