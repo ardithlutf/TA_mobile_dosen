@@ -57,6 +57,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
+  datetime_picker_formfield:
+    dependency: "direct main"
+    description:
+      name: datetime_picker_formfield
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   dropdownfield:
     dependency: "direct main"
     description:
@@ -128,6 +135,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.16.1"
+  localization:
+    dependency: "direct main"
+    description:
+      name: localization
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   matcher:
     dependency: transitive
     description:

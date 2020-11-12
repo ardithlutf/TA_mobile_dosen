@@ -4,17 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/home_bloc.dart';
 import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
-import 'package:lima_enam/src/models/sprint_model.dart';
-import 'package:lima_enam/src/models/task_model.dart';
 import 'package:lima_enam/src/resources/adapter/json_mahasiswa_adapter.dart';
-import 'package:lima_enam/src/resources/adapter/mahasiswa_adapter.dart';
 import 'package:lima_enam/src/ui/mahasiswa/list_mahasiswa.dart';
-import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_section.dart';
 import 'package:lima_enam/src/ui/sprint/list_sprint.dart';
-import 'package:lima_enam/src/ui/task/create_task3.dart';
 import 'package:lima_enam/src/ui/task/list_task.dart';
-import 'file:///C:/Users/ardit/Documents/backup/10Okt-Windows/AndroidStudioProjects/flutter/lima_enam/lib/src/ui/widget/komponen/splashScreen.dart';
+import 'package:lima_enam/src/ui/widget/date_picker.dart';
 import 'package:lima_enam/src/ui/widget/login.dart';
+import 'package:lima_enam/src/ui/widget/profile/profile_page.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -32,22 +28,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-//    blocSprint.dispose();
-//    blocTask.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // blocSprint.fetchAllSprints();
-    // blocTask.fetchAllTasks();
     return MaterialApp(
       theme: ThemeData.from(
           colorScheme: ColorScheme.fromSwatch(
-              //TODO: Color Hexa = #0EB10E
               primarySwatch: Colors.blue,
-              cardColor: Colors.white70,
-              backgroundColor: Colors.white)),
+              cardColor: Colors.white,
+              backgroundColor: Colors.blue[100])),
       home: MyHomePage(title: 'Semester Ganjil 2020/2021'),
     );
   }
@@ -104,14 +95,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            // ListTile(
-            //   onTap: () {
-            //     Navigator.of(context).push(MaterialPageRoute(
-            //         builder: (BuildContext context) => SplashScreen()));
-            //     Timer(Duration(seconds: 2), () => bloc.logoutUser());
-            //   },
-            //   title: Text("Profile"),
-            // ),
             ListTile(
               onTap: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -126,35 +109,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  // Widget homeSprint(AsyncSnapshot<ItemModelSprint> snapshot) {
-  //   blocSprint.fetchAllSprints();
-  //   return ListTile(
-  //       onTap: () {
-  //         Navigator.of(context).push(MaterialPageRoute(
-  //             builder: (BuildContext context) => SprintList()));
-  //       },
-  //       title: Text("Sprint"),
-  //       leading: Icon(Icons.library_books),
-  //       trailing: Container(
-  //         width: 20,
-  //         height: 20,
-  //         child: Center(
-  //             child: Text(
-  //           '${snapshot.data.results.length}',
-  //           style: TextStyle(color: Colors.white),
-  //         )),
-  //         decoration: BoxDecoration(
-  //             shape: BoxShape.circle, color: Colors.lightBlue[800]),
-  //       ));
-  // }
-
   Card DashboardItem(String title, IconData icon) {
     blocSprint.fetchAllSprints();
     return Card(
         elevation: 1.0,
         margin: new EdgeInsets.all(8.0),
         child: Container(
-          decoration: BoxDecoration(color: Color.fromRGBO(220, 220, 220, 1.0)),
+          decoration: BoxDecoration(color: Colors.white),
           child: new InkWell(
             onTap: () {
               switch (title) {
@@ -175,14 +136,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (BuildContext context) => MahasiswaList(
                             adapter: JsonMahasiswaAdapter(),
-                            headerText: 'Oke')));
+                            headerText: 'Mahasiswa')));
                   }
                   break;
                 case "Profile":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => HomeScreensss()));
+                        builder: (BuildContext context) => HomeScreen()));
                   }
+                  break;
+                case "Tim":
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) => MyHomePageDatePicker()));
+                  }
+                  break;
               }
             },
             child: Column(

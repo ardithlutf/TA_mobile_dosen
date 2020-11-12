@@ -3,7 +3,6 @@ import 'package:lima_enam/src/ui/task/update_task.dart';
 import '../../models/task_model.dart';
 import '../../blocs/tasks_bloc.dart';
 import 'create_task.dart';
-import 'create_task2.dart';
 import 'detail_task.dart';
 
 class TaskList extends StatefulWidget {

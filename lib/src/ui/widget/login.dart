@@ -13,6 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void initState() {
     super.initState();
+    // bloc.login('ardith', 'password');
   }
 
   @override
@@ -23,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[100],
       resizeToAvoidBottomPadding: false,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,49 +55,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(
                         fontSize: 70.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green),
+                        color: Colors.blue),
                   ),
                 )
               ],
             ),
           ),
-//          Container(
-//            child: Stack(
-//              children: <Widget>[
-//                Container(
-//                  padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-//                  child: Text(
-//                    'Assalamu\'alaikum,',
-//                    style:
-//                        TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
-//                  ),
-//                ),
-//                Container(
-//                  padding: EdgeInsets.fromLTRB(15.0, 175.0, 0.0, 0.0),
-//                  child: Text(
-//                    'Ardith',
-//                    style:
-//                        TextStyle(fontSize: 70.0, fontWeight: FontWeight.bold),
-//                  ),
-//                ),
-//                Container(
-//                  padding: EdgeInsets.fromLTRB(210.0, 175.0, 0.0, 0.0),
-//                  child: Text(
-//                    '.',
-//                    style: TextStyle(
-//                        fontSize: 70.0,
-//                        fontWeight: FontWeight.bold,
-//                        color: Colors.green),
-//                  ),
-//                )
-//              ],
-//            ),
-//          ),
           Container(
             padding: EdgeInsets.only(left: 20.0, right: 20.0),
             child: Column(
               children: <Widget>[
-                Image.asset('assets/images/undraw_sign_in_e6hj.png', height: 182.0),
+                Image.asset('assets/images/tiktok.png', height: 182.0),
                 emailField(bloc),
                 passwordField(bloc),
                 forgotPassword(),
@@ -137,10 +107,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 labelStyle: TextStyle(
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey),
+                    color: Colors.black54),
                 errorText: snap.error,
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green))),
+                    borderSide: BorderSide(color: Colors.blue))),
           );
         },
       );
@@ -157,10 +127,10 @@ class _LoginScreenState extends State<LoginScreen> {
               labelStyle: TextStyle(
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey),
+                  color: Colors.black54),
               errorText: snap.error,
               focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green))),
+                  borderSide: BorderSide(color: Colors.blue))),
         );
       });
 
@@ -174,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Text(
           'Lupa password',
           style: TextStyle(
-              color: Colors.green,
+              color: Colors.blue,
               fontFamily: 'Montserrat',
               fontWeight: FontWeight.bold,
               decoration: TextDecoration.underline),
@@ -201,9 +171,9 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Center(
-              child: ImageIcon(AssetImage('assets/images/facebook-logo.png')),
-            ),
+            // Center(
+            //   child: ImageIcon(AssetImage('assets/images/facebook-logo.png')),
+            // ),
             Center(
               child: Text(
                 'Masuk dengan facebook',
@@ -233,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Text(
             'Daftar sekarang',
             style: TextStyle(
-                color: Colors.green,
+                color: Colors.blue,
                 fontFamily: 'Montserrat',
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.underline),
@@ -271,8 +241,8 @@ Widget submitButton(LoginBloc bloc) => StreamBuilder<bool>(
           height: 40.0,
           child: Material(
             borderRadius: BorderRadius.circular(20.0),
-            shadowColor: Colors.greenAccent,
-            color: Colors.green,
+            shadowColor: Colors.blueAccent,
+            color: Colors.blue,
             elevation: 7.0,
             child: GestureDetector(
               onTap: (!snap.hasData) ? null : bloc.submit,

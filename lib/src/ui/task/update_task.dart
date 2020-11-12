@@ -106,7 +106,7 @@ class UpdateTaskState extends State<UpdateTask> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   DropdownButton(
-                    isExpanded: true,
+                    dropdownColor: Colors.white,
                     hint: Text("Pilih Sprint"),
                     value: _valProvince,
                     items: _dataProvince.map((item) {
@@ -122,8 +122,6 @@ class UpdateTaskState extends State<UpdateTask> {
                       blocTask.insertSprintID(value);
                     },
                   ),
-                  Text('ID Project yang dipilih: $_valProvince'),
-                  Text('ID Project saat ini: $sprint_id'),
                   TextField(
                     controller: _controllerNama,
                     keyboardType: TextInputType.text,

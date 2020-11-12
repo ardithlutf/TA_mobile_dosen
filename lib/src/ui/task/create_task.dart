@@ -86,9 +86,10 @@ class CreateTaskState extends State<CreateTask> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   DropdownButton(
+                    dropdownColor: Colors.white,
                     hint: Text("Pilih Sprint"),
                     value: _valProvince,
-                    items: _dataProvince.map((item) {
+                    items: _dataProvince.map((item){
                       return DropdownMenuItem(
                         child: Text(item['nama_sprint']),
                         value: item['id'],
@@ -101,66 +102,6 @@ class CreateTaskState extends State<CreateTask> {
                       blocTask.insertSprintID(value);
                     },
                   ),
-                  // DropDownField(
-                  //   controller: projectDipilih,
-                  //   hintText: 'Pilih Project',
-                  //   enabled: true,
-                  //   items: blocSprint.ambilIDSprint(),
-                  //   onValueChanged: (value) {
-                  //     setState(() {
-                  //       pilihproject = value;
-                  //       blocTask.insertSprintID(int.parse(value));
-                  //     });
-                  //   },
-                  // ),
-                  // HomeScreensss(sprint_id),
-                  // StreamBuilder(
-                  //     stream: blocSprint.allSprints,
-                  //     builder: (context, AsyncSnapshot<ItemModelSprint> snapshot) {
-                  //       if (snapshot.hasData){
-                  //         return DropDownField(
-                  //           controller: projectDipilih,
-                  //           hintText: 'Pilih Project',
-                  //           enabled: true,
-                  //           items: blocSprint.ambilIDSprint(sprint_id),
-                  //           onValueChanged: (value) {
-                  //             setState(() {
-                  //               pilihproject = value;
-                  //               blocTask.insertSprintID(int.parse(value));
-                  //             });
-                  //           },
-                  //         );
-                  //         // return DropdownButton(
-                  //         //   hint: Text('Pilih Project'),
-                  //         //   value: snapshot.data.hasil,
-                  //         //   items: blocSprint
-                  //         //       .ambilSprintID(sprint_id)
-                  //         //       .map((item) => DropdownMenuItem(
-                  //         //       child: Row(children: <Widget>[
-                  //         //         Text("$sprint_id"),
-                  //         //       ]))),
-                  //         //   onChanged: (value) {
-                  //         //     setState(() {
-                  //         //       pilihproject = value;
-                  //         //       blocTask.insertSprintID(int.parse(value));
-                  //         //     });
-                  //         //   },
-                  //         // );
-                  //       } else if (snapshot.hasError) {
-                  //         return Text(snapshot.error.toString());
-                  //       }
-                  //       return Center(child: CircularProgressIndicator());
-                  //
-                  //     }),
-                  // TextField(
-                  //   keyboardType: TextInputType.number,
-                  //   decoration: InputDecoration(
-                  //     labelText: "ProjectID",
-                  //   ),
-                  //   onChanged: (value) {
-                  //     blocTask.insertSprintID(int.parse(value));
-                  //   },
-                  // ),
                   TextField(
                     controller: _controllerNama,
                     keyboardType: TextInputType.text,

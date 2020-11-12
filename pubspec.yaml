@@ -29,6 +29,8 @@ dependencies:
   http: ^0.12.0+1
   shared_preferences: ^0.5.6+3
   dropdownfield: 1.0.0
+  datetime_picker_formfield: ^1.0.0
+  localization: ^0.1.0
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +58,8 @@ flutter:
     - assets/images/undraw_new_decade_n4qd.png
     - assets/images/undraw_sign_in_e6hj.png
     - assets/images/undraw_grid_design_obmd.png
+    - assets/images/ardith.jpg
+    - assets/images/tiktok.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

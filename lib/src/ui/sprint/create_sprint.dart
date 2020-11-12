@@ -1,5 +1,8 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/sprints_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:lima_enam/src/ui/widget/date_picker.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
@@ -43,6 +46,8 @@ class CreateSprintState extends State<CreateSprint> {
 
   @override
   Widget build(BuildContext context) {
+    final format = DateFormat("yyyy-MM-dd");
+
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         key: _scaffoldState,
@@ -95,63 +100,44 @@ class CreateSprintState extends State<CreateSprint> {
                       blocSprint.insertDesc(value);
                     },
                   ),
-                  TextField(
-                    controller: _controllerTglMulai,
-                    keyboardType: TextInputType.datetime,
+                  DateTimeField(
                     decoration: InputDecoration(
                       labelText: "Tanggal Mulai",
                       hintText: "YYYY-MM-DD",
-                      errorText:
-                          _isFieldTglMulaiValid == null || _isFieldTglMulaiValid
-                              ? null
-                              : "Tanggal Mulai is required",
                     ),
-                    onChanged: (value) {
-                      bool isFieldValid = value.trim().isNotEmpty;
-                      if (isFieldValid != _isFieldTglMulaiValid) {
-                        setState(() => _isFieldTglMulaiValid = isFieldValid);
-                      }
-                      blocSprint.insertTglMulai(value);
+                    format: format,
+                    onShowPicker: (context, currentValue) {
+                      return showDatePicker(
+                          context: context,
+                          firstDate: DateTime(1900),
+                          initialDate: currentValue ?? DateTime.now(),
+                          lastDate: DateTime(2100));
                     },
+                    onChanged: (value){
+                      blocSprint.insertTglMulai(value.toString());
+                    }
                   ),
-                  TextField(
-                    controller: _controllerTglSelesai,
-                    keyboardType: TextInputType.datetime,
-                    decoration: InputDecoration(
-                      labelText: "Tanggal Selesai",
-                      hintText: "YYYY-MM-DD",
-                      errorText: _isFieldTglSelesaiValid == null ||
-                              _isFieldTglSelesaiValid
-                          ? null
-                          : "Tanggal Selesai is required",
-                    ),
-                    onChanged: (value) {
-                      bool isFieldValid = value.trim().isNotEmpty;
-                      if (isFieldValid != _isFieldTglSelesaiValid) {
-                        setState(() => _isFieldTglSelesaiValid = isFieldValid);
+                  DateTimeField(
+                      decoration: InputDecoration(
+                        labelText: "Tanggal Selesai",
+                        hintText: "YYYY-MM-DD",
+                      ),
+                      format: format,
+                      onShowPicker: (context, currentValue) {
+                        return showDatePicker(
+                            context: context,
+                            firstDate: DateTime(1900),
+                            initialDate: currentValue ?? DateTime.now(),
+                            lastDate: DateTime(2100));
+                      },
+                      onChanged: (value){
+                        blocSprint.insertTglSelesai(value.toString());
                       }
-                      blocSprint.insertTglSelesai(value);
-                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: RaisedButton(
                       onPressed: () async {
-                        if (_isFieldNamaValid == null ||
-                            _isFieldDeskripsiValid == null ||
-                            _isFieldTglMulaiValid == null ||
-                            _isFieldTglSelesaiValid == null ||
-                            !_isFieldNamaValid ||
-                            !_isFieldDeskripsiValid ||
-                            !_isFieldTglMulaiValid ||
-                            !_isFieldTglSelesaiValid) {
-                          _scaffoldState.currentState.showSnackBar(
-                            SnackBar(
-                              content: Text("Please fill all field"),
-                            ),
-                          );
-                          return;
-                        }
                         blocSprint.addSaveSprint();
                         setState(() => _isLoading = true);
                         await Future.delayed(const Duration(milliseconds: 699));
