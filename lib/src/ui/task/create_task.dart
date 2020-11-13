@@ -41,8 +41,7 @@ class CreateTaskState extends State<CreateTask> {
     print(data[0]["id"]);
   }
 
-  String sprint_id;
-
+  final String sprint_id;
   final String nama_task;
   final int kesulitan_id;
   final bool status;
@@ -87,7 +86,7 @@ class CreateTaskState extends State<CreateTask> {
                 children: <Widget>[
                   DropdownButton(
                     dropdownColor: Colors.white,
-                    hint: Text("Pilih Sprint"),
+                    hint: Text("Pilih Project"),
                     value: _valProvince,
                     items: _dataProvince.map((item){
                       return DropdownMenuItem(
@@ -109,7 +108,7 @@ class CreateTaskState extends State<CreateTask> {
                       labelText: "Nama Sprint",
                       errorText: _isFieldNamaValid == null || _isFieldNamaValid
                           ? null
-                          : "Nama Sprint is required",
+                          : "Nama Sprint harus diisi",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -128,7 +127,7 @@ class CreateTaskState extends State<CreateTask> {
                       errorText: _isFieldKesulitanIDValid == null ||
                               _isFieldKesulitanIDValid
                           ? null
-                          : "Kesulitan ID is required",
+                          : "Kesulitan ID harus diisi",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -147,7 +146,7 @@ class CreateTaskState extends State<CreateTask> {
                       errorText:
                           _isFieldStatusValid == null || _isFieldStatusValid
                               ? null
-                              : "Status is required",
+                              : "Status harus diisi",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -177,8 +176,8 @@ class CreateTaskState extends State<CreateTask> {
                         blocTask.addSaveTask();
                         setState(() => _isLoading = true);
                         await Future.delayed(const Duration(milliseconds: 699));
-                        blocTask.fetchAllTasks();
                         Navigator.of(context).pop();
+                        blocTask.fetchAllTasks();
                       },
                       child: Text(
                         'Simpan'.toUpperCase(),
@@ -212,27 +211,3 @@ class CreateTaskState extends State<CreateTask> {
         ));
   }
 }
-
-// Widget DropdownSprint(AsyncSnapshot<ItemModelSprint> snapshot) {
-//   return DropdownButtonFormField(
-//       value: ,
-//       items: snapshot.data.results
-//           .map((item) => DropdownMenuItem(
-//               value: sprint_id, child: Text(item.nama_sprint.toString())))
-//           .toList(),
-//       onChanged: (newValue) {
-//         setState(() {
-//           sprint_id = newValue;
-//         });
-//         blocTask.insertSprintID(int.parse(newValue));
-//       },
-//       decoration: InputDecoration(
-//         contentPadding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-//         filled: true,
-//         fillColor: Colors.grey[200],
-// // hintText: Localization.of(context).category,
-// // errorText: errorSnapshot.data == 0 ? Localization.of(context).categoryEmpty : null),
-//       ));
-// }
-
-//TODO:

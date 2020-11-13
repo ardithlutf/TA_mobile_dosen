@@ -8,7 +8,6 @@ import 'package:lima_enam/src/resources/adapter/json_mahasiswa_adapter.dart';
 import 'package:lima_enam/src/ui/mahasiswa/list_mahasiswa.dart';
 import 'package:lima_enam/src/ui/sprint/list_sprint.dart';
 import 'package:lima_enam/src/ui/task/list_task.dart';
-import 'package:lima_enam/src/ui/widget/date_picker.dart';
 import 'package:lima_enam/src/ui/widget/login.dart';
 import 'package:lima_enam/src/ui/widget/profile/profile_page.dart';
 
@@ -148,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 case "Tim":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => MyHomePageDatePicker()));
+                        builder: (BuildContext context) => Scaffold()));
                   }
                   break;
               }

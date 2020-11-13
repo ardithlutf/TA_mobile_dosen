@@ -9,11 +9,15 @@ class SprintDetail extends StatefulWidget {
   final int id;
   final String nama_sprint;
   final String desc_sprint;
+  final String tgl_mulai;
+  final String tgl_selesai;
 
   SprintDetail({
     this.id,
     this.nama_sprint,
     this.desc_sprint,
+    this.tgl_mulai,
+    this.tgl_selesai
   });
 
   @override
@@ -22,6 +26,8 @@ class SprintDetail extends StatefulWidget {
       id: id,
       nama_sprint: nama_sprint,
       desc_sprint: desc_sprint,
+      tgl_mulai: tgl_mulai,
+      tgl_selesai: tgl_selesai
     );
   }
 }
@@ -41,11 +47,16 @@ class SprintDetailState extends State<SprintDetail> {
   final int id;
   final String nama_sprint;
   final String desc_sprint;
+  final String tgl_mulai;
+  final String tgl_selesai;
+
 
   SprintDetailState({
     this.id,
     this.nama_sprint,
     this.desc_sprint,
+    this.tgl_mulai,
+    this.tgl_selesai,
   });
 
   @override
@@ -68,7 +79,6 @@ class SprintDetailState extends State<SprintDetail> {
                   ),
                 ),
                 actions: <Widget>[
-                  IconButton(icon: Icon(Icons.edit), onPressed: null),
                   IconButton(
                       icon: Icon(Icons.delete),
                       onPressed: () {
@@ -77,17 +87,19 @@ class SprintDetailState extends State<SprintDetail> {
                             builder: (context) {
                               return AlertDialog(
                                 title: Text('Warning'),
-                                content: Text(
-                                    "Anda ingin menghapus project: $nama_sprint"),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "Anda ingin menghapus project:"),
+                                    Text(
+                                        "$nama_sprint", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
                                 actions: <Widget>[
                                   FlatButton(
-                                    child: Text("Batal"),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  FlatButton(
-                                    child: Text("Lanjut"),
+                                    child: Text("Lanjut", style: TextStyle(color: Colors.red)),
                                     onPressed: () {
                                       blocSprint.deleteSprint("$id");
                                       setState(() {
@@ -95,6 +107,12 @@ class SprintDetailState extends State<SprintDetail> {
                                         blocSprint.fetchAllSprints();
                                       });
                                       openSprintPage();
+                                    },
+                                  ),
+                                  FlatButton(
+                                    child: Text("Batal"),
+                                    onPressed: () {
+                                      Navigator.pop(context);
                                     },
                                   ),
                                 ],
@@ -214,7 +232,7 @@ class SprintDetailState extends State<SprintDetail> {
                             child: Card(
                               clipBehavior: Clip.antiAlias,
                               child: ListTile(
-                                title: Text('DD/MM/YYYY'),
+                                title: Text('$tgl_mulai'.toString()),
                               ),
                             ),
                           ),
@@ -226,7 +244,7 @@ class SprintDetailState extends State<SprintDetail> {
                             child: Card(
                               clipBehavior: Clip.antiAlias,
                               child: ListTile(
-                                title: Text('DD/MM/YYYY'),
+                                title: Text('$tgl_selesai'.toString()),
                               ),
                             ),
                           ),
@@ -352,13 +370,10 @@ class SprintDetailState extends State<SprintDetail> {
     );
   }
 
-  // openSprintPage() {
-  //   Navigator.pushNamedAndRemoveUntil(context, '/sprint', (_) => false);
-  // }
-
   openSprintPage() {
     var count = 0;
 
+    blocSprint.fetchAllSprints();
     Navigator.popUntil(context, (route) {
       return count++ == 1;
     });

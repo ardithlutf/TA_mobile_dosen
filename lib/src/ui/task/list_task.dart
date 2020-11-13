@@ -83,11 +83,19 @@ class _TaskListState extends State<TaskList> {
                                   builder: (context) {
                                     return AlertDialog(
                                       title: Text('Warning'),
-                                      content: Text(
-                                          'Anda ingin menghapus task ${snapshot.data.results[index].nama_task.toString()}'),
+                                      content: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              "Anda ingin menghapus sprint:"),
+                                          Text(
+                                              "${snapshot.data.results[index].nama_task.toString()}", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
                                       actions: <Widget>[
                                         FlatButton(
-                                          child: Text("Lanjut"),
+                                          child: Text("Lanjut", style: TextStyle(color: Colors.red)),
                                           onPressed: () {
                                             blocTask.deleteTask(
                                                 snapshot.data.results[index].id);

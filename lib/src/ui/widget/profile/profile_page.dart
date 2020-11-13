@@ -22,9 +22,9 @@ class HomeScreen extends StatelessWidget {
                       fontSize: 34,
                       color: Colors.white,
                       fontWeight: FontWeight.bold)),
-              Text('Mahasiswa',
+              Text('Kakaknya Naruto',
                   style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 20,
                       color: Colors.blue[400],
                       letterSpacing: 2.5,
                       fontWeight: FontWeight.bold)),
@@ -73,6 +73,16 @@ class HomeScreen extends StatelessWidget {
                     Icons.legend_toggle, color: Colors.black54,
                   ),
                   title: Text('Team 7', style: TextStyle(color: Colors.black54, fontSize: 18),),
+                ),
+              ),
+              Card(
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                color: Colors.white,
+                child: ListTile(
+                  leading: Icon(
+                    Icons.person, color: Colors.black54,
+                  ),
+                  title: Text('Mahasiswa', style: TextStyle(color: Colors.black54, fontSize: 18),),
                 ),
               ),
             ],

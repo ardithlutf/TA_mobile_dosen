@@ -2,7 +2,6 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:lima_enam/src/ui/widget/date_picker.dart';
 
 final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
@@ -54,7 +53,7 @@ class CreateSprintState extends State<CreateSprint> {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
           title: Text(
-            "Tambah Sprint Baru",
+            "Tambah Project Baru",
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -72,7 +71,7 @@ class CreateSprintState extends State<CreateSprint> {
                       labelText: "Judul Project",
                       errorText: _isFieldNamaValid == null || _isFieldNamaValid
                           ? null
-                          : "Judul is required",
+                          : "Judul harus diisi",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -90,7 +89,7 @@ class CreateSprintState extends State<CreateSprint> {
                       errorText: _isFieldDeskripsiValid == null ||
                               _isFieldDeskripsiValid
                           ? null
-                          : "Deskripsi is required",
+                          : "Deskripsi harus diisi",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -101,23 +100,28 @@ class CreateSprintState extends State<CreateSprint> {
                     },
                   ),
                   DateTimeField(
-                    decoration: InputDecoration(
-                      labelText: "Tanggal Mulai",
-                      hintText: "YYYY-MM-DD",
-                    ),
-                    format: format,
-                    onShowPicker: (context, currentValue) {
-                      return showDatePicker(
-                          context: context,
-                          firstDate: DateTime(1900),
-                          initialDate: currentValue ?? DateTime.now(),
-                          lastDate: DateTime(2100));
-                    },
-                    onChanged: (value){
-                      blocSprint.insertTglMulai(value.toString());
-                    }
-                  ),
+                      controller: _controllerTglMulai,
+                      decoration: InputDecoration(
+                        labelText: "Tanggal Mulai",
+                        hintText: "YYYY-MM-DD",
+                      ),
+                      format: format,
+                      onShowPicker: (context, currentValue) {
+                        return showDatePicker(
+                            context: context,
+                            firstDate: DateTime(1900),
+                            initialDate: currentValue ?? DateTime.now(),
+                            lastDate: DateTime(2100));
+                      },
+                      onChanged: (value) {
+                        bool isFieldValid = value.isAtSameMomentAs(value);
+                        if (isFieldValid != _isFieldTglMulaiValid) {
+                          setState(() => _isFieldTglMulaiValid = isFieldValid);
+                        }
+                        blocSprint.insertTglMulai(value.toString());
+                      }),
                   DateTimeField(
+                      controller: _controllerTglSelesai,
                       decoration: InputDecoration(
                         labelText: "Tanggal Selesai",
                         hintText: "YYYY-MM-DD",
@@ -130,10 +134,14 @@ class CreateSprintState extends State<CreateSprint> {
                             initialDate: currentValue ?? DateTime.now(),
                             lastDate: DateTime(2100));
                       },
-                      onChanged: (value){
+                      onChanged: (value) {
+                        bool isFieldValid = value.isAtSameMomentAs(value);
+                        if (isFieldValid != _isFieldTglSelesaiValid) {
+                          setState(
+                              () => _isFieldTglSelesaiValid = isFieldValid);
+                        }
                         blocSprint.insertTglSelesai(value.toString());
-                      }
-                  ),
+                      }),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: RaisedButton(
@@ -141,8 +149,8 @@ class CreateSprintState extends State<CreateSprint> {
                         blocSprint.addSaveSprint();
                         setState(() => _isLoading = true);
                         await Future.delayed(const Duration(milliseconds: 699));
-                        blocSprint.fetchAllSprints();
                         Navigator.of(context).pop();
+                        blocSprint.fetchAllSprints();
                       },
                       child: Text(
                         'Simpan'.toUpperCase(),

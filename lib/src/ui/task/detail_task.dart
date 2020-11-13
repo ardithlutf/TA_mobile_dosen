@@ -81,17 +81,19 @@ class TaskDetailState extends State<TaskDetail> {
                             builder: (context) {
                               return AlertDialog(
                                 title: Text('Warning'),
-                                content: Text(
-                                    "Anda ingin menghapus sprint: $nama_task"),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "Anda ingin menghapus sprint:"),
+                                    Text(
+                                        "$nama_task", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
                                 actions: <Widget>[
                                   FlatButton(
-                                    child: Text("Batal"),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  FlatButton(
-                                    child: Text("Lanjut"),
+                                    child: Text("Lanjut", style: TextStyle(color: Colors.red)),
                                     onPressed: () {
                                       blocTask.deleteTask("$id");
                                       setState(() {
@@ -99,6 +101,12 @@ class TaskDetailState extends State<TaskDetail> {
                                         blocTask.fetchAllTasks();
                                       });
                                       openTaskPage();
+                                    },
+                                  ),
+                                  FlatButton(
+                                    child: Text("Batal"),
+                                    onPressed: () {
+                                      Navigator.pop(context);
                                     },
                                   ),
                                 ],

@@ -30,8 +30,8 @@ class _Sprint {
   }
 
   int get id => _id;
+  String get nama_sprint => _nama_sprint;
+  String get desc_sprint => _desc_sprint;
   String get tgl_selesai => _tgl_selesai;
   String get tgl_mulai => _tgl_mulai;
-  String get desc_sprint => _desc_sprint;
-  String get nama_sprint => _nama_sprint;
 }

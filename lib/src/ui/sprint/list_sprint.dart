@@ -78,17 +78,19 @@ class _SprintListState extends State<SprintList> {
                               builder: (context) {
                                 return AlertDialog(
                                   title: Text('Warning'),
-                                  content: Text(
-                                      'Anda ingin menghapus project: ${snapshot.data.results[index].nama_sprint.toString()}'),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          "Anda ingin menghapus project:"),
+                                      Text(
+                                          "${snapshot.data.results[index].nama_sprint.toString()}", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
                                   actions: <Widget>[
                                     FlatButton(
-                                      child: Text("Batal"),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                    FlatButton(
-                                      child: Text("Lanjut"),
+                                      child: Text("Lanjut", style: TextStyle(color: Colors.red)),
                                       onPressed: () {
                                         blocSprint.deleteSprint(
                                             snapshot.data.results[index].id);
@@ -97,7 +99,13 @@ class _SprintListState extends State<SprintList> {
                                           blocSprint.fetchAllSprints();
                                         });
                                       },
-                                    )
+                                    ),
+                                    FlatButton(
+                                      child: Text("Batal"),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
                                   ],
                                 );
                               });
@@ -127,6 +135,8 @@ class _SprintListState extends State<SprintList> {
           id: data.results[index].id,
           nama_sprint: data.results[index].nama_sprint,
           desc_sprint: data.results[index].desc_sprint,
+          tgl_mulai: data.results[index].tgl_mulai,
+          tgl_selesai: data.results[index].tgl_selesai,
         );
       }),
     );

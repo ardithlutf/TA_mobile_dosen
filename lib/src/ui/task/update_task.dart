@@ -42,8 +42,12 @@ class UpdateTaskState extends State<UpdateTask> {
     setState(() {
       _dataProvince = data;
     });
-    print(data[0]["id"]);
+    // print(data[0]["id"]);
   }
+
+  // void getSprintID() async {
+  //   final response = await http.get("$baseurl/api/sprints");
+  // }
 
   final int id;
   final String sprint_id;
@@ -56,8 +60,6 @@ class UpdateTaskState extends State<UpdateTask> {
     blocSprint.fetchAllSprints();
     blocTask.fetchAllTasks();
     if (widget.sprint_id != null) {
-      _isFieldSprintIDValid = true;
-      _controllerSprintID.text = widget.sprint_id.toString();
       _isFieldNamaValid = true;
       _controllerNama.text = widget.nama_task;
       _isFieldKesulitanIDValid = true;
@@ -68,13 +70,11 @@ class UpdateTaskState extends State<UpdateTask> {
     blocTask.insertSprintID(_valProvince);
   }
 
-  bool _isFieldSprintIDValid;
   bool _isFieldNamaValid;
   bool _isFieldKesulitanIDValid;
   bool _isFieldStatusValid;
   bool _isLoading = false;
 
-  TextEditingController _controllerSprintID = TextEditingController();
   TextEditingController _controllerNama = TextEditingController();
   TextEditingController _controllerKesulitanID = TextEditingController();
   TextEditingController _controllerStatus = TextEditingController();
@@ -107,7 +107,7 @@ class UpdateTaskState extends State<UpdateTask> {
                 children: <Widget>[
                   DropdownButton(
                     dropdownColor: Colors.white,
-                    hint: Text("Pilih Sprint"),
+                    hint: Text("Pilih Project"),
                     value: _valProvince,
                     items: _dataProvince.map((item) {
                       return DropdownMenuItem(
@@ -129,7 +129,7 @@ class UpdateTaskState extends State<UpdateTask> {
                       labelText: "Nama Sprint",
                       errorText: _isFieldNamaValid == null || _isFieldNamaValid
                           ? null
-                          : "Nama Sprint is required",
+                          : "Nama Sprint harus diisi",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -148,7 +148,7 @@ class UpdateTaskState extends State<UpdateTask> {
                       errorText: _isFieldKesulitanIDValid == null ||
                               _isFieldKesulitanIDValid
                           ? null
-                          : "Kesulitan ID is required",
+                          : "Kesulitan ID harus diisi",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -167,7 +167,7 @@ class UpdateTaskState extends State<UpdateTask> {
                       errorText:
                           _isFieldStatusValid == null || _isFieldStatusValid
                               ? null
-                              : "Status is required",
+                              : "Status harus diisi",
                     ),
                     onChanged: (value) {
                       bool isFieldValid = value.trim().isNotEmpty;
@@ -182,10 +182,8 @@ class UpdateTaskState extends State<UpdateTask> {
                     child: RaisedButton(
                       onPressed: () async {
                         if (_isFieldNamaValid == null ||
-                            _isFieldSprintIDValid == null ||
                             _isFieldKesulitanIDValid == null ||
                             _isFieldStatusValid == null ||
-                            !_isFieldSprintIDValid ||
                             !_isFieldNamaValid ||
                             !_isFieldKesulitanIDValid ||
                             !_isFieldStatusValid) {
