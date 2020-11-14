@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/models/mahasiswa_model.dart';
 
-class MahasiswaCard extends StatelessWidget {
+class MahasiswaCardold extends StatelessWidget {
   final Mahasiswa mahasiswa;
 
-  const MahasiswaCard({
+  const MahasiswaCardold({
     @required this.mahasiswa,
   }) : assert(mahasiswa != null);
 

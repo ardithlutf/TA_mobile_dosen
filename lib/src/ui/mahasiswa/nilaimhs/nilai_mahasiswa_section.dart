@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/models/mahasiswa_model.dart';
 import 'package:lima_enam/src/resources/adapter/mahasiswa_adapter.dart';
-import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_card.dart';
+import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_card_old.dart';
 import 'package:lima_enam/src/ui/mahasiswa/nilaimhs/nilai_mahasiswa_card.dart';
 
 class NilaiMahasiswaSection extends StatefulWidget {

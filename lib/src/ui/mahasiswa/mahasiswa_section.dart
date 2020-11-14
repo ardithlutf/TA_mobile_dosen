@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/models/mahasiswa_model.dart';
 import 'package:lima_enam/src/resources/adapter/mahasiswa_adapter.dart';
-import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_card.dart';
+import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_card_old.dart';
 
 class MahasiswaSection extends StatefulWidget {
   final MahasiswaAdapter adapter;
@@ -10,8 +10,8 @@ class MahasiswaSection extends StatefulWidget {
   const MahasiswaSection({
     @required this.adapter,
     @required this.headerText,
-})  : assert(adapter != null),
-      assert(headerText != null);
+  })  : assert(adapter != null),
+        assert(headerText != null);
 
   _MahasiswaSectionState createState() => _MahasiswaSectionState();
 }
@@ -31,7 +31,10 @@ class _MahasiswaSectionState extends State<MahasiswaSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(widget.headerText, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+          Text(
+            widget.headerText,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
           const SizedBox(height: 8.0),
           Stack(
             children: <Widget>[
@@ -41,7 +44,7 @@ class _MahasiswaSectionState extends State<MahasiswaSection> {
                 child: Column(
                   children: <Widget>[
                     for (var mahasiswa in mahasiswas)
-                      MahasiswaCard(
+                      MahasiswaCardold(
                         mahasiswa: mahasiswa,
                       )
                   ],
@@ -51,7 +54,10 @@ class _MahasiswaSectionState extends State<MahasiswaSection> {
                 duration: const Duration(milliseconds: 250),
                 opacity: mahasiswas.length == 0 ? 1.0 : 0.0,
                 child: FlatButton(
-                  child: Text('Lihat mahasiswa', style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    'Lihat mahasiswa',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   onPressed: _getMahasiswa,
                   color: Colors.blue,
                 ),
