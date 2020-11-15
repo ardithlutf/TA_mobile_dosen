@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/home_bloc.dart';
 import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
+import 'package:lima_enam/src/blocs/user_bloc.dart';
 import 'package:lima_enam/src/resources/adapter/json_mahasiswa_adapter.dart';
 import 'package:lima_enam/src/ui/mahasiswa/list_mahasiswa.dart';
 import 'package:lima_enam/src/ui/sprint/list_sprint.dart';
@@ -23,6 +24,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     blocSprint.fetchAllSprints();
     blocTask.fetchAllTasks();
+    blocUser.fetchAllUsers();
     super.initState();
   }
 
@@ -110,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Card DashboardItem(String title, IconData icon) {
-    blocSprint.fetchAllSprints();
+    // blocSprint.fetchAllSprints();
     return Card(
         elevation: 1.0,
         margin: new EdgeInsets.all(8.0),

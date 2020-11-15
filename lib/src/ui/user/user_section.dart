@@ -25,11 +25,20 @@ class _UserSectionState extends State<UserSection> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Mahasiswa'),
-        // actions: <Widget>[
-        //   IconButton(icon: Icon(Icons.list), onPressed: (){
-        //     openNilaiMahasiswa();
-        //   })
-        // ],
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () {
+                setState(() {
+                  blocUser.fetchAllUsers();
+                });
+              }),
+          IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () {
+                return null;
+              }),
+        ],
       ),
       body: StreamBuilder(
         stream: blocUser.allUsers,
@@ -47,53 +56,41 @@ class _UserSectionState extends State<UserSection> {
 
   Widget buildList(AsyncSnapshot<ItemModelUser> snapshot) {
     return ListView.builder(
-        shrinkWrap: true,
         itemCount: snapshot.data.results.length,
         itemBuilder: (BuildContext context, int index) {
-          //TODO:
-          // Widget printMhs(){
-          //   switch (snapshot.data.results[index].role){
-          //     case "Mahasiswa":
-          //       var mhs =  Text(
-          //           '${snapshot.data.results[index].nama}',
-          //           style:
-          //           TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold));
-          //       return mhs;
-          //   break;
-          //   case "Administrator":
-          //     return Text(
-          //         '${snapshot.data.results[index].nama}',
-          //         style:
-          //         TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold));
-          //     break;
-          //   }
-          // }
-          //
-          // return printMhs();
-
-          if (snapshot.data.results[index].role == 'Administrator') {
-            return Card(
-              clipBehavior: null,
-              semanticContainer: true,
-              margin: EdgeInsets.all(10),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  ListTile(
-                    title: Text(
-                      '${snapshot.data.results[index].nama}',
-                      style: TextStyle(
-                          fontSize: 25.0, fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text(
-                      '${snapshot.data.results[index].email.toString()}',
-                      style: TextStyle(
-                          fontSize: 25.0, fontWeight: FontWeight.bold),
-                    ),
+          for (var i = index; i < snapshot.data.results.length; i++) {
+            if (snapshot.data.results.elementAt(index).role == 'Mahasiswa') {
+              return Container(
+                child: Card(
+                  clipBehavior: null,
+                  semanticContainer: true,
+                  margin: EdgeInsets.all(10),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          foregroundColor: Colors.white,
+                          child:
+                              Text('${snapshot.data.results[index].nama[0]}'),
+                        ),
+                        title: Text(
+                          '${snapshot.data.results[index].nama}',
+                        ),
+                        subtitle: Text(
+                          '${snapshot.data.results[index].email.toString()}',
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            );
+                ),
+              );
+            } else {
+              snapshot.data.results
+                  .removeWhere((element) => element.role != 'Mahasiswa');
+              return null;
+            }
           }
         });
   }

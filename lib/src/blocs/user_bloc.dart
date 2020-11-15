@@ -9,6 +9,7 @@ class UsersBloc {
 
   final _id = BehaviorSubject<int>();
   final _nama = BehaviorSubject<String>();
+  final _role = BehaviorSubject<String>();
 
   Observable<ItemModelUser> get allUsers => _usersFetcher.stream;
 
@@ -20,6 +21,7 @@ class UsersBloc {
   dispose() {
     _usersFetcher.close();
     _id.close();
+    _role.close();
     _nama.close();
   }
 }
