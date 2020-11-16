@@ -27,13 +27,6 @@ class _UserSectionState extends State<UserSection> {
         title: Text('Mahasiswa'),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.refresh),
-              onPressed: () {
-                setState(() {
-                  blocUser.fetchAllUsers();
-                });
-              }),
-          IconButton(
               icon: Icon(Icons.list),
               onPressed: () {
                 return null;
@@ -59,37 +52,58 @@ class _UserSectionState extends State<UserSection> {
         itemCount: snapshot.data.results.length,
         itemBuilder: (BuildContext context, int index) {
           for (var i = index; i < snapshot.data.results.length; i++) {
-            if (snapshot.data.results.elementAt(index).role == 'Mahasiswa') {
-              return Container(
-                child: Card(
-                  clipBehavior: null,
-                  semanticContainer: true,
-                  margin: EdgeInsets.all(10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          foregroundColor: Colors.white,
-                          child:
-                              Text('${snapshot.data.results[index].nama[0]}'),
-                        ),
-                        title: Text(
-                          '${snapshot.data.results[index].nama}',
-                        ),
-                        subtitle: Text(
-                          '${snapshot.data.results[index].email.toString()}',
-                        ),
+            if (snapshot.data.results.elementAt(index).role != 'Mahasiswa') {
+              snapshot.data.results
+                  .removeWhere((element) => element.role != 'Mahasiswa');
+              return Card(
+                clipBehavior: null,
+                semanticContainer: true,
+                margin: EdgeInsets.all(10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        foregroundColor: Colors.white,
+                        child:
+                            Text('${snapshot.data.results[index].nama[0]}'),
                       ),
-                    ],
-                  ),
+                      title: Text(
+                        '${snapshot.data.results[index].nama}',
+                      ),
+                      subtitle: Text(
+                        '${snapshot.data.results[index].email.toString()}',
+                      ),
+                    ),
+                  ],
                 ),
               );
             } else {
-              snapshot.data.results
-                  .removeWhere((element) => element.role != 'Mahasiswa');
-              return null;
+              return Card(
+                clipBehavior: null,
+                semanticContainer: true,
+                margin: EdgeInsets.all(10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        foregroundColor: Colors.white,
+                        child:
+                        Text('${snapshot.data.results[index].nama[0]}'),
+                      ),
+                      title: Text(
+                        '${snapshot.data.results[index].nama}',
+                      ),
+                      subtitle: Text(
+                        '${snapshot.data.results[index].email.toString()}',
+                      ),
+                    ),
+                  ],
+                ),
+              );
             }
           }
         });

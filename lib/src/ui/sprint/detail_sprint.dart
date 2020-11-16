@@ -80,6 +80,13 @@ class SprintDetailState extends State<SprintDetail> {
                 ),
                 actions: <Widget>[
                   IconButton(
+                      icon: Icon(Icons.refresh),
+                      onPressed: () {
+                        setState(() {
+                          blocTask.fetchAllTasks();
+                        });
+                      }),
+                  IconButton(
                       icon: Icon(Icons.delete),
                       onPressed: () {
                         showDialog(
@@ -380,37 +387,9 @@ class SprintDetailState extends State<SprintDetail> {
   }
 }
 
-Widget _myListView(BuildContext context) {
-  final titles = [
-    'bike',
-    'boat',
-    'bus',
-    'car',
-    'railway',
-  ];
-
-  final icons = [
-    Icons.directions_bike,
-    Icons.directions_boat,
-    Icons.directions_bus,
-    Icons.directions_car,
-    Icons.directions_railway,
-  ];
-
-  return ListView.builder(
-    itemCount: titles.length,
-    itemBuilder: (context, index) {
-      return Card(
-        child: ListTile(
-          leading: Icon(icons[index]),
-          title: Text(titles[index]),
-        ),
-      );
-    },
-  );
-}
-
 Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
+  var panjangList = snapshot.data.results.length;
+
   final icons = [
     Icons.directions_bike,
     Icons.directions_boat,
@@ -420,18 +399,23 @@ Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
   ];
 
   return ListView.builder(
-      // primary: false,
+    primary: false,
       padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-      itemCount: snapshot.data.results.length,
+      itemCount: panjangList,
       itemBuilder: (context, index) {
-        if (snapshot.data.results[index].sprint_id == id) {
-          return Card(
-            child: ListTile(
-              leading: Icon(icons[index]),
-              title:
-                  Text('${snapshot.data.results[index].nama_task.toString()}'),
-            ),
-          );
+        for (var i = index; i < snapshot.data.results.length; i++){
+          if (snapshot.data.results.elementAt(index).sprint_id == id) {
+            return Card(
+              child: ListTile(
+                leading: Icon(icons[index]),
+                title:
+                Text('${snapshot.data.results[index].nama_task.toString()}'),
+              ),
+            );
+          } else {
+            snapshot.data.results.removeWhere((element) => element.sprint_id != id);
+            return null;
+          }
         }
       });
 }
