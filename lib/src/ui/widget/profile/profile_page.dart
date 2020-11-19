@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                   // color: Colors.white,
                   child: SizedBox(
-                    width: 400.0,
+                    width: 440.0,
                     height: 40,
                     child: new RaisedButton(
                       color: Colors.red,

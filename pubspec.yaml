@@ -61,6 +61,7 @@ flutter:
     - assets/images/undraw_grid_design_obmd.png
     - assets/images/ardith.jpg
     - assets/images/tiktok.png
+    - assets/images/lm.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

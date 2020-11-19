@@ -28,6 +28,11 @@ class _AppState extends State<App> {
     authBloc.restoreSession();
     return MaterialApp(
       title: "LIMA STT",
+      initialRoute: '/',
+      routes: {
+        '/': (context) => createContent(),
+        LoginScreen.routeName : (context) => LoginScreen()
+      },
     );
   }
 

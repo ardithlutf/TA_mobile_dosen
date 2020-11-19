@@ -36,11 +36,11 @@ class _LoginScreenState extends State<LoginScreen> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.fromLTRB(12.0, 35.0, 0.0, 0.0),
-                  child: Text(
-                    'LIMA STT NF',
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.w100, fontFamily: 'Montserrat'),
-                  ),
+                  // child: Text(
+                  //   'LIMA STT NF',
+                  //   style:
+                  //       TextStyle(fontSize: 20.0, fontWeight: FontWeight.w100, fontFamily: 'Montserrat'),
+                  // ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(15.0, 70.0, 0.0, 0.0),
@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: EdgeInsets.only(left: 20.0, right: 20.0),
             child: Column(
               children: <Widget>[
-                Image.asset('assets/images/tiktok.png', height: 182.0),
+                Image.asset('assets/images/lm.png', height: 182.0),
                 emailField(bloc),
                 passwordField(bloc),
                 forgotPassword(),
@@ -75,9 +75,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(margin: EdgeInsets.only(top: 65.0)),
                 submitButton(bloc),
                 SizedBox(height: 13.0),
-                loginWithFB(),
+                // loginWithFB(),
                 SizedBox(height: 85.0),
-                registerNow()
+                // registerNow()
               ],
             ),
           )
@@ -178,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
             // ),
             Center(
               child: Text(
-                'Masuk dengan facebook',
+                'Masuk dengan Google',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, fontFamily: 'Montserrat'),
               ),
