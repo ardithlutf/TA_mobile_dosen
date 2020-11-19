@@ -5,8 +5,6 @@ import 'package:lima_enam/src/blocs/home_bloc.dart';
 import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 import 'package:lima_enam/src/blocs/user_bloc.dart';
-import 'package:lima_enam/src/resources/adapter/json_mahasiswa_adapter.dart';
-import 'package:lima_enam/src/ui/mahasiswa/list_mahasiswa.dart';
 import 'package:lima_enam/src/ui/sprint/list_sprint.dart';
 import 'package:lima_enam/src/ui/task/list_task.dart';
 import 'package:lima_enam/src/ui/user/user_section.dart';
@@ -41,7 +39,8 @@ class _MyAppState extends State<MyApp> {
               primarySwatch: Colors.blue,
               cardColor: Colors.white,
               backgroundColor: Colors.blue[100])),
-      home: MyHomePage(title: 'Semester Ganjil 2020/2021'),
+      home: MyHomePage(
+          title: 'Semester Ganjil 2020/2021'),
     );
   }
 }
@@ -64,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
+        centerTitle: true,
         title: Text(widget.title),
       ),
       body: Container(
@@ -80,34 +80,34 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text("Ardith Lutfiawan"),
-              accountEmail: Text("ardith.lutfiawan@gmail.com"),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor:
-                    Theme.of(context).platform == TargetPlatform.android
-                        ? Colors.blue
-                        : Colors.white,
-                child: Text(
-                  "AL",
-                  style: TextStyle(fontSize: 40.0),
-                ),
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (BuildContext context) => LoginScreen()));
-                Timer(Duration(seconds: 2), () => bloc.logoutUser());
-              },
-              title: Text("Log Out"),
-            ),
-          ],
-        ),
-      ),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     children: <Widget>[
+      //       UserAccountsDrawerHeader(
+      //         accountName: Text("Ardith Lutfiawan"),
+      //         accountEmail: Text("ardith.lutfiawan@gmail.com"),
+      //         currentAccountPicture: CircleAvatar(
+      //           backgroundColor:
+      //               Theme.of(context).platform == TargetPlatform.android
+      //                   ? Colors.blue
+      //                   : Colors.white,
+      //           child: Text(
+      //             "AL",
+      //             style: TextStyle(fontSize: 40.0),
+      //           ),
+      //         ),
+      //       ),
+      //       ListTile(
+      //         onTap: () {
+      //           Navigator.of(context).pushReplacement(MaterialPageRoute(
+      //               builder: (BuildContext context) => LoginScreen()));
+      //           Timer(Duration(seconds: 2), () => bloc.logoutUser());
+      //         },
+      //         title: Text("Log Out"),
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 
@@ -136,8 +136,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 case "Mahasiswa":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => UserSection(
-                            headerText: 'Mahasiswa')));
+                        builder: (BuildContext context) =>
+                            UserSection(headerText: 'Mahasiswa')));
                   }
                   break;
                 case "Profile":

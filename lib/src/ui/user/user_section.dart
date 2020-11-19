@@ -2,11 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/user_bloc.dart';
 import 'package:lima_enam/src/models/user_model.dart';
+import 'package:lima_enam/src/resources/adapter/json_mahasiswa_adapter.dart';
+import 'package:lima_enam/src/resources/adapter/mahasiswa_adapter.dart';
+import 'package:lima_enam/src/ui/mahasiswa/nilaimhs/list_nilai_mahasiswa.dart';
 
 class UserSection extends StatefulWidget {
+  final NilaiMahasiswaAdapter adapter;
   final String headerText;
 
   const UserSection({
+    @required this.adapter,
     @required this.headerText,
   }) : assert(headerText != null);
 
@@ -29,7 +34,7 @@ class _UserSectionState extends State<UserSection> {
           IconButton(
               icon: Icon(Icons.list),
               onPressed: () {
-                return null;
+                openNilaiMahasiswa();
               }),
         ],
       ),
@@ -107,5 +112,16 @@ class _UserSectionState extends State<UserSection> {
             }
           }
         });
+  }
+
+  void openNilaiMahasiswa() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return NilaiMahasiswaList(
+            adapter: JsonNilaiMahasiswaAdapter(),
+            headerText: 'Nilai Mahasiswa');
+      }),
+    );
   }
 }

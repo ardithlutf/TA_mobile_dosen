@@ -4,6 +4,8 @@ import 'package:lima_enam/src/blocs/login_bloc.dart';
 import 'package:lima_enam/src/ui/widget/register.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const String routeName = "/login";
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }

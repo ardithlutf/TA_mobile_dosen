@@ -28,16 +28,13 @@ class _AppState extends State<App> {
     authBloc.restoreSession();
     return MaterialApp(
       title: "LIMA STT",
-      home: Scaffold(
-        body: createContent(),
-      ),
     );
   }
 
   createContent() {
-    return StreamBuilder<bool> (
+    return StreamBuilder<bool>(
         stream: authBloc.isSessionValid,
-        builder: (context, AsyncSnapshot<bool> snapshot){
+        builder: (context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData && snapshot.data) {
             return SplashPage();
           }

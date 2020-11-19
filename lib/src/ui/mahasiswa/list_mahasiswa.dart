@@ -36,9 +36,11 @@ class _MahasiswaListState extends State<MahasiswaList> {
       appBar: AppBar(
         title: Text('Mahasiswa'),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.list), onPressed: (){
-            openNilaiMahasiswa();
-          })
+          IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () {
+                openNilaiMahasiswa();
+              })
         ],
       ),
       body: ScrollConfiguration(
@@ -50,11 +52,15 @@ class _MahasiswaListState extends State<MahasiswaList> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
-                child: MahasiswaSection(adapter: JsonMahasiswaAdapter(), headerText: 'TI Pagi 2020'),
+                child: MahasiswaSection(
+                    adapter: JsonMahasiswaAdapter(),
+                    headerText: 'TI Pagi 2020'),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
-                child: MahasiswaSection(adapter: JsonMahasiswaAdapter(), headerText: 'TI Pagi 2019'),
+                child: MahasiswaSection(
+                    adapter: JsonMahasiswaAdapter(),
+                    headerText: 'TI Pagi 2019'),
               ),
             ],
           ),
