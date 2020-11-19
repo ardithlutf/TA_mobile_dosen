@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontSize: 34,
                         color: Colors.white,
                         fontWeight: FontWeight.bold)),
-                Text('Kakaknya Naruto',
+                Text('Mahasiswa',
                     style: TextStyle(
                         fontSize: 20,
                         color: Colors.blue[400],
@@ -111,20 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     title: Text(
                       'Team 7',
-                      style: TextStyle(color: Colors.black54, fontSize: 18),
-                    ),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-                  color: Colors.white,
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.person,
-                      color: Colors.black54,
-                    ),
-                    title: Text(
-                      'Mahasiswa',
                       style: TextStyle(color: Colors.black54, fontSize: 18),
                     ),
                   ),
