@@ -9,11 +9,11 @@ class UserApiProvider {
   final String baseurl = 'https://linkmatchsttnf.herokuapp.com';
 
   Future<ItemModelUser> fetchUserList() async {
-    final response = await client.get("$baseurl/user");
+    final response = await client.get("$baseurl/api/user");
     if (response.statusCode == 200) {
       return ItemModelUser.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load post');
+      throw Exception('Failed to load User');
     }
   }
 }

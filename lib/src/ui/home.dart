@@ -7,6 +7,7 @@ import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 import 'package:lima_enam/src/blocs/user_bloc.dart';
 import 'package:lima_enam/src/ui/sprint/list_sprint.dart';
 import 'package:lima_enam/src/ui/task/list_task.dart';
+import 'package:lima_enam/src/ui/team/list_team.dart';
 import 'package:lima_enam/src/ui/user/user_section.dart';
 import 'package:lima_enam/src/ui/widget/login.dart';
 import 'package:lima_enam/src/ui/widget/profile/profile_page.dart';
@@ -149,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 case "Tim":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => Scaffold()));
+                        builder: (BuildContext context) => TeamList()));
                   }
                   break;
               }

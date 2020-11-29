@@ -403,8 +403,8 @@ Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
       padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
       itemCount: panjangList,
       itemBuilder: (context, index) {
-        for (var i = index; i < snapshot.data.results.length; i++){
-          if (snapshot.data.results.elementAt(index).sprint_id == id) {
+        // for (var i = index; i < panjangList; i++){
+        //   if (snapshot.data.results.elementAt(index).sprint_id == id) {
             return Card(
               child: ListTile(
                 leading: Icon(icons[index]),
@@ -412,10 +412,10 @@ Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
                 Text('${snapshot.data.results[index].nama_task.toString()}'),
               ),
             );
-          } else {
-            snapshot.data.results.removeWhere((element) => element.sprint_id != id);
-            return null;
-          }
-        }
+          // } else {
+          //   snapshot.data.results.removeWhere((element) => element.sprint_id != id);
+          //   return null;
+          // }
+        // }
       });
 }
