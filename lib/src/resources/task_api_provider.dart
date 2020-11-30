@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import '../models/task_model.dart';
-import 'package:http/http.dart' show Client, Request;
+import 'package:http/http.dart' show Client;
 
 class TaskApiProvider {
   Client client = Client();

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lima_enam/src/blocs/login_bloc.dart';
-import 'package:lima_enam/src/ui/widget/register.dart';
+import 'package:lima_enam/src/blocs/auth/login_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "/login";
@@ -189,40 +188,40 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget registerNow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          'Belum punya akun?',
-          style: TextStyle(fontFamily: 'Montserrat'),
-        ),
-        SizedBox(width: 5.0),
-        InkWell(
-          onTap: () {
-            openRegisterScreen();
-          },
-          child: Text(
-            'Daftar sekarang',
-            style: TextStyle(
-                color: Colors.blue,
-                fontFamily: 'Montserrat',
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.underline),
-          ),
-        )
-      ],
-    );
-  }
-
-  openRegisterScreen() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return RegistenScreen();
-      }),
-    );
-  }
+  // Widget registerNow() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: <Widget>[
+  //       Text(
+  //         'Belum punya akun?',
+  //         style: TextStyle(fontFamily: 'Montserrat'),
+  //       ),
+  //       SizedBox(width: 5.0),
+  //       InkWell(
+  //         onTap: () {
+  //           openRegisterScreen();
+  //         },
+  //         child: Text(
+  //           'Daftar sekarang',
+  //           style: TextStyle(
+  //               color: Colors.blue,
+  //               fontFamily: 'Montserrat',
+  //               fontWeight: FontWeight.bold,
+  //               decoration: TextDecoration.underline),
+  //         ),
+  //       )
+  //     ],
+  //   );
+  // }
+  //
+  // openRegisterScreen() {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(builder: (context) {
+  //       return RegisterScreen();
+  //     }),
+  //   );
+  // }
 }
 
 //Widget submitButton(LoginBloc bloc) => StreamBuilder<bool>(

@@ -20,8 +20,7 @@ class _Team {
   String _semester;
   String _prodi;
   String _nilai;
-  int _scrumMasterId;
-  int _projectId;
+  dynamic _scrumMasterId;
 
   _Team(result){
     _id = result['id'];
@@ -29,8 +28,7 @@ class _Team {
     _semester = result['semester'];
     _prodi = result['prodi'];
     _nilai = result['nilai'];
-    _scrumMasterId = result['scrumMasterId'];
-    _projectId = result['projectId'];
+    _scrumMasterId = result['scrum_master_id'];
   }
 
   int get id => _id;
@@ -38,6 +36,5 @@ class _Team {
   String get semester => _semester;
   String get prodi => _prodi;
   String get nilai => _nilai;
-  int get scrumMasterId => _scrumMasterId;
-  int get projectId => _projectId;
+  dynamic get scrumMasterId => _scrumMasterId;
 }

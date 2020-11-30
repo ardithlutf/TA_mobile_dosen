@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/home_bloc.dart';
 
-import '../../../app.dart';
 import '../login.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   HomeBloc bloc = HomeBloc();
 
+  @override
   void initState() {
     super.initState();
   }
@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),
                               (Route<dynamic> route) => false,
                         );
-                        Timer(Duration(seconds: 2), () => bloc.logoutUser());
+                        Timer(Duration(seconds: 0), () => bloc.logoutUser());
                       },
                     ),
                   ),

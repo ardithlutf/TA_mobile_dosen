@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:lima_enam/src/models/team_model.dart';
 import 'package:lima_enam/src/resources/team_api_provider.dart';
 
-import 'auth_provider.dart';
+import 'auth/auth_provider.dart';
 import 'sprint_api_provider.dart';
 import 'task_api_provider.dart';
 import 'user_api_provider.dart';
@@ -25,6 +25,7 @@ class Repository {
 
   Future<String> login(String email, String password) =>
       authProvider.login(email: email, password: password);
+  Future<ItemModelUser> loginUsers(String username, String password) => UsersApiProvider.loginUser(username, password);
 
   Future<ItemModelSprint> fetchAllSprints() =>
       SprintsApiProvider.fetchSprintList();

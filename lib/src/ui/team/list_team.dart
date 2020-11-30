@@ -81,7 +81,6 @@ class _TeamListState extends State<TeamList> {
           prodi: data.results[index].prodi,
           nilai: data.results[index].nilai,
           scrumMasterId: data.results[index].scrumMasterId,
-          projectId: data.results[index].projectId,
         );
       }),
     );

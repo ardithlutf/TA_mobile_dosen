@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/teams_bloc.dart';
-import 'package:lima_enam/src/models/team_model.dart';
 
 class TeamDetail extends StatefulWidget {
   final int id;
@@ -8,8 +7,7 @@ class TeamDetail extends StatefulWidget {
   final String semester;
   final String prodi;
   final String nilai;
-  final int scrumMasterId;
-  final int projectId;
+  final dynamic scrumMasterId;
 
   TeamDetail({
     this.id,
@@ -18,7 +16,6 @@ class TeamDetail extends StatefulWidget {
     this.prodi,
     this.nilai,
     this.scrumMasterId,
-    this.projectId,
   });
 
   @override
@@ -30,7 +27,6 @@ class TeamDetail extends StatefulWidget {
         prodi: prodi,
         nilai: nilai,
         scrumMasterId: scrumMasterId,
-        projectId: projectId
     );
   }
 }
@@ -51,8 +47,7 @@ class TeamDetailState extends State<TeamDetail> {
   final String semester;
   final String prodi;
   final String nilai;
-  final int scrumMasterId;
-  final int projectId;
+  final dynamic scrumMasterId;
 
   TeamDetailState({
     this.id,
@@ -61,7 +56,6 @@ class TeamDetailState extends State<TeamDetail> {
     this.prodi,
     this.nilai,
     this.scrumMasterId,
-    this.projectId,
   });
 
   @override

@@ -1,15 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
 import '../models/sprint_model.dart';
-import 'package:http/http.dart' show Client, Request;
+import 'package:http/http.dart' show Client;
 
 class SprintApiProvider {
   Client client = Client();
 
-  final String baseurl = 'https://limastt.herokuapp.com';
+  // final String baseurl = 'https://limastt.herokuapp.com';
+  final String baseurl = 'https://linkmatchsttnfapi.herokuapp.com';
+  String token = 'f7d427142e68101c8af6df1b624626f26f0c28fb';
 
   Future<ItemModelSprint> fetchSprintList() async {
-    final response = await client.get("$baseurl/api/sprints");
+    final response = await client.get("$baseurl/api/project?remember_token=$token");
     if (response.statusCode == 200) {
       return ItemModelSprint.fromJson(json.decode(response.body));
     } else {

@@ -12,21 +12,22 @@ class AuthorizationBloc {
     _isSessionValid.close();
   }
 
-  void restoreSession() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _tokenString = prefs.get('token');
-    if (_tokenString != null && _tokenString.length > 0) {
-      _isSessionValid.sink.add(true);
-    } else {
-      _isSessionValid.sink.add(false);
-    }
-  }
-
   void openSession(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('token', token);
     _tokenString = token;
     _isSessionValid.sink.add(true);
+  }
+
+  void restoreSession() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _tokenString = prefs.get('token');
+
+    if (_tokenString != null && _tokenString.length > 0) {
+      _isSessionValid.sink.add(true);
+    } else {
+      _isSessionValid.sink.add(false);
+    }
   }
 
   void closeSession() async {

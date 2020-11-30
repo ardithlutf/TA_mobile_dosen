@@ -4,8 +4,6 @@ import 'package:lima_enam/src/resources/adapter/json_mahasiswa_adapter.dart';
 import 'package:lima_enam/src/resources/adapter/mahasiswa_adapter.dart';
 import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_section.dart';
 import 'package:lima_enam/src/ui/mahasiswa/nilaimhs/list_nilai_mahasiswa.dart';
-import 'package:lima_enam/src/ui/mahasiswa/nilaimhs/nilai_mahasiswa_card.dart';
-import 'package:lima_enam/src/ui/mahasiswa/nilaimhs/nilai_mahasiswa_section.dart';
 
 class MahasiswaList extends StatefulWidget {
   final MahasiswaAdapter adapter;
@@ -23,12 +21,6 @@ class MahasiswaList extends StatefulWidget {
 
 class _MahasiswaListState extends State<MahasiswaList> {
   final List<Mahasiswa> mahasiswas = List<Mahasiswa>();
-
-  void _getMahasiswa() {
-    setState(() {
-      mahasiswas.addAll(widget.adapter.getMahasiswa());
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

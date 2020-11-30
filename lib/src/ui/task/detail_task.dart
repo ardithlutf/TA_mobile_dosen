@@ -256,8 +256,6 @@ class TaskDetailState extends State<TaskDetail> {
             return Card(
               child: ListTile(
                 title: Text('${snapshot.data.results[index].nama_sprint.toString()}'),
-                //TODO:
-                // subtitle: Text('Jumlah Sprint: ${snapshot.data.results.length}'),
               ),
             );
           }

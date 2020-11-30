@@ -1,4 +1,3 @@
-import 'package:dropdownfield/dropdownfield.dart';
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';

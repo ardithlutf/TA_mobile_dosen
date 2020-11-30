@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lima_enam/src/blocs/login_bloc.dart';
-import 'package:lima_enam/src/ui/widget/register.dart';
+import 'package:lima_enam/src/blocs/auth/login_bloc.dart';
 
 import 'login.dart';
 
-class RegistenScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<RegistenScreen> {
+class _LoginScreenState extends State<RegisterScreen> {
   LoginBloc bloc = LoginBloc();
 
   void initState() {

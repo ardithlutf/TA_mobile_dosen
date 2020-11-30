@@ -1,28 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lima_enam/src/ui/home.dart';
-import 'package:lima_enam/src/ui/widget/komponen/splashScreen.dart';
 import 'package:lima_enam/src/ui/widget/komponen/splash_page.dart';
 import 'package:lima_enam/src/ui/widget/login.dart';
-import 'file:///C:/Users/ardit/Documents/backup/10Okt-Windows/AndroidStudioProjects/flutter/lima_enam/lib/src/ui/widget/komponen/splashScreen.dart';
 
-import 'blocs/authorization_bloc.dart';
+import 'blocs/auth/authorization_bloc.dart';
 
-class App extends StatefulWidget {
-  @override
-  _AppState createState() => _AppState();
-}
 
-class _AppState extends State<App> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     authBloc.restoreSession();

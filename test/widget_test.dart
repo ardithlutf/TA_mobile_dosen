@@ -7,8 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:lima_enam/main.dart';
 import 'package:lima_enam/src/ui/home.dart';
 
 void main() {

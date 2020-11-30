@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lima_enam/src/models/mahasiswa_model.dart';
 import 'package:lima_enam/src/resources/adapter/json_mahasiswa_adapter.dart';
 import 'package:lima_enam/src/resources/adapter/mahasiswa_adapter.dart';
-import 'package:lima_enam/src/ui/mahasiswa/mahasiswa_section.dart';
 import 'package:lima_enam/src/ui/mahasiswa/nilaimhs/nilai_mahasiswa_section.dart';
 
 class NilaiMahasiswaList extends StatefulWidget {
@@ -21,12 +20,6 @@ class NilaiMahasiswaList extends StatefulWidget {
 
 class _NilaiMahasiswaListState extends State<NilaiMahasiswaList> {
   final List<Mahasiswa> mahasiswas = List<Mahasiswa>();
-
-  void _getMahasiswa() {
-    setState(() {
-      mahasiswas.addAll(widget.adapter.getNilaiMahasiswa());
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

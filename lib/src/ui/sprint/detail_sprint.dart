@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 import 'package:lima_enam/src/models/task_model.dart';
 import '../../blocs/sprints_bloc.dart';
-import 'list_sprint.dart';
 
 class SprintDetail extends StatefulWidget {
   final int id;

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lima_enam/src/blocs/login_bloc.dart';
 import 'package:lima_enam/src/blocs/splash_bloc/splash_bloc.dart';
 import '../../home.dart';
-import '../login.dart';
 
 class SplashPage extends StatefulWidget {
   @override

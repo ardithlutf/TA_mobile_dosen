@@ -10,11 +10,9 @@ class LoginBloc extends Validators {
   final PublishSubject _loadingData = PublishSubject<bool>();
 
   Function(String) get changeEmail => _emailController.sink.add;
-
   Function(String) get changePassword => _passwordController.sink.add;
 
   Stream<String> get email => _emailController.stream.transform(validateEmail);
-
   Stream<String> get password =>
       _passwordController.stream.transform(validatePassword);
 
@@ -50,10 +48,11 @@ class Validators {
     Pattern pattern =
         r'^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$';
     RegExp regex = new RegExp(pattern);
+
     if (regex.hasMatch(email))
       sink.add(email);
     else
-      sink.addError('Enter a valid email');
+      sink.addError('Email tidak valid');
   });
 
   final validatePassword = StreamTransformer<String, String>.fromHandlers(
@@ -61,7 +60,7 @@ class Validators {
     if (password.length > 7) {
       sink.add(password);
     } else {
-      sink.addError('Password must be at least 8 characters long');
+      sink.addError('Password tidak boleh kurang dari 8 karakter');
     }
   });
 }

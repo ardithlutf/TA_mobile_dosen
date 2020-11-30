@@ -23,10 +23,10 @@ class _Sprint {
 
   _Sprint(result) {
     _id = result['id'];
-    _nama_sprint = result['nama_sprint'];
-    _desc_sprint = result['desc_sprint'];
-    _tgl_mulai = result['tgl_mulai'];
-    _tgl_selesai = result['tgl_selesai'];
+    _nama_sprint = result['nama'];
+    _desc_sprint = result['deskripsi'];
+    _tgl_mulai = result['tanggal_mulai'];
+    _tgl_selesai = result['tanggal_akhir'];
   }
 
   int get id => _id;
