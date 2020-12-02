@@ -39,7 +39,8 @@ class Repository {
   Future<ItemModelSprint> fetchAllSprints() =>
       SprintsApiProvider.fetchSprintList();
   Future<ItemModelTask> fetchAllTasks() => TasksApiProvider.fetchTaskList();
-  // Future<ItemModelUser> fetchAllUsers() => UsersApiProvider.fetchUserList();
+  Future<ItemModelUser> fetchAllUsers() => UsersApiProvider.fetchUserList();
+  Future<ItemModelUser> fetchUserProfile() => UsersApiProvider.fetchUserProfile();
   Future<ItemModelTeam> fetchAllTeams() => TeamsApiProvider.fetchTeamList();
 
   // CRUD Project

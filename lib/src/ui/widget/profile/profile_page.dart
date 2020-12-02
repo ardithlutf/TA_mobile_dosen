@@ -6,8 +6,6 @@ import 'package:lima_enam/src/resources/auth/shared_preferences_manager.dart';
 import 'package:lima_enam/src/resources/injector/injector.dart';
 import 'package:lima_enam/src/ui/widget/login2.dart';
 
-import '../login.dart';
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();

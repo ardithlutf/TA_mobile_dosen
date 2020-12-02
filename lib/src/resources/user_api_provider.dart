@@ -4,20 +4,19 @@ import 'package:http/http.dart' show Client;
 import 'package:lima_enam/src/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'auth/shared_preferences_manager.dart';
+import 'injector/injector.dart';
+
 class UserApiProvider {
   Client client = Client();
+  final SharedPreferencesManager _sharedPreferencesManager = locator<SharedPreferencesManager>();
 
   final String baseurl = 'https://linkmatchsttnfapi.herokuapp.com';
 
-  Future<ItemModelUser> fetchUserList() async {
-    final response =
-        await client.get("$baseurl/api/user", );
-
-    if (response.statusCode == 200) {
-      return ItemModelUser.fromJson(json.decode(response.body));
-    } else {
-      throw Exception('Failed to load User');
-    }
+  Future<String> getToken() async {
+    final accessToken = _sharedPreferencesManager
+        .getString(SharedPreferencesManager.keyAccessToken);
+    return accessToken;
   }
 
   Future<String> loginUser(String username, String password) async {
@@ -38,6 +37,32 @@ class UserApiProvider {
       }
     } else {
       throw Exception('Failed to login');
+    }
+  }
+
+  Future<ItemModelUser> fetchUserList() async {
+    String token = await getToken();
+
+    final response = await client.get("$baseurl/api/user", headers: {
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      return ItemModelUser.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load Mahasiswa');
+    }
+  }
+
+  Future<ItemModelUser> fetchUserProfile() async {
+    String token = await getToken();
+
+    final response = await client.get("$baseurl/api/profile", headers: {
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      return ItemModelUser.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load Profile');
     }
   }
 }

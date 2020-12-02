@@ -1,8 +1,11 @@
 import 'package:lima_enam/src/blocs/auth/login_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:lima_enam/src/blocs/auth/login_bloc2.dart';
 import 'dart:async';
 
 import 'package:lima_enam/src/ui/widget/login.dart';
+
+import '../login2.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
