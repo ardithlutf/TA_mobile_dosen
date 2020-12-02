@@ -32,14 +32,20 @@ dependencies:
   dropdownfield: 1.0.0
   datetime_picker_formfield: ^1.0.0
   localization: ^0.1.0
+  dio: ^3.0.7
+  get_it: ^3.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+    # Automatically generate code for converting to and from JSON by Dart classes.
+  json_serializable: ^3.2.3
+
+    # Tools to write binaries that run builders.
+  build_runner: ^1.7.2
 
 # The following section is specific to Flutter.
 flutter:

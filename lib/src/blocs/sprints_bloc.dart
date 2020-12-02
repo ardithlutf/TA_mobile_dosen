@@ -28,10 +28,6 @@ class SprintsBloc {
     _repository.createNewSprint(_nama_sprint.value, _desc_sprint.value, _tgl_mulai.value, _tgl_selesai.value);
   }
 
-  deleteSprint(_id) {
-    _repository.deleteOldSprint(_id);
-  }
-
   dispose() {
     _sprintsFetcher.close();
     _id.close();

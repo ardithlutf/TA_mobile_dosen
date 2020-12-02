@@ -90,13 +90,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (BuildContext context) => TaskList()));
                   }
                   break;
-                case "Mahasiswa":
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            UserSection(headerText: 'Mahasiswa')));
-                  }
-                  break;
+                // case "Mahasiswa":
+                //   {
+                //     Navigator.of(context).push(MaterialPageRoute(
+                //         builder: (BuildContext context) =>
+                //             UserSection(headerText: 'Mahasiswa')));
+                //   }
+                //   break;
                 case "Profile":
                   {
                     Navigator.of(context).push(MaterialPageRoute(

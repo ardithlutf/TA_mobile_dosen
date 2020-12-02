@@ -6,6 +6,6 @@ class AuthProvider {
     @required String password,
   }) async {
     await Future.delayed(Duration(seconds: 1));
-    return 'token-info';
+    return 'access_token';
   }
 }

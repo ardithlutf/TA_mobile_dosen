@@ -1,30 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:lima_enam/src/ui/widget/komponen/splash_page.dart';
+import 'package:lima_enam/src/resources/injector/injector.dart';
+import 'package:lima_enam/src/ui/widget/login2.dart';
+import 'package:lima_enam/src/ui/widget/splash/splash_page.dart';
 import 'package:lima_enam/src/ui/widget/login.dart';
 
 import 'blocs/auth/authorization_bloc.dart';
+import 'resources/auth/shared_preferences_manager.dart';
+import 'ui/home.dart';
 
+
+// class App extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     authBloc.restoreSession();
+//     return MaterialApp(
+//       title: "LIMA STT",
+//       home: Scaffold(
+//         body: createContent(),
+//       ),
+//     );
+//   }
+//
+//   createContent() {
+//     return StreamBuilder<bool> (
+//         stream: authBloc.isSessionValid,
+//         builder: (context, AsyncSnapshot<bool> snapshot){
+//           if (snapshot.hasData && snapshot.data) {
+//             return SplashPage();
+//           }
+//           return LoginScreen();
+//         });
+//   }
+// }
 
 class App extends StatelessWidget {
+  final SharedPreferencesManager _sharedPreferencesManager = locator<SharedPreferencesManager>();
+
   @override
   Widget build(BuildContext context) {
-    authBloc.restoreSession();
-    return MaterialApp(
-      title: "LIMA STT",
-      home: Scaffold(
-        body: createContent(),
-      ),
-    );
-  }
+    bool _isAlreadyLoggedIn = _sharedPreferencesManager.isKeyExists(SharedPreferencesManager.keyIsLogin)
+        ? _sharedPreferencesManager.getBool(SharedPreferencesManager.keyIsLogin)
+        : false;
 
-  createContent() {
-    return StreamBuilder<bool> (
-        stream: authBloc.isSessionValid,
-        builder: (context, AsyncSnapshot<bool> snapshot){
-          if (snapshot.hasData && snapshot.data) {
-            return SplashPage();
-          }
-          return LoginScreen();
-        });
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Color(0xFFF06038),
+      ),
+      home: _isAlreadyLoggedIn ? MyApp() : LoginScreen(),
+      routes: {
+        '/login_screen': (context) => LoginScreen(),
+        '/dashboard_user_screen': (context) => MyApp(),
+      },
+    );
   }
 }

@@ -85,46 +85,6 @@ class SprintDetailState extends State<SprintDetail> {
                           blocTask.fetchAllTasks();
                         });
                       }),
-                  IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text('Warning'),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        "Anda ingin menghapus project:"),
-                                    Text(
-                                        "$nama_sprint", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                                actions: <Widget>[
-                                  FlatButton(
-                                    child: Text("Lanjut", style: TextStyle(color: Colors.red)),
-                                    onPressed: () {
-                                      blocSprint.deleteSprint("$id");
-                                      setState(() {
-                                        Navigator.pop(context);
-                                        blocSprint.fetchAllSprints();
-                                      });
-                                      openSprintPage();
-                                    },
-                                  ),
-                                  FlatButton(
-                                    child: Text("Batal"),
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-                      }),
                 ],
                 expandedHeight: 200.0,
                 floating: false,

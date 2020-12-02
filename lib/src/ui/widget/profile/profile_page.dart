@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/home_bloc.dart';
+import 'package:lima_enam/src/resources/auth/shared_preferences_manager.dart';
+import 'package:lima_enam/src/resources/injector/injector.dart';
+import 'package:lima_enam/src/ui/widget/login2.dart';
 
 import '../login.dart';
 
@@ -16,11 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override
@@ -129,6 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
+                        locator<SharedPreferencesManager>().clearAll();
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(builder: (BuildContext context) => LoginScreen()),
@@ -145,5 +144,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

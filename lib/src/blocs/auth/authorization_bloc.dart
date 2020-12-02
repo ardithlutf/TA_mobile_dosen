@@ -32,7 +32,7 @@ class AuthorizationBloc {
 
   void closeSession() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('token');
+    prefs.remove('access_token');
     _isSessionValid.sink.add(false);
   }
 }

@@ -70,46 +70,6 @@ class _SprintListState extends State<SprintList> {
                         openDetailPage(snapshot.data, index);
                       },
                     ),
-                    FlatButton(
-                        child: const Text('HAPUS'),
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text('Warning'),
-                                  content: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          "Anda ingin menghapus project:"),
-                                      Text(
-                                          "${snapshot.data.results[index].nama_sprint.toString()}", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                                    ],
-                                  ),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      child: Text("Lanjut", style: TextStyle(color: Colors.red)),
-                                      onPressed: () {
-                                        blocSprint.deleteSprint(
-                                            snapshot.data.results[index].id);
-                                        Navigator.of(context).pop();
-                                        setState(() {
-                                          blocSprint.fetchAllSprints();
-                                        });
-                                      },
-                                    ),
-                                    FlatButton(
-                                      child: Text("Batal"),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                );
-                              });
-                        }),
                   ],
                 ),
               ],
