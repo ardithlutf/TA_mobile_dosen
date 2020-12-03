@@ -2,16 +2,17 @@ import 'package:lima_enam/src/models/user_model.dart';
 import 'package:rxdart/rxdart.dart';
 import '../resources/repository.dart';
 
-
 class UsersBloc {
   final _repository = Repository();
   final _usersFetcher = PublishSubject<ItemModelUser>();
+  final _usersProfile = PublishSubject<ItemModelUserProfile>();
 
   final _id = BehaviorSubject<int>();
   final _nama = BehaviorSubject<String>();
   final _role = BehaviorSubject<String>();
 
   Observable<ItemModelUser> get allUsers => _usersFetcher.stream;
+  Observable<ItemModelUserProfile> get onlyUser => _usersProfile.stream;
 
   fetchAllUsers() async {
     ItemModelUser itemModel = await _repository.fetchAllUsers();
@@ -19,12 +20,13 @@ class UsersBloc {
   }
 
   fetchUserProfile() async {
-    ItemModelUser itemModel = await _repository.fetchUserProfile();
-    _usersFetcher.sink.add(itemModel);
+    ItemModelUserProfile itemModel = await _repository.fetchUserProfile();
+    _usersProfile.sink.add(itemModel);
   }
 
   dispose() {
     _usersFetcher.close();
+    _usersProfile.close();
     _id.close();
     _role.close();
     _nama.close();

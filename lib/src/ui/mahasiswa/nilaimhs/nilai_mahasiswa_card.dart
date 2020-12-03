@@ -54,19 +54,19 @@ class NilaiMahasiswaCard extends StatelessWidget {
           ),
         ],
         rows: <DataRow>[
-            DataRow(
-              cells: <DataCell>[
-                DataCell(Text(mahasiswa.namaLengkap)),
-                DataCell(Text(mahasiswa.role)),
-                DataCell(Text(mahasiswa.nilai.toString())),
-                DataCell(
-                  Text(
-                    mahasiswa.namaLengkap[0],
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+          DataRow(
+            cells: <DataCell>[
+              DataCell(Text(mahasiswa.namaLengkap)),
+              DataCell(Text(mahasiswa.role)),
+              DataCell(Text(mahasiswa.nilai.toString())),
+              DataCell(
+                Text(
+                  mahasiswa.namaLengkap[0],
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-              ],
-            ),
+              ),
+            ],
+          ),
         ],
       ),
     );

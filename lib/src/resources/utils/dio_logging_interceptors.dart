@@ -1,18 +1,18 @@
 import 'package:dio/dio.dart';
-import 'package:lima_enam/src/models/auth/token.dart';
-import 'package:lima_enam/src/resources/auth/api_auth_repository.dart';
 import 'package:lima_enam/src/resources/auth/shared_preferences_manager.dart';
 import 'package:lima_enam/src/resources/injector/injector.dart';
 
 class DioLoggingInterceptors extends InterceptorsWrapper {
   final Dio _dio;
-  final SharedPreferencesManager _sharedPreferencesManager = locator<SharedPreferencesManager>();
+  final SharedPreferencesManager _sharedPreferencesManager =
+      locator<SharedPreferencesManager>();
 
   DioLoggingInterceptors(this._dio);
 
   @override
   Future onRequest(RequestOptions options) async {
-    print("--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
+    print(
+        "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
     print("Headers:");
     options.headers.forEach((k, v) => print('$k: $v'));
     if (options.queryParameters != null) {
@@ -22,12 +22,15 @@ class DioLoggingInterceptors extends InterceptorsWrapper {
     if (options.data != null) {
       print("Body: ${options.data}");
     }
-    print("--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
+    print(
+        "--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
 
     if (options.headers.containsKey('requirestoken')) {
       options.headers.remove('requirestoken');
-      print('accessToken: ${_sharedPreferencesManager.getString(SharedPreferencesManager.keyAccessToken)}');
-      String accessToken = _sharedPreferencesManager.getString(SharedPreferencesManager.keyAccessToken);
+      print(
+          'accessToken: ${_sharedPreferencesManager.getString(SharedPreferencesManager.keyAccessToken)}');
+      String accessToken = _sharedPreferencesManager
+          .getString(SharedPreferencesManager.keyAccessToken);
       options.headers.addAll({'Authorization': 'Bearer $accessToken'});
     }
     return options;
@@ -53,8 +56,11 @@ class DioLoggingInterceptors extends InterceptorsWrapper {
     print("<-- End error");
 
     int responseCode = dioError.response.statusCode;
-    String oldAccessToken = _sharedPreferencesManager.getString(SharedPreferencesManager.keyAccessToken);
-    if (oldAccessToken != null && responseCode == 401 && _sharedPreferencesManager != null) {
+    String oldAccessToken = _sharedPreferencesManager
+        .getString(SharedPreferencesManager.keyAccessToken);
+    if (oldAccessToken != null &&
+        responseCode == 401 &&
+        _sharedPreferencesManager != null) {
       _dio.interceptors.requestLock.lock();
       _dio.interceptors.responseLock.lock();
 

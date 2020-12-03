@@ -12,8 +12,8 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
   @override
   Stream<SplashState> mapEventToState(
-      SplashEvent event,
-      ) async* {
+    SplashEvent event,
+  ) async* {
     if (event is SetSplash) {
       yield SplashLoading();
       //todo: add some actions like checking the connection etc.

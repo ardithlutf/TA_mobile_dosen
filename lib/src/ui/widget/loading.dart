@@ -21,7 +21,9 @@ class WidgetCardLoading extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: Platform.isIOS ? CupertinoActivityIndicator() : CircularProgressIndicator(),
+            child: Platform.isIOS
+                ? CupertinoActivityIndicator()
+                : CircularProgressIndicator(),
           ),
         ),
       ),

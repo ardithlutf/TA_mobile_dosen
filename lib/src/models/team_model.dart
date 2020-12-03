@@ -1,10 +1,10 @@
 class ItemModelTeam {
   List<_Team> _results = [];
 
-  ItemModelTeam.fromJson(Map<String, dynamic> parsedJson){
+  ItemModelTeam.fromJson(Map<String, dynamic> parsedJson) {
     List<_Team> temp = [];
 
-    for(int i = 0; i < parsedJson['results'].length; i++){
+    for (int i = 0; i < parsedJson['results'].length; i++) {
       _Team result = _Team(parsedJson['results'][i]);
       temp.add(result);
     }
@@ -22,7 +22,7 @@ class _Team {
   String _nilai;
   dynamic _scrumMasterId;
 
-  _Team(result){
+  _Team(result) {
     _id = result['id'];
     _nama = result['nama'];
     _semester = result['semester'];

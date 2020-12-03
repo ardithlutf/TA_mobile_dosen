@@ -21,24 +21,24 @@ class TeamDetail extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return TeamDetailState(
-        id: id,
-        nama: nama,
-        semester: semester,
-        prodi: prodi,
-        nilai: nilai,
-        scrumMasterId: scrumMasterId,
+      id: id,
+      nama: nama,
+      semester: semester,
+      prodi: prodi,
+      nilai: nilai,
+      scrumMasterId: scrumMasterId,
     );
   }
 }
 
 class TeamDetailState extends State<TeamDetail> {
-  void initState(){
+  void initState() {
     blocTeam.fetchAllTeams();
     super.initState();
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
   }
 
@@ -95,7 +95,6 @@ class TeamDetailState extends State<TeamDetail> {
                         width: 1,
                         style: BorderStyle.none),
                     children: [
-
                       TableRow(children: [
                         TableCell(
                           child: Row(

@@ -29,10 +29,11 @@ class TaskApiProvider {
     var body = json.encode(data);
 
     print("inserted");
-    final response = await client
-        .post('$baseurl/api/tasks', headers: <String, String>{
-      'Content-Type': 'application/json',
-    }, body: body);
+    final response = await client.post('$baseurl/api/tasks',
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: body);
 
     if (response.statusCode == 200) {
       return ItemModelTask.fromJson(json.decode(response.body));
@@ -51,10 +52,11 @@ class TaskApiProvider {
     var body = json.encode(data);
 
     print("updated");
-    final response = await client
-        .put("$baseurl/api/tasks/$id", headers: <String, String>{
-      'Content-Type': 'application/json',
-    }, body: body);
+    final response = await client.put("$baseurl/api/tasks/$id",
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        body: body);
 
     if (response.statusCode == 200) {
       return ItemModelTask.fromJson(json.decode(response.body));

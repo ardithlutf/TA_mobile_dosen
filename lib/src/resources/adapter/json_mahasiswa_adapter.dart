@@ -19,13 +19,17 @@ class JsonMahasiswaAdapter implements MahasiswaAdapter {
     var mahasiswaMap = json.decode(mahasiswaJson) as Map<String, dynamic>;
     var mahasiswaJsonList = mahasiswaMap['results'] as List;
     var mahasiswaList = mahasiswaJsonList
-        .map((json) =>
-            Mahasiswa(namaLengkap: json['nama lengkap'], email: json['email'], role: json['role'], nilai: json['nilai']))
+        .map((json) => Mahasiswa(
+            namaLengkap: json['nama lengkap'],
+            email: json['email'],
+            role: json['role'],
+            nilai: json['nilai']))
         .toList();
 
     return mahasiswaList;
   }
 }
+
 class JsonNilaiMahasiswaAdapter implements NilaiMahasiswaAdapter {
   final JsonMahasiswaApi _api = JsonMahasiswaApi();
 
@@ -41,8 +45,10 @@ class JsonNilaiMahasiswaAdapter implements NilaiMahasiswaAdapter {
     var mahasiswaMap = json.decode(mahasiswaJson) as Map<String, dynamic>;
     var mahasiswaJsonList = mahasiswaMap['results'] as List;
     var mahasiswaNilai = mahasiswaJsonList
-        .map((json) =>
-        Mahasiswa(namaLengkap: json['nama lengkap'], role: json['role'], nilai: json['nilai']))
+        .map((json) => Mahasiswa(
+            namaLengkap: json['nama lengkap'],
+            role: json['role'],
+            nilai: json['nilai']))
         .toList();
 
     return mahasiswaNilai;

@@ -7,7 +7,8 @@ import 'api_auth_provider.dart';
 class ApiAuthRepository {
   final ApiAuthProvider _apiAuthProvider = ApiAuthProvider();
 
-  Future<Token> postLoginUser(LoginBody loginBody) => _apiAuthProvider.loginUser(loginBody);
+  Future<Token> postLoginUser(LoginBody loginBody) =>
+      _apiAuthProvider.loginUser(loginBody);
 
   Future<ItemModelUser> fetchAllUsers() => _apiAuthProvider.getAllUsers();
 }

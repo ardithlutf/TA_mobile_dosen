@@ -31,7 +31,10 @@ class _NilaiMahasiswaSectionState extends State<NilaiMahasiswaSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(widget.headerText, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+          Text(
+            widget.headerText,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
           const SizedBox(height: 8.0),
           Stack(
             children: <Widget>[
@@ -51,7 +54,10 @@ class _NilaiMahasiswaSectionState extends State<NilaiMahasiswaSection> {
                 duration: const Duration(milliseconds: 250),
                 opacity: mahasiswas.length == 0 ? 1.0 : 0.0,
                 child: FlatButton(
-                  child: Text('Lihat nilai mahasiswa', style: TextStyle(color: Colors.white),),
+                  child: Text(
+                    'Lihat nilai mahasiswa',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   onPressed: _getNilaiMahasiswa,
                   color: Colors.blue,
                 ),

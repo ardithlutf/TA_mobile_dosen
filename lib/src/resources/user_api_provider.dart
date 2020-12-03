@@ -9,7 +9,8 @@ import 'injector/injector.dart';
 
 class UserApiProvider {
   Client client = Client();
-  final SharedPreferencesManager _sharedPreferencesManager = locator<SharedPreferencesManager>();
+  final SharedPreferencesManager _sharedPreferencesManager =
+      locator<SharedPreferencesManager>();
 
   final String baseurl = 'https://linkmatchsttnfapi.herokuapp.com';
 
@@ -22,10 +23,9 @@ class UserApiProvider {
   Future<String> loginUser(String username, String password) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map data = {'username': username, 'password': password};
-    var jsonResponse = null;
+    var jsonResponse;
 
-    final response = await client
-        .post("$baseurl/api/login", body: data);
+    final response = await client.post("$baseurl/api/login", body: data);
 
     if (response.statusCode == 200) {
       // return ItemModelUser.fromJson(json.decode(response.body));
@@ -53,14 +53,14 @@ class UserApiProvider {
     }
   }
 
-  Future<ItemModelUser> fetchUserProfile() async {
+  Future<ItemModelUserProfile> fetchUserProfile() async {
     String token = await getToken();
 
     final response = await client.get("$baseurl/api/profile", headers: {
       'Authorization': 'Bearer $token',
     });
     if (response.statusCode == 200) {
-      return ItemModelUser.fromJson(json.decode(response.body));
+      return ItemModelUserProfile.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to load Profile');
     }

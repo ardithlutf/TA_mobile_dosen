@@ -11,7 +11,6 @@ class ItemModelTask {
       temp.add(result);
     }
     _results = temp;
-
   }
 
   List<_Task> get results => _results;

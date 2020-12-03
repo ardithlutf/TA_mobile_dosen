@@ -1,22 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lima_enam/src/blocs/auth/login_bloc2.dart';
 import 'package:lima_enam/src/models/auth/login_body.dart';
-
 import 'loading.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const String routeName = "/login";
-
-  @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreen extends StatelessWidget {
   final LoginBloc _loginBloc = LoginBloc();
   final TextEditingController _controllerEmailAddress = TextEditingController();
   final TextEditingController _controllerPassword = TextEditingController();
@@ -184,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildWidgetLabel(BuildContext context, String label) {
     return Text(
       label,
-      style: Theme.of(context).textTheme.subtitle.merge(
+      style: Theme.of(context).textTheme.subtitle1.merge(
             TextStyle(
               color: Colors.black54,
             ),

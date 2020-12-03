@@ -17,8 +17,7 @@ class LoginFailure extends LoginState {
   LoginFailure(this.error);
 }
 
-class LoginSuccess extends LoginState {
-}
+class LoginSuccess extends LoginState {}
 
 class LoginEvent extends LoginState {
   final LoginBody loginBody;
@@ -28,7 +27,8 @@ class LoginEvent extends LoginState {
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final ApiAuthRepository apiAuthRepository = ApiAuthRepository();
-  final SharedPreferencesManager sharedPreferencesManager = locator<SharedPreferencesManager>();
+  final SharedPreferencesManager sharedPreferencesManager =
+      locator<SharedPreferencesManager>();
 
   @override
   LoginState get initialState => LoginInitial();
@@ -49,10 +49,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginFailure(token.error);
       return;
     }
-    await sharedPreferencesManager.putString(SharedPreferencesManager.keyAccessToken, token.accessToken);
-    await sharedPreferencesManager.putBool(SharedPreferencesManager.keyIsLogin, true);
-    await sharedPreferencesManager.putString(SharedPreferencesManager.keyUsername, loginBody.username);
+    await sharedPreferencesManager.putString(
+        SharedPreferencesManager.keyAccessToken, token.accessToken);
+    await sharedPreferencesManager.putBool(
+        SharedPreferencesManager.keyIsLogin, true);
+    await sharedPreferencesManager.putString(
+        SharedPreferencesManager.keyUsername, loginBody.username);
     yield LoginSuccess();
   }
-
 }

@@ -9,7 +9,8 @@ class LoginBody {
 
   LoginBody(this.username, this.password);
 
-  factory LoginBody.fromJson(Map<String, dynamic> json) => _$LoginBodyFromJson(json);
+  factory LoginBody.fromJson(Map<String, dynamic> json) =>
+      _$LoginBodyFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginBodyToJson(this);
 

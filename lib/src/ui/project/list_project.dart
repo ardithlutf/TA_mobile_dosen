@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../models/sprint_model.dart';
-import '../../blocs/sprints_bloc.dart';
-import 'create_sprint.dart';
-import 'detail_sprint.dart';
+import '../../models/project_model.dart';
+import '../../blocs/projects_bloc.dart';
+import 'detail_project.dart';
 
 class SprintList extends StatefulWidget {
   @override
@@ -21,17 +20,10 @@ class _SprintListState extends State<SprintList> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Project'),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {
-                openAddPage();
-              })
-        ],
       ),
       body: StreamBuilder(
         stream: blocSprint.allSprints,
-        builder: (context, AsyncSnapshot<ItemModelSprint> snapshot) {
+        builder: (context, AsyncSnapshot<ItemModelProject> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);
           } else if (snapshot.hasError) {
@@ -43,7 +35,7 @@ class _SprintListState extends State<SprintList> {
     );
   }
 
-  Widget buildList(AsyncSnapshot<ItemModelSprint> snapshot) {
+  Widget buildList(AsyncSnapshot<ItemModelProject> snapshot) {
     return ListView.builder(
         itemCount: snapshot.data.results.length,
         itemBuilder: (BuildContext context, int index) {
@@ -57,7 +49,7 @@ class _SprintListState extends State<SprintList> {
               children: <Widget>[
                 ListTile(
                   title: Text(
-                    '${snapshot.data.results[index].nama_sprint.toString()}',
+                    '${snapshot.data.results[index].nama.toString()}',
                     style:
                         TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
@@ -78,25 +70,21 @@ class _SprintListState extends State<SprintList> {
         });
   }
 
-  openAddPage() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return CreateSprint();
-      }),
-    );
-  }
-
-  openDetailPage(ItemModelSprint data, int index) {
+  openDetailPage(ItemModelProject data, int index) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
         return SprintDetail(
           id: data.results[index].id,
-          nama_sprint: data.results[index].nama_sprint,
-          desc_sprint: data.results[index].desc_sprint,
-          tgl_mulai: data.results[index].tgl_mulai,
-          tgl_selesai: data.results[index].tgl_selesai,
+          nama: data.results[index].nama,
+          deskripsi: data.results[index].deskripsi,
+          tanggalMulai: data.results[index].tanggalAkhir,
+          tanggalAkhir: data.results[index].tanggalMulai,
+          jumlahSprint: data.results[index].jumlahSprint,
+          budget: data.results[index].budget,
+          status: data.results[index].status,
+          persen: data.results[index].persen,
+          productOwnerId: data.results[index].productOwnerId,
         );
       }),
     );

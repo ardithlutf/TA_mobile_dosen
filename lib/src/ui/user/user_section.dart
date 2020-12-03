@@ -71,8 +71,8 @@ class _UserSectionState extends State<UserSection> {
                       leading: CircleAvatar(
                         backgroundColor: Colors.grey,
                         foregroundColor: Colors.white,
-                        child:
-                            Text('${snapshot.data.results[index].nama[0]}'),
+                        backgroundImage: NetworkImage(
+                            '${snapshot.data.results[index].foto}'),
                       ),
                       title: Text(
                         '${snapshot.data.results[index].nama}',
@@ -96,8 +96,8 @@ class _UserSectionState extends State<UserSection> {
                       leading: CircleAvatar(
                         backgroundColor: Colors.grey,
                         foregroundColor: Colors.white,
-                        child:
-                        Text('${snapshot.data.results[index].nama[0]}'),
+                        backgroundImage: NetworkImage(
+                            '${snapshot.data.results[index].foto}'),
                       ),
                       title: Text(
                         '${snapshot.data.results[index].nama}',

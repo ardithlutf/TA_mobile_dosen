@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lima_enam/src/blocs/sprints_bloc.dart';
+import 'package:lima_enam/src/blocs/projects_bloc.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

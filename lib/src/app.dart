@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lima_enam/src/resources/injector/injector.dart';
 import 'package:lima_enam/src/ui/widget/login2.dart';
 import 'package:lima_enam/src/ui/widget/splash/splash_page.dart';
-import 'package:lima_enam/src/ui/widget/login.dart';
-
-import 'blocs/auth/authorization_bloc.dart';
 import 'resources/auth/shared_preferences_manager.dart';
-import 'ui/home.dart';
-
 
 // class App extends StatelessWidget {
 //   @override
@@ -34,11 +29,13 @@ import 'ui/home.dart';
 // }
 
 class App extends StatelessWidget {
-  final SharedPreferencesManager _sharedPreferencesManager = locator<SharedPreferencesManager>();
+  final SharedPreferencesManager _sharedPreferencesManager =
+      locator<SharedPreferencesManager>();
 
   @override
   Widget build(BuildContext context) {
-    bool _isAlreadyLoggedIn = _sharedPreferencesManager.isKeyExists(SharedPreferencesManager.keyIsLogin)
+    bool _isAlreadyLoggedIn = _sharedPreferencesManager
+            .isKeyExists(SharedPreferencesManager.keyIsLogin)
         ? _sharedPreferencesManager.getBool(SharedPreferencesManager.keyIsLogin)
         : false;
 
@@ -46,10 +43,10 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Color(0xFFF06038),
       ),
-      home: _isAlreadyLoggedIn ? MyApp() : LoginScreen(),
+      home: _isAlreadyLoggedIn ? SplashPage() : LoginScreen(),
       routes: {
         '/login_screen': (context) => LoginScreen(),
-        '/dashboard_user_screen': (context) => MyApp(),
+        '/dashboard_user_screen': (context) => SplashPage(),
       },
     );
   }

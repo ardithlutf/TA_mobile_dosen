@@ -8,7 +8,8 @@ import 'injector/injector.dart';
 
 class TeamApiProvider {
   Client client = Client();
-  final SharedPreferencesManager _sharedPreferencesManager = locator<SharedPreferencesManager>();
+  final SharedPreferencesManager _sharedPreferencesManager =
+      locator<SharedPreferencesManager>();
 
   final String baseurl = 'https://linkmatchsttnfapi.herokuapp.com';
 

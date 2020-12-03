@@ -34,8 +34,7 @@ class _SplashPageState extends State<SplashPage> {
             listener: (context, state) {
               if (state is SplashLoaded) {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (BuildContext context) => MyApp())
-                );
+                    builder: (BuildContext context) => MyApp()));
               }
             },
             child: _buildSplashWidget(),

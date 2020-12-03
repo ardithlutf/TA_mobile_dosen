@@ -26,11 +26,13 @@ class TasksBloc {
   }
 
   addSaveTask() {
-    _repository.createNewTask(_sprint_id.value, _nama_task.value, _kesulitan_id.value, _status.value);
+    _repository.createNewTask(
+        _sprint_id.value, _nama_task.value, _kesulitan_id.value, _status.value);
   }
 
-  updateSaveTask(_id){
-    _repository.updateTask(_id, _sprint_id.value, _nama_task.value, _kesulitan_id.value, _status.value);
+  updateSaveTask(_id) {
+    _repository.updateTask(_id, _sprint_id.value, _nama_task.value,
+        _kesulitan_id.value, _status.value);
   }
 
   deleteTask(_id) {

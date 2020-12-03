@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:lima_enam/src/blocs/sprints_bloc.dart';
+import 'package:lima_enam/src/blocs/projects_bloc.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
-import 'package:lima_enam/src/models/sprint_model.dart';
+import 'package:lima_enam/src/models/project_model.dart';
 
 class TaskDetail extends StatefulWidget {
   final int id;
@@ -85,15 +85,17 @@ class TaskDetailState extends State<TaskDetail> {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                        "Anda ingin menghapus sprint:"),
-                                    Text(
-                                        "$nama_task", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                    Text("Anda ingin menghapus sprint:"),
+                                    Text("$nama_task",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                                 actions: <Widget>[
                                   FlatButton(
-                                    child: Text("Lanjut", style: TextStyle(color: Colors.red)),
+                                    child: Text("Lanjut",
+                                        style: TextStyle(color: Colors.red)),
                                     onPressed: () {
                                       blocTask.deleteTask("$id");
                                       setState(() {
@@ -154,7 +156,8 @@ class TaskDetailState extends State<TaskDetail> {
                     child: Scaffold(
                       body: StreamBuilder(
                           stream: blocSprint.allSprints,
-                          builder: (context, AsyncSnapshot<ItemModelSprint> snapshot) {
+                          builder: (context,
+                              AsyncSnapshot<ItemModelProject> snapshot) {
                             if (snapshot.hasData) {
                               return buildSprint(snapshot, sprint_id);
                             } else if (snapshot.hasError) {
@@ -246,7 +249,7 @@ class TaskDetailState extends State<TaskDetail> {
     );
   }
 
-  Widget buildSprint(AsyncSnapshot<ItemModelSprint> snapshot, sprint_id) {
+  Widget buildSprint(AsyncSnapshot<ItemModelProject> snapshot, sprint_id) {
     return ListView.builder(
         padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
         primary: false,
@@ -255,7 +258,7 @@ class TaskDetailState extends State<TaskDetail> {
           if (snapshot.data.results[index].id == sprint_id) {
             return Card(
               child: ListTile(
-                title: Text('${snapshot.data.results[index].nama_sprint.toString()}'),
+                title: Text('${snapshot.data.results[index].nama.toString()}'),
               ),
             );
           }

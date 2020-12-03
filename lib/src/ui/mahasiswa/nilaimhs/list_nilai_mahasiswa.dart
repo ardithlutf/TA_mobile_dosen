@@ -24,9 +24,7 @@ class _NilaiMahasiswaListState extends State<NilaiMahasiswaList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Nilai Mahasiswa')
-      ),
+      appBar: AppBar(title: Text('Nilai Mahasiswa')),
       body: ScrollConfiguration(
         behavior: ScrollBehavior(),
         child: SingleChildScrollView(
@@ -36,12 +34,14 @@ class _NilaiMahasiswaListState extends State<NilaiMahasiswaList> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
-                child: NilaiMahasiswaSection(adapter: JsonNilaiMahasiswaAdapter(),
+                child: NilaiMahasiswaSection(
+                    adapter: JsonNilaiMahasiswaAdapter(),
                     headerText: 'TI Pagi 2020'),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
-                child: NilaiMahasiswaSection(adapter: JsonNilaiMahasiswaAdapter(),
+                child: NilaiMahasiswaSection(
+                    adapter: JsonNilaiMahasiswaAdapter(),
                     headerText: 'TI Pagi 2019'),
               ),
             ],

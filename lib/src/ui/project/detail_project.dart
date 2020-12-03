@@ -2,32 +2,45 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 import 'package:lima_enam/src/models/task_model.dart';
-import '../../blocs/sprints_bloc.dart';
+import '../../blocs/projects_bloc.dart';
 
 class SprintDetail extends StatefulWidget {
   final int id;
-  final String nama_sprint;
-  final String desc_sprint;
-  final String tgl_mulai;
-  final String tgl_selesai;
+  final String nama;
+  final String deskripsi;
+  final String tanggalMulai;
+  final String tanggalAkhir;
+  final int jumlahSprint;
+  final String budget;
+  final String status;
+  final String persen;
+  final String productOwnerId;
 
-  SprintDetail({
-    this.id,
-    this.nama_sprint,
-    this.desc_sprint,
-    this.tgl_mulai,
-    this.tgl_selesai
-  });
+  SprintDetail(
+      {this.id,
+      this.nama,
+      this.deskripsi,
+      this.tanggalMulai,
+      this.tanggalAkhir,
+      this.jumlahSprint,
+      this.budget,
+      this.status,
+      this.persen,
+      this.productOwnerId});
 
   @override
   State<StatefulWidget> createState() {
     return SprintDetailState(
-      id: id,
-      nama_sprint: nama_sprint,
-      desc_sprint: desc_sprint,
-      tgl_mulai: tgl_mulai,
-      tgl_selesai: tgl_selesai
-    );
+        id: id,
+        nama: nama,
+        deskripsi: deskripsi,
+        tanggalMulai: tanggalMulai,
+        tanggalAkhir: tanggalAkhir,
+        jumlahSprint: jumlahSprint,
+        budget: budget,
+        status: status,
+        persen: persen,
+        productOwnerId: productOwnerId);
   }
 }
 
@@ -37,26 +50,28 @@ class SprintDetailState extends State<SprintDetail> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-//    blocTask.dispose();
-    super.dispose();
-  }
-
   final int id;
-  final String nama_sprint;
-  final String desc_sprint;
-  final String tgl_mulai;
-  final String tgl_selesai;
+  final String nama;
+  final String deskripsi;
+  final String tanggalMulai;
+  final String tanggalAkhir;
+  final int jumlahSprint;
+  final String budget;
+  final String status;
+  final String persen;
+  final String productOwnerId;
 
-
-  SprintDetailState({
-    this.id,
-    this.nama_sprint,
-    this.desc_sprint,
-    this.tgl_mulai,
-    this.tgl_selesai,
-  });
+  SprintDetailState(
+      {this.id,
+      this.nama,
+      this.deskripsi,
+      this.tanggalMulai,
+      this.tanggalAkhir,
+      this.jumlahSprint,
+      this.budget,
+      this.status,
+      this.persen,
+      this.productOwnerId});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +88,7 @@ class SprintDetailState extends State<SprintDetail> {
               SliverAppBar(
                 title: Center(
                   child: Text(
-                    "$nama_sprint",
+                    "$nama",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -135,7 +150,7 @@ class SprintDetailState extends State<SprintDetail> {
                               children: <Widget>[
                                 Padding(
                                     padding: const EdgeInsets.all(15),
-                                    child: Text(desc_sprint))
+                                    child: Text(deskripsi))
                               ],
                             ),
                           )
@@ -198,7 +213,7 @@ class SprintDetailState extends State<SprintDetail> {
                             child: Card(
                               clipBehavior: Clip.antiAlias,
                               child: ListTile(
-                                title: Text('$tgl_mulai'.toString()),
+                                title: Text('$tanggalMulai'.toString()),
                               ),
                             ),
                           ),
@@ -210,7 +225,7 @@ class SprintDetailState extends State<SprintDetail> {
                             child: Card(
                               clipBehavior: Clip.antiAlias,
                               child: ListTile(
-                                title: Text('$tgl_selesai'.toString()),
+                                title: Text('$tanggalAkhir'.toString()),
                               ),
                             ),
                           ),
@@ -220,6 +235,31 @@ class SprintDetailState extends State<SprintDetail> {
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.chat,
+                        color: Colors.green,
+                      ),
+                      Container(
+                        child: Text(
+                          'Product Owner',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    width: double.maxFinite,
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      child: ListTile(
+                        title: Text(productOwnerId),
+                      ),
+                    ),
                   ),
                   Row(
                     children: <Widget>[
@@ -238,21 +278,31 @@ class SprintDetailState extends State<SprintDetail> {
                     ],
                   ),
                   Container(
-                      height: 141,
-                      child: Scaffold(
-                        body: StreamBuilder(
-                          stream: blocTask.allTasks,
-                          builder:
-                              (context, AsyncSnapshot<ItemModelTask> snapshot) {
-                            if (snapshot.hasData) {
-                              return buildListTask(snapshot, id);
-                            } else if (snapshot.hasError) {
-                              return Text(snapshot.error.toString());
-                            }
-                            return Center(child: CircularProgressIndicator());
-                          },
-                        ),
-                      )),
+                    margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
+                    width: double.maxFinite,
+                    child: Card(
+                      clipBehavior: Clip.antiAlias,
+                      child: ListTile(
+                        title: Text('Jumlah sprint: $jumlahSprint'),
+                      ),
+                    ),
+                  ),
+                  // Container(
+                  //     height: 141,
+                  //     child: Scaffold(
+                  //       body: StreamBuilder(
+                  //         stream: blocTask.allTasks,
+                  //         builder:
+                  //             (context, AsyncSnapshot<ItemModelTask> snapshot) {
+                  //           if (snapshot.hasData) {
+                  //             return buildListTask(snapshot, id);
+                  //           } else if (snapshot.hasError) {
+                  //             return Text(snapshot.error.toString());
+                  //           }
+                  //           return Center(child: CircularProgressIndicator());
+                  //         },
+                  //       ),
+                  //     )),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 15.0, 0, 0),
                   ),
@@ -307,7 +357,7 @@ class SprintDetailState extends State<SprintDetail> {
                             child: Card(
                               clipBehavior: Clip.antiAlias,
                               child: ListTile(
-                                title: Text('Rp.999999,-'),
+                                title: Text('Rp.$budget,-'),
                               ),
                             ),
                           ),
@@ -319,7 +369,7 @@ class SprintDetailState extends State<SprintDetail> {
                             child: Card(
                               clipBehavior: Clip.antiAlias,
                               child: ListTile(
-                                title: Text('Selesai'),
+                                title: Text(status),
                               ),
                             ),
                           ),
@@ -334,6 +384,12 @@ class SprintDetailState extends State<SprintDetail> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    blocTask.dispose();
+    super.dispose();
   }
 
   openSprintPage() {
@@ -358,23 +414,24 @@ Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
   ];
 
   return ListView.builder(
-    primary: false,
+      primary: false,
       padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
       itemCount: panjangList,
       itemBuilder: (context, index) {
-        // for (var i = index; i < panjangList; i++){
-        //   if (snapshot.data.results.elementAt(index).sprint_id == id) {
+        for (var i = index; i < panjangList; i++) {
+          if (snapshot.data.results.elementAt(index).sprint_id == id) {
             return Card(
               child: ListTile(
                 leading: Icon(icons[index]),
-                title:
-                Text('${snapshot.data.results[index].nama_task.toString()}'),
+                title: Text(
+                    '${snapshot.data.results[index].nama_task.toString()}'),
               ),
             );
-          // } else {
-          //   snapshot.data.results.removeWhere((element) => element.sprint_id != id);
-          //   return null;
-          // }
-        // }
+          } else {
+            snapshot.data.results
+                .removeWhere((element) => element.sprint_id != id);
+            return null;
+          }
+        }
       });
 }

@@ -1,9 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/home_bloc.dart';
-import 'package:lima_enam/src/ui/sprint/list_sprint.dart';
+import 'package:lima_enam/src/resources/auth/shared_preferences_manager.dart';
+import 'package:lima_enam/src/resources/injector/injector.dart';
+import 'package:lima_enam/src/ui/project/list_project.dart';
 import 'package:lima_enam/src/ui/task/list_task.dart';
 import 'package:lima_enam/src/ui/team/list_team.dart';
 import 'package:lima_enam/src/ui/user/user_section.dart';
+import 'package:lima_enam/src/ui/widget/login2.dart';
 import 'package:lima_enam/src/ui/widget/profile/profile_page.dart';
 
 class MyApp extends StatefulWidget {
@@ -44,6 +49,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  HomeBloc bloc = HomeBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +58,50 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.title),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Warning'),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Anda yakin ingin melakukan Logout?"),
+                          ],
+                        ),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text("Lanjut",
+                                style: TextStyle(color: Colors.red)),
+                            onPressed: () {
+                              locator<SharedPreferencesManager>().clearAll();
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        LoginScreen()),
+                                (Route<dynamic> route) => false,
+                              );
+                              Timer(Duration(seconds: 0),
+                                  () => bloc.logoutUser());
+                            },
+                          ),
+                          FlatButton(
+                            child: Text("Batal"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          )
+                        ],
+                      );
+                    });
+              })
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
@@ -100,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 case "Profile":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => HomeScreen()));
+                        builder: (BuildContext context) => ProfilePage()));
                   }
                   break;
                 case "Tim":

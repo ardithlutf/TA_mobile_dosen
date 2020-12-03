@@ -29,9 +29,11 @@ class _TaskListState extends State<TaskList> {
       appBar: AppBar(
         title: Text('Sprint'),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.add), onPressed: (){
-            openAddPage();
-          })
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                openAddPage();
+              })
         ],
       ),
       body: StreamBuilder(
@@ -54,78 +56,82 @@ class _TaskListState extends State<TaskList> {
         itemBuilder: (BuildContext context, int index) {
           return Container(
               child: Card(
-                clipBehavior: null,
-                semanticContainer: true,
-                margin: EdgeInsets.all(10),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      title: Text(
-                        '${snapshot.data.results[index].nama_task.toString()}',
-                        style:
+            clipBehavior: null,
+            semanticContainer: true,
+            margin: EdgeInsets.all(10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    '${snapshot.data.results[index].nama_task.toString()}',
+                    style:
                         TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-                      ),
+                  ),
+                ),
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      child: const Text('DETAIL'),
+                      onPressed: () {
+                        openDetailPage(snapshot.data, index);
+                      },
                     ),
-                    ButtonBar(
-                      children: <Widget>[
-                        FlatButton(
-                          child: const Text('DETAIL'),
-                          onPressed: (){
-                            openDetailPage(snapshot.data, index);
-                          },
-                        ),
-                        FlatButton(
-                            child: const Text('HAPUS'),
-                            onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title: Text('Warning'),
-                                      content: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                              "Anda ingin menghapus sprint:"),
-                                          Text(
-                                              "${snapshot.data.results[index].nama_task.toString()}", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                                        ],
-                                      ),
-                                      actions: <Widget>[
-                                        FlatButton(
-                                          child: Text("Lanjut", style: TextStyle(color: Colors.red)),
-                                          onPressed: () {
-                                            blocTask.deleteTask(
-                                                snapshot.data.results[index].id);
-                                            Navigator.of(context).pop();
-                                            setState(() {
-                                              blocTask.fetchAllTasks();
-                                            });
-                                          },
-                                        ),
-                                        FlatButton(
-                                          child: Text("Batal"),
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                        )
-                                      ],
-                                    );
-                                  });
-                            }),
-                        FlatButton(
-                          child: const Text('EDIT'),
-                          onPressed: (){
-                            openUpdatePage(snapshot.data, index);
-                          },
-                        ),
-                      ],
+                    FlatButton(
+                        child: const Text('HAPUS'),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text('Warning'),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Anda ingin menghapus sprint:"),
+                                      Text(
+                                          "${snapshot.data.results[index].nama_task.toString()}",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text("Lanjut",
+                                          style: TextStyle(color: Colors.red)),
+                                      onPressed: () {
+                                        blocTask.deleteTask(
+                                            snapshot.data.results[index].id);
+                                        Navigator.of(context).pop();
+                                        setState(() {
+                                          blocTask.fetchAllTasks();
+                                        });
+                                      },
+                                    ),
+                                    FlatButton(
+                                      child: Text("Batal"),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    )
+                                  ],
+                                );
+                              });
+                        }),
+                    FlatButton(
+                      child: const Text('EDIT'),
+                      onPressed: () {
+                        openUpdatePage(snapshot.data, index);
+                      },
                     ),
                   ],
                 ),
-              ));
+              ],
+            ),
+          ));
         });
   }
 
@@ -153,7 +159,7 @@ class _TaskListState extends State<TaskList> {
     );
   }
 
-  openUpdatePage(ItemModelTask data, int index){
+  openUpdatePage(ItemModelTask data, int index) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
