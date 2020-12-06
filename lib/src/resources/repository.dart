@@ -1,9 +1,12 @@
 import 'dart:async';
 
 // provider
-import 'package:lima_enam/src/resources/team_api_provider.dart';
+import 'package:lima_enam/src/models/sprint_model.dart';
+
+import 'team_api_provider.dart';
 import 'auth/auth_provider.dart';
 import 'project_api_provider.dart';
+import 'sprint_api_provider.dart';
 import 'task_api_provider.dart';
 import 'user_api_provider.dart';
 
@@ -19,6 +22,7 @@ class Repository {
 
   final UsersApiProvider = UserApiProvider();
   final ProjectsApiProvider = ProjectApiProvider();
+  final SprintsApiProvider = SprintApiProvider();
   final TasksApiProvider = TaskApiProvider();
   final TeamsApiProvider = TeamApiProvider();
 
@@ -27,8 +31,10 @@ class Repository {
   Future<String> loginUsers(String username, String password) =>
       UsersApiProvider.loginUser(username, password);
 
-  Future<ItemModelProject> fetchAllSprints() =>
-      ProjectsApiProvider.fetchSprintList();
+  Future<ItemModelProject> fetchAllProjects() =>
+      ProjectsApiProvider.fetchProjectList();
+  Future<ItemModelSprint> fetchAllSprints() =>
+      SprintsApiProvider.fetchSprintList();
   Future<ItemModelTask> fetchAllTasks() => TasksApiProvider.fetchTaskList();
   Future<ItemModelUser> fetchAllUsers() => UsersApiProvider.fetchUserList();
   Future<ItemModelUserProfile> fetchUserProfile() =>
@@ -36,6 +42,11 @@ class Repository {
   Future<ItemModelTeam> fetchAllTeams() => TeamsApiProvider.fetchTeamList();
 
   // CRUD Sprint
+  Future deleteOldSprint(id) => SprintsApiProvider.deleteSprint(id);
+
+
+
+
   Future createNewTask(sprint_id, nama_task, kesulitan_id, status) =>
       TasksApiProvider.createNewTask(
           sprint_id, nama_task, kesulitan_id, status);

@@ -76,7 +76,7 @@ class SprintDetailState extends State<SprintDetail> {
   @override
   Widget build(BuildContext context) {
     blocTask.fetchAllTasks();
-    blocSprint.fetchAllSprints();
+    blocProject.fetchAllProjects();
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: SafeArea(
@@ -395,7 +395,7 @@ class SprintDetailState extends State<SprintDetail> {
   openSprintPage() {
     var count = 0;
 
-    blocSprint.fetchAllSprints();
+    blocProject.fetchAllProjects();
     Navigator.popUntil(context, (route) {
       return count++ == 1;
     });

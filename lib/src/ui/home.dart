@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/home_bloc.dart';
+import 'package:lima_enam/src/blocs/user_bloc.dart';
+import 'package:lima_enam/src/models/user_model.dart';
 import 'package:lima_enam/src/resources/auth/shared_preferences_manager.dart';
 import 'package:lima_enam/src/resources/injector/injector.dart';
 import 'package:lima_enam/src/ui/project/list_project.dart';
@@ -11,12 +13,14 @@ import 'package:lima_enam/src/ui/user/user_section.dart';
 import 'package:lima_enam/src/ui/widget/login2.dart';
 import 'package:lima_enam/src/ui/widget/profile/profile_page.dart';
 
-class MyApp extends StatefulWidget {
+import 'sprint/list_sprint.dart';
+
+class DashboardAdmin extends StatefulWidget {
   @override
-  _MyAppState createState() => _MyAppState();
+  _DashboardAdminState createState() => _DashboardAdminState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _DashboardAdminState extends State<DashboardAdmin> {
   @override
   void initState() {
     super.initState();
@@ -103,21 +107,89 @@ class _MyHomePageState extends State<MyHomePage> {
               })
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
-        child: GridView.count(
-          crossAxisCount: 2,
-          padding: EdgeInsets.all(3.0),
-          children: <Widget>[
-            DashboardItem("Project", Icons.library_books),
-            DashboardItem("Sprint", Icons.library_books),
-            DashboardItem("Tim", Icons.book),
-            DashboardItem("Mahasiswa", Icons.book),
-            DashboardItem("Profile", Icons.account_circle_outlined),
-          ],
-        ),
-      ),
+      body: StreamBuilder(
+          stream: blocUser.onlyUser,
+          builder: (context, AsyncSnapshot<ItemModelUserProfile> snapshot) {
+            if (snapshot.hasData) {
+              return buildMenu(snapshot);
+            } else if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+            return Center(child: CircularProgressIndicator());
+          }),
     );
+  }
+
+  Widget buildMenu(AsyncSnapshot<ItemModelUserProfile> snapshot) {
+    return PageView.builder(itemBuilder: (BuildContext context, int index) {
+      switch (snapshot.data.results[index].role) {
+        case "Dosen":
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
+            child: GridView.count(
+              crossAxisCount: 2,
+              padding: EdgeInsets.all(3.0),
+              children: <Widget>[
+                DashboardItem("Project", Icons.library_books),
+                DashboardItem("Sprint", Icons.library_books),
+                DashboardItem("Tim", Icons.book),
+                DashboardItem("Mahasiswa", Icons.book),
+                DashboardItem("Profile", Icons.account_circle_outlined),
+              ],
+            ),
+          );
+          break;
+        case "Administrator":
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
+            child: GridView.count(
+              crossAxisCount: 2,
+              padding: EdgeInsets.all(3.0),
+              children: <Widget>[
+                DashboardItem("Project", Icons.library_books),
+                DashboardItem("Sprint", Icons.library_books),
+                DashboardItem("Tim", Icons.book),
+                DashboardItem("Mahasiswa", Icons.book),
+                DashboardItem("Profile", Icons.account_circle_outlined),
+              ],
+            ),
+          );
+          break;
+        case "Scrum Master":
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
+            child: GridView.count(
+              crossAxisCount: 2,
+              padding: EdgeInsets.all(3.0),
+              children: <Widget>[
+                DashboardItem("Project", Icons.library_books),
+                DashboardItem("Sprint", Icons.library_books),
+                DashboardItem("Tim", Icons.book),
+                DashboardItem("Mahasiswa", Icons.book),
+                DashboardItem("Profile", Icons.account_circle_outlined),
+              ],
+            ),
+          );
+          break;
+        case "Product Owner":
+          return Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 2.0),
+            child: GridView.count(
+              crossAxisCount: 2,
+              padding: EdgeInsets.all(3.0),
+              children: <Widget>[
+                DashboardItem("Project", Icons.library_books),
+                DashboardItem("Profile", Icons.account_circle_outlined),
+              ],
+            ),
+          );
+          break;
+      }
+      if (snapshot.data.results[index].role == "Dosen") {
+      } else {
+        return Container();
+      }
+    });
   }
 
   Card DashboardItem(String title, IconData icon) {
@@ -132,13 +204,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 case "Project":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => SprintList()));
+                        builder: (BuildContext context) => ProjectList()));
                   }
                   break;
                 case "Sprint":
                   {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => TaskList()));
+                        builder: (BuildContext context) => SprintList()));
                   }
                   break;
                 case "Mahasiswa":

@@ -11,18 +11,7 @@ class NilaiMahasiswaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      // child: Card(
-      //   child: ListTile(
-      //     title: Text(mahasiswa.namaLengkap),
-      //     subtitle: Text(mahasiswa.nilai.toString()),
-      //     leading: CircleAvatar(
-      //       backgroundColor: Colors.grey,
-      //       foregroundColor: Colors.white,
-      //       child: Text(mahasiswa.namaLengkap[0]),
-      //     ),
-      //   ),
-      // ),
+      // scrollDirection: Axis.horizontal,
       child: DataTable(
         columns: <DataColumn>[
           DataColumn(
@@ -45,13 +34,6 @@ class NilaiMahasiswaCard extends StatelessWidget {
             ),
             numeric: true,
           ),
-          DataColumn(
-            label: Text(
-              'Nilai',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-            ),
-            numeric: true,
-          ),
         ],
         rows: <DataRow>[
           DataRow(
@@ -59,12 +41,6 @@ class NilaiMahasiswaCard extends StatelessWidget {
               DataCell(Text(mahasiswa.namaLengkap)),
               DataCell(Text(mahasiswa.role)),
               DataCell(Text(mahasiswa.nilai.toString())),
-              DataCell(
-                Text(
-                  mahasiswa.namaLengkap[0],
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
             ],
           ),
         ],

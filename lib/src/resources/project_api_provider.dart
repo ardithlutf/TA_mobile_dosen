@@ -19,7 +19,7 @@ class ProjectApiProvider {
     return accessToken;
   }
 
-  Future<ItemModelProject> fetchSprintList() async {
+  Future<ItemModelProject> fetchProjectList() async {
     String token = await getToken();
 
     final response = await client.get("$baseurl/api/project", headers: {

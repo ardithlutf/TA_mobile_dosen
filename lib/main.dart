@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'src/app.dart';
 import 'src/resources/injector/injector.dart';
 
-// void main() => runApp(App());
-
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();

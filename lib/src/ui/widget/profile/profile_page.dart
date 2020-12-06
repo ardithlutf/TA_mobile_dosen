@@ -9,8 +9,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  HomeBloc bloc = HomeBloc();
-
   @override
   void initState() {
     blocUser.fetchUserProfile();

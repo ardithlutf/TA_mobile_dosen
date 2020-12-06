@@ -57,7 +57,7 @@ class UpdateTaskState extends State<UpdateTask> {
 
   @override
   void initState() {
-    blocSprint.fetchAllSprints();
+    blocProject.fetchAllProjects();
     blocTask.fetchAllTasks();
     if (widget.sprint_id != null) {
       _isFieldNamaValid = true;

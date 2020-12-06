@@ -3,26 +3,26 @@ import '../../models/project_model.dart';
 import '../../blocs/projects_bloc.dart';
 import 'detail_project.dart';
 
-class SprintList extends StatefulWidget {
+class ProjectList extends StatefulWidget {
   @override
-  _SprintListState createState() => _SprintListState();
+  _ProjectListState createState() => _ProjectListState();
 }
 
-class _SprintListState extends State<SprintList> {
+class _ProjectListState extends State<ProjectList> {
   void initState() {
-    blocSprint.fetchAllSprints();
+    blocProject.fetchAllProjects();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    blocSprint.fetchAllSprints();
+    blocProject.fetchAllProjects();
     return Scaffold(
       appBar: AppBar(
         title: Text('Project'),
       ),
       body: StreamBuilder(
-        stream: blocSprint.allSprints,
+        stream: blocProject.allSprints,
         builder: (context, AsyncSnapshot<ItemModelProject> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);

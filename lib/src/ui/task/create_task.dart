@@ -47,7 +47,7 @@ class CreateTaskState extends State<CreateTask> {
 
   @override
   void initState() {
-    blocSprint.fetchAllSprints();
+    blocProject.fetchAllProjects();
     super.initState();
     getProvince();
   }

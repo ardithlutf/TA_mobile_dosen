@@ -32,7 +32,7 @@ class TaskDetail extends StatefulWidget {
 
 class TaskDetailState extends State<TaskDetail> {
   void initState() {
-    blocSprint.fetchAllSprints();
+    blocProject.fetchAllProjects();
     super.initState();
   }
 
@@ -155,7 +155,7 @@ class TaskDetailState extends State<TaskDetail> {
                     height: 141,
                     child: Scaffold(
                       body: StreamBuilder(
-                          stream: blocSprint.allSprints,
+                          stream: blocProject.allSprints,
                           builder: (context,
                               AsyncSnapshot<ItemModelProject> snapshot) {
                             if (snapshot.hasData) {

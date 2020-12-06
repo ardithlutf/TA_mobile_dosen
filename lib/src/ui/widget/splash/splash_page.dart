@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lima_enam/src/blocs/splash_bloc/splash_bloc.dart';
+import 'package:lima_enam/src/blocs/user_bloc.dart';
+import 'package:lima_enam/src/models/user_model.dart';
+import 'package:lima_enam/src/ui/widget/profile/profile_page.dart';
 import '../../home.dart';
 
 class SplashPage extends StatefulWidget {
@@ -12,6 +15,7 @@ class _SplashPageState extends State<SplashPage> {
   final SplashBloc _splashBloc = SplashBloc();
 
   void initState() {
+    blocUser.fetchUserProfile();
     _splashBloc.add(SetSplash());
     super.initState();
   }
@@ -34,7 +38,7 @@ class _SplashPageState extends State<SplashPage> {
             listener: (context, state) {
               if (state is SplashLoaded) {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (BuildContext context) => MyApp()));
+                    builder: (BuildContext context) => DashboardAdmin()));
               }
             },
             child: _buildSplashWidget(),

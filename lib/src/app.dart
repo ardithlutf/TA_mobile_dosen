@@ -41,7 +41,7 @@ class App extends StatelessWidget {
 
     return MaterialApp(
       theme: ThemeData(
-        primaryColor: Color(0xFFF06038),
+        primaryColor: Colors.blue,
       ),
       home: _isAlreadyLoggedIn ? SplashPage() : LoginScreen(),
       routes: {

@@ -4,18 +4,18 @@ import '../models/project_model.dart';
 
 class ProjectsBloc {
   final _repository = Repository();
-  final _sprintsFetcher = PublishSubject<ItemModelProject>();
+  final _projectsFetcher = PublishSubject<ItemModelProject>();
 
-  Observable<ItemModelProject> get allSprints => _sprintsFetcher.stream;
+  Observable<ItemModelProject> get allSprints => _projectsFetcher.stream;
 
-  fetchAllSprints() async {
-    ItemModelProject itemModel = await _repository.fetchAllSprints();
-    _sprintsFetcher.sink.add(itemModel);
+  fetchAllProjects() async {
+    ItemModelProject itemModel = await _repository.fetchAllProjects();
+    _projectsFetcher.sink.add(itemModel);
   }
 
   dispose() {
-    _sprintsFetcher.close();
+    _projectsFetcher.close();
   }
 }
 
-final blocSprint = ProjectsBloc();
+final blocProject = ProjectsBloc();
