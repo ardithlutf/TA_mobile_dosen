@@ -28,7 +28,6 @@ class UserApiProvider {
     final response = await client.post("$baseurl/api/login", body: data);
 
     if (response.statusCode == 200) {
-      // return ItemModelUser.fromJson(json.decode(response.body));
       jsonResponse = json.decode(response.body);
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
@@ -38,6 +37,7 @@ class UserApiProvider {
     } else {
       throw Exception('Failed to login');
     }
+    return null;
   }
 
   Future<ItemModelUser> fetchUserList() async {

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' show Client;
 import 'package:lima_enam/src/models/team_model.dart';
 import 'package:lima_enam/src/resources/auth/shared_preferences_manager.dart';

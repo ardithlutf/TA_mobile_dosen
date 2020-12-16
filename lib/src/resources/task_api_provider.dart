@@ -19,11 +19,11 @@ class TaskApiProvider {
     }
   }
 
-  Future createNewTask(sprint_id, nama_task, kesulitan_id, status) async {
+  Future createNewTask(sprintID, namaTask, kesulitanID, status) async {
     Map data = {
-      'sprint_id': sprint_id.toString(),
-      'nama_task': nama_task,
-      'kesulitan_id': kesulitan_id.toString(),
+      'sprint_id': sprintID.toString(),
+      'nama_task': namaTask,
+      'kesulitan_id': kesulitanID.toString(),
       'status': status,
     };
     var body = json.encode(data);
@@ -42,11 +42,11 @@ class TaskApiProvider {
     }
   }
 
-  Future updateTask(id, sprint_id, nama_task, kesulitan_id, status) async {
+  Future updateTask(id, sprintID, namaTask, kesulitanID, status) async {
     Map data = {
-      'sprint_id': sprint_id.toString(),
-      'nama_task': nama_task,
-      'kesulitan_id': kesulitan_id.toString(),
+      'sprint_id': sprintID.toString(),
+      'nama_task': namaTask,
+      'kesulitan_id': kesulitanID.toString(),
       'status': status,
     };
     var body = json.encode(data);

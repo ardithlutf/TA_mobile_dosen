@@ -7,25 +7,25 @@ import 'package:lima_enam/src/models/project_model.dart';
 
 class TaskDetail extends StatefulWidget {
   final int id;
-  final int sprint_id;
-  final String nama_task;
-  final int kesulitan_id;
+  final int sprintID;
+  final String namaTask;
+  final int kesulitanID;
   final bool status;
 
   TaskDetail(
       {this.id,
-      this.sprint_id,
-      this.nama_task,
-      this.kesulitan_id,
+      this.sprintID,
+      this.namaTask,
+      this.kesulitanID,
       this.status});
 
   @override
   State<StatefulWidget> createState() {
     return TaskDetailState(
         id: id,
-        sprint_id: sprint_id,
-        nama_task: nama_task,
-        kesulitan_id: kesulitan_id,
+        sprintID: sprintID,
+        namaTask: namaTask,
+        kesulitanID: kesulitanID,
         status: status);
   }
 }
@@ -43,16 +43,16 @@ class TaskDetailState extends State<TaskDetail> {
   }
 
   final int id;
-  final int sprint_id;
-  final String nama_task;
-  final int kesulitan_id;
+  final int sprintID;
+  final String namaTask;
+  final int kesulitanID;
   final bool status;
 
   TaskDetailState(
       {this.id,
-      this.sprint_id,
-      this.nama_task,
-      this.kesulitan_id,
+      this.sprintID,
+      this.namaTask,
+      this.kesulitanID,
       this.status});
 
   @override
@@ -68,7 +68,7 @@ class TaskDetailState extends State<TaskDetail> {
               SliverAppBar(
                 title: Center(
                   child: Text(
-                    "$nama_task",
+                    "$namaTask",
                   ),
                 ),
                 actions: <Widget>[
@@ -86,7 +86,7 @@ class TaskDetailState extends State<TaskDetail> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text("Anda ingin menghapus sprint:"),
-                                    Text("$nama_task",
+                                    Text("$namaTask",
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold)),
@@ -159,7 +159,7 @@ class TaskDetailState extends State<TaskDetail> {
                           builder: (context,
                               AsyncSnapshot<ItemModelProject> snapshot) {
                             if (snapshot.hasData) {
-                              return buildSprint(snapshot, sprint_id);
+                              return buildSprint(snapshot, sprintID);
                             } else if (snapshot.hasError) {
                               return Text(snapshot.error.toString());
                             }
@@ -249,13 +249,13 @@ class TaskDetailState extends State<TaskDetail> {
     );
   }
 
-  Widget buildSprint(AsyncSnapshot<ItemModelProject> snapshot, sprint_id) {
+  Widget buildSprint(AsyncSnapshot<ItemModelProject> snapshot, sprintID) {
     return ListView.builder(
         padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
         primary: false,
         itemCount: snapshot.data.results.length,
         itemBuilder: (context, index) {
-          if (snapshot.data.results[index].id == sprint_id) {
+          if (snapshot.data.results[index].id == sprintID) {
             return Card(
               child: ListTile(
                 title: Text('${snapshot.data.results[index].nama.toString()}'),

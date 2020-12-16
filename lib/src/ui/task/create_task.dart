@@ -7,19 +7,19 @@ import 'dart:convert';
 final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
 class CreateTask extends StatefulWidget {
-  final String sprint_id;
-  final String nama_task;
-  final int kesulitan_id;
+  final String sprintID;
+  final String namaTask;
+  final int kesulitanID;
   final bool status;
 
-  CreateTask({this.nama_task, this.sprint_id, this.kesulitan_id, this.status});
+  CreateTask({this.namaTask, this.sprintID, this.kesulitanID, this.status});
 
   @override
   State<StatefulWidget> createState() {
     return CreateTaskState(
-        sprint_id: sprint_id,
-        nama_task: nama_task,
-        kesulitan_id: kesulitan_id,
+        sprintID: sprintID,
+        namaTask: namaTask,
+        kesulitanID: kesulitanID,
         status: status);
   }
 }
@@ -40,9 +40,9 @@ class CreateTaskState extends State<CreateTask> {
     print(data[0]["id"]);
   }
 
-  final String sprint_id;
-  final String nama_task;
-  final int kesulitan_id;
+  final String sprintID;
+  final String namaTask;
+  final int kesulitanID;
   final bool status;
 
   @override
@@ -62,7 +62,7 @@ class CreateTaskState extends State<CreateTask> {
   TextEditingController _controllerStatus = TextEditingController();
 
   CreateTaskState(
-      {this.nama_task, this.sprint_id, this.kesulitan_id, this.status});
+      {this.namaTask, this.sprintID, this.kesulitanID, this.status});
 
   @override
   Widget build(BuildContext context) {

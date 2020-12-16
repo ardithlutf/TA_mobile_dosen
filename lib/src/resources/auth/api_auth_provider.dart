@@ -41,6 +41,7 @@ class ApiAuthProvider {
       return ItemModelUser.fromJson(response.data);
     } catch (error, stacktrace) {
       _printError(error, stacktrace);
+      return null;
     }
   }
 

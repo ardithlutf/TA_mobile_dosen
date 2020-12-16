@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lima_enam/src/blocs/splash_bloc/splash_bloc.dart';
 import 'package:lima_enam/src/blocs/user_bloc.dart';
-import 'package:lima_enam/src/models/user_model.dart';
-import 'package:lima_enam/src/ui/widget/profile/profile_page.dart';
 import '../../home.dart';
 
 class SplashPage extends StatefulWidget {

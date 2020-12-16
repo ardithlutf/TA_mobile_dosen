@@ -45,9 +45,12 @@ class _ProfilePageState extends State<ProfilePage> {
     return ListView.builder(
         itemCount: snapshot.data.results.length,
         itemBuilder: (BuildContext context, int index) {
+          String nama = snapshot.data.results[index].nama;
+          String role = snapshot.data.results[index].role;
           String username = snapshot.data.results[index].username;
           String email = snapshot.data.results[index].email;
           String noHp = snapshot.data.results[index].noHp;
+          String foto = snapshot.data.results[index].foto;
 
           return SingleChildScrollView(
             child: SafeArea(
@@ -59,14 +62,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     CircleAvatar(
                       radius: 50,
                       backgroundImage:
-                          NetworkImage('${snapshot.data.results[index].foto}'),
+                          NetworkImage('$foto'),
                     ),
-                    Text('${snapshot.data.results[index].nama}',
+                    Text('$nama',
                         style: TextStyle(
                             fontSize: 34,
                             color: Colors.white,
                             fontWeight: FontWeight.bold)),
-                    Text('${snapshot.data.results[index].role}',
+                    Text('$role',
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.blue[400],

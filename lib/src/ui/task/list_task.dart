@@ -64,7 +64,7 @@ class _TaskListState extends State<TaskList> {
               children: <Widget>[
                 ListTile(
                   title: Text(
-                    '${snapshot.data.results[index].nama_task.toString()}',
+                    '${snapshot.data.results[index].namaTask.toString()}',
                     style:
                         TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
@@ -92,7 +92,7 @@ class _TaskListState extends State<TaskList> {
                                     children: [
                                       Text("Anda ingin menghapus sprint:"),
                                       Text(
-                                          "${snapshot.data.results[index].nama_task.toString()}",
+                                          "${snapshot.data.results[index].namaTask.toString()}",
                                           style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold)),
@@ -141,9 +141,9 @@ class _TaskListState extends State<TaskList> {
       MaterialPageRoute(builder: (context) {
         return TaskDetail(
           id: data.results[index].id,
-          nama_task: data.results[index].nama_task,
-          sprint_id: data.results[index].sprint_id,
-          kesulitan_id: data.results[index].kesulitan_id,
+          namaTask: data.results[index].namaTask,
+          sprintID: data.results[index].sprintID,
+          kesulitanID: data.results[index].kesulitanID,
           status: data.results[index].status,
         );
       }),
@@ -165,9 +165,9 @@ class _TaskListState extends State<TaskList> {
       MaterialPageRoute(builder: (context) {
         return UpdateTask(
           id: data.results[index].id,
-          nama_task: data.results[index].nama_task,
-          sprint_id: data.results[index].sprint_id.toString(),
-          kesulitan_id: data.results[index].kesulitan_id,
+          namaTask: data.results[index].namaTask,
+          sprintID: data.results[index].sprintID.toString(),
+          kesulitanID: data.results[index].kesulitanID,
           status: data.results[index].status,
         );
       }),

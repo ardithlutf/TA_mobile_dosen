@@ -8,24 +8,24 @@ final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
 class UpdateTask extends StatefulWidget {
   final int id;
-  final String nama_task;
-  final String sprint_id;
-  final int kesulitan_id;
+  final String namaTask;
+  final String sprintID;
+  final int kesulitanID;
   final bool status;
 
   UpdateTask(
       {this.id,
-      this.nama_task,
-      this.sprint_id,
-      this.kesulitan_id,
+      this.namaTask,
+      this.sprintID,
+      this.kesulitanID,
       this.status});
 
   @override
   State<StatefulWidget> createState() => UpdateTaskState(
       id: id,
-      nama_task: nama_task,
-      sprint_id: sprint_id,
-      kesulitan_id: kesulitan_id,
+      namaTask: namaTask,
+      sprintID: sprintID,
+      kesulitanID: kesulitanID,
       status: status);
 }
 
@@ -50,20 +50,20 @@ class UpdateTaskState extends State<UpdateTask> {
   // }
 
   final int id;
-  final String sprint_id;
-  final String nama_task;
-  final int kesulitan_id;
+  final String sprintID;
+  final String namaTask;
+  final int kesulitanID;
   final bool status;
 
   @override
   void initState() {
     blocProject.fetchAllProjects();
     blocTask.fetchAllTasks();
-    if (widget.sprint_id != null) {
+    if (widget.sprintID != null) {
       _isFieldNamaValid = true;
-      _controllerNama.text = widget.nama_task;
+      _controllerNama.text = widget.namaTask;
       _isFieldKesulitanIDValid = true;
-      _controllerKesulitanID.text = widget.kesulitan_id.toString();
+      _controllerKesulitanID.text = widget.kesulitanID.toString();
     }
     super.initState();
     getProvince();
@@ -81,9 +81,9 @@ class UpdateTaskState extends State<UpdateTask> {
 
   UpdateTaskState(
       {this.id,
-      this.nama_task,
-      this.sprint_id,
-      this.kesulitan_id,
+      this.namaTask,
+      this.sprintID,
+      this.kesulitanID,
       this.status});
 
   @override
@@ -94,7 +94,7 @@ class UpdateTaskState extends State<UpdateTask> {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
           title: Text(
-            widget.nama_task == null ? "Form Sprint" : "Update Sprint",
+            widget.namaTask == null ? "Form Sprint" : "Update Sprint",
             style: TextStyle(color: Colors.white),
           ),
         ),

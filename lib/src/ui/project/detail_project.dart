@@ -419,17 +419,17 @@ Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
       itemCount: panjangList,
       itemBuilder: (context, index) {
         for (var i = index; i < panjangList; i++) {
-          if (snapshot.data.results.elementAt(index).sprint_id == id) {
+          if (snapshot.data.results.elementAt(index).sprintID == id) {
             return Card(
               child: ListTile(
                 leading: Icon(icons[index]),
                 title: Text(
-                    '${snapshot.data.results[index].nama_task.toString()}'),
+                    '${snapshot.data.results[index].namaTask.toString()}'),
               ),
             );
           } else {
             snapshot.data.results
-                .removeWhere((element) => element.sprint_id != id);
+                .removeWhere((element) => element.sprintID != id);
             return null;
           }
         }

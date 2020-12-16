@@ -18,22 +18,22 @@ class ItemModelTask {
 
 class _Task {
   int _id;
-  int _sprint_id;
-  String _nama_task;
-  int _kesulitan_id;
+  int _sprintID;
+  String _namaTask;
+  int _kesulitanID;
   bool _status;
 
   _Task(result) {
     _id = result['id'];
-    _sprint_id = result['sprint_id'];
-    _nama_task = result['nama_task'];
-    _kesulitan_id = result['kesulitan_id'];
+    _sprintID = result['sprint_id'];
+    _namaTask = result['nama_task'];
+    _kesulitanID = result['kesulitan_id'];
     _status = result['_status'];
   }
 
   int get id => _id;
-  int get sprint_id => _sprint_id;
-  String get nama_task => _nama_task;
-  int get kesulitan_id => _kesulitan_id;
+  int get sprintID => _sprintID;
+  String get namaTask => _namaTask;
+  int get kesulitanID => _kesulitanID;
   bool get status => _status;
 }

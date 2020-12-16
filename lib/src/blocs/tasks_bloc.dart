@@ -7,17 +7,17 @@ class TasksBloc {
   final _tasksFetcher = PublishSubject<ItemModelTask>();
 
   final _id = BehaviorSubject<int>();
-  final _sprint_id = BehaviorSubject<int>();
-  final _nama_task = BehaviorSubject<String>();
-  final _kesulitan_id = BehaviorSubject<int>();
+  final _sprintID = BehaviorSubject<int>();
+  final _namaTask = BehaviorSubject<String>();
+  final _kesulitanID = BehaviorSubject<int>();
   final _status = BehaviorSubject<bool>();
 
   Observable<ItemModelTask> get allTasks => _tasksFetcher.stream;
   Observable<ItemModelTask> get sprintTasks => _tasksFetcher.stream;
 
-  Function(int) get insertSprintID => _sprint_id.sink.add;
-  Function(String) get insertJudul => _nama_task.sink.add;
-  Function(int) get insertKesulitanID => _kesulitan_id.sink.add;
+  Function(int) get insertSprintID => _sprintID.sink.add;
+  Function(String) get insertJudul => _namaTask.sink.add;
+  Function(int) get insertKesulitanID => _kesulitanID.sink.add;
   Function(bool) get insertStatus => _status.sink.add;
 
   fetchAllTasks() async {
@@ -27,12 +27,12 @@ class TasksBloc {
 
   addSaveTask() {
     _repository.createNewTask(
-        _sprint_id.value, _nama_task.value, _kesulitan_id.value, _status.value);
+        _sprintID.value, _namaTask.value, _kesulitanID.value, _status.value);
   }
 
   updateSaveTask(_id) {
-    _repository.updateTask(_id, _sprint_id.value, _nama_task.value,
-        _kesulitan_id.value, _status.value);
+    _repository.updateTask(_id, _sprintID.value, _namaTask.value,
+        _kesulitanID.value, _status.value);
   }
 
   deleteTask(_id) {
@@ -42,7 +42,10 @@ class TasksBloc {
   dispose() {
     _tasksFetcher.close();
     _id.close();
-    _nama_task.close();
+    _sprintID.close();
+    _namaTask.close();
+    _kesulitanID.close();
+    _status.close();
   }
 }
 

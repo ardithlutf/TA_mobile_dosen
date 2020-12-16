@@ -32,10 +32,10 @@ class SprintApiProvider {
     }
   }
 
-  Future createNewSprint(sprint_id, nama_sprint, status) async {
+  Future createNewSprint(sprintID, namaSprint, status) async {
     Map data = {
-      'project_id': sprint_id.toString(),
-      'nama': nama_sprint,
+      'project_id': sprintID.toString(),
+      'nama': namaSprint,
       'status': status,
     };
     var body = json.encode(data);
@@ -54,11 +54,11 @@ class SprintApiProvider {
     }
   }
 
-  Future updateSprint(id, sprint_id, nama_sprint, kesulitan_id, status) async {
+  Future updateSprint(id, sprintID, namaSprint, kesulitanID, status) async {
     Map data = {
-      'sprint_id': sprint_id.toString(),
-      'nama_sprint': nama_sprint,
-      'kesulitan_id': kesulitan_id.toString(),
+      'sprint_id': sprintID.toString(),
+      'nama_sprint': namaSprint,
+      'kesulitan_id': kesulitanID.toString(),
       'status': status,
     };
     var body = json.encode(data);
