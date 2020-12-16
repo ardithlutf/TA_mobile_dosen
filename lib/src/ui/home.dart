@@ -7,11 +7,10 @@ import 'package:lima_enam/src/models/user_model.dart';
 import 'package:lima_enam/src/resources/auth/shared_preferences_manager.dart';
 import 'package:lima_enam/src/resources/injector/injector.dart';
 import 'package:lima_enam/src/ui/project/list_project.dart';
-import 'package:lima_enam/src/ui/task/list_task.dart';
 import 'package:lima_enam/src/ui/team/list_team.dart';
 import 'package:lima_enam/src/ui/user/user_section.dart';
-import 'package:lima_enam/src/ui/widget/login2.dart';
-import 'package:lima_enam/src/ui/widget/profile/profile_page.dart';
+import 'package:lima_enam/src/ui/widgets/login2.dart';
+import 'package:lima_enam/src/ui/widgets/profile/profile_page.dart';
 
 import 'sprint/list_sprint.dart';
 
