@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lima_enam/src/blocs/auth/login_bloc2.dart';
 import 'package:lima_enam/src/models/auth/login_body.dart';
-import 'loading.dart';
+import '../loading.dart';
 
 class LoginScreen extends StatelessWidget {
   final LoginBloc _loginBloc = LoginBloc();

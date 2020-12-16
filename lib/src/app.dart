@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/resources/injector/injector.dart';
-import 'package:lima_enam/src/ui/widgets/login2.dart';
+import 'file:///C:/Users/ardit/Documents/backup/10Okt-Windows/AndroidStudioProjects/flutter/lima_enam/lib/src/ui/widgets/login/login2.dart';
 import 'package:lima_enam/src/ui/widgets/splash/splash_page.dart';
 import 'resources/auth/shared_preferences_manager.dart';
 

@@ -6,13 +6,8 @@ import 'package:lima_enam/src/blocs/user_bloc.dart';
 import 'package:lima_enam/src/models/user_model.dart';
 import 'package:lima_enam/src/resources/auth/shared_preferences_manager.dart';
 import 'package:lima_enam/src/resources/injector/injector.dart';
-import 'package:lima_enam/src/ui/project/list_project.dart';
-import 'package:lima_enam/src/ui/team/list_team.dart';
-import 'package:lima_enam/src/ui/user/user_section.dart';
-import 'package:lima_enam/src/ui/widgets/login2.dart';
-import 'package:lima_enam/src/ui/widgets/profile/profile_page.dart';
-
-import 'sprint/list_sprint.dart';
+import 'widgets/dashboard_card.dart';
+import 'widgets/login/login2.dart';
 
 class DashboardAdmin extends StatefulWidget {
   @override
@@ -48,7 +43,7 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -129,11 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisCount: 2,
               padding: EdgeInsets.all(3.0),
               children: <Widget>[
-                DashboardItem("Project", Icons.library_books),
-                DashboardItem("Sprint", Icons.library_books),
-                DashboardItem("Tim", Icons.book),
-                DashboardItem("Mahasiswa", Icons.book),
-                DashboardItem("Profile", Icons.account_circle_outlined),
+                DashboardCard(title: 'Project', icon: Icons.library_books),
+                DashboardCard(title: 'Sprint', icon: Icons.library_books),
+                DashboardCard(title: 'Tim', icon: Icons.book),
+                DashboardCard(title: 'Mahasiswa', icon: Icons.book),
+                DashboardCard(
+                    title: 'Profile', icon: Icons.account_circle_outlined),
               ],
             ),
           );
@@ -145,11 +141,12 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisCount: 2,
               padding: EdgeInsets.all(3.0),
               children: <Widget>[
-                DashboardItem("Project", Icons.library_books),
-                DashboardItem("Sprint", Icons.library_books),
-                DashboardItem("Tim", Icons.book),
-                DashboardItem("Mahasiswa", Icons.book),
-                DashboardItem("Profile", Icons.account_circle_outlined),
+                DashboardCard(title: 'Project', icon: Icons.library_books),
+                DashboardCard(title: 'Sprint', icon: Icons.library_books),
+                DashboardCard(title: 'Tim', icon: Icons.book),
+                DashboardCard(title: 'Mahasiswa', icon: Icons.book),
+                DashboardCard(
+                    title: 'Profile', icon: Icons.account_circle_outlined),
               ],
             ),
           );
@@ -161,11 +158,12 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisCount: 2,
               padding: EdgeInsets.all(3.0),
               children: <Widget>[
-                DashboardItem("Project", Icons.library_books),
-                DashboardItem("Sprint", Icons.library_books),
-                DashboardItem("Tim", Icons.book),
-                DashboardItem("Mahasiswa", Icons.book),
-                DashboardItem("Profile", Icons.account_circle_outlined),
+                DashboardCard(title: 'Project', icon: Icons.library_books),
+                DashboardCard(title: 'Sprint', icon: Icons.library_books),
+                DashboardCard(title: 'Tim', icon: Icons.book),
+                DashboardCard(title: 'Mahasiswa', icon: Icons.book),
+                DashboardCard(
+                    title: 'Profile', icon: Icons.account_circle_outlined),
               ],
             ),
           );
@@ -177,8 +175,9 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisCount: 2,
               padding: EdgeInsets.all(3.0),
               children: <Widget>[
-                DashboardItem("Project", Icons.library_books),
-                DashboardItem("Profile", Icons.account_circle_outlined),
+                DashboardCard(title: 'Project', icon: Icons.library_books),
+                DashboardCard(
+                    title: 'Profile', icon: Icons.account_circle_outlined),
               ],
             ),
           );
@@ -189,71 +188,5 @@ class _MyHomePageState extends State<MyHomePage> {
         return Container();
       }
     });
-  }
-
-  Card DashboardItem(String title, IconData icon) {
-    return Card(
-        elevation: 1.0,
-        margin: new EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(color: Colors.white),
-          child: new InkWell(
-            onTap: () {
-              switch (title) {
-                case "Project":
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => ProjectList()));
-                  }
-                  break;
-                case "Sprint":
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => SprintList()));
-                  }
-                  break;
-                case "Mahasiswa":
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            UserSection(headerText: 'Mahasiswa')));
-                  }
-                  break;
-                case "Profile":
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => ProfilePage()));
-                  }
-                  break;
-                case "Tim":
-                  {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => TeamList()));
-                  }
-                  break;
-              }
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              verticalDirection: VerticalDirection.down,
-              children: <Widget>[
-                SizedBox(height: 50.0),
-                Center(
-                    child: Icon(
-                  icon,
-                  size: 40.0,
-                  color: Colors.black,
-                )),
-                SizedBox(height: 20.0),
-                new Center(
-                  child: new Text(title,
-                      style:
-                          new TextStyle(fontSize: 18.0, color: Colors.black)),
-                )
-              ],
-            ),
-          ),
-        ));
   }
 }
