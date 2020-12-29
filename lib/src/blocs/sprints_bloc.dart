@@ -6,11 +6,30 @@ class SprintsBloc {
   final _repository = Repository();
   final _sprintsFetcher = PublishSubject<ItemModelSprint>();
 
+  final _namaSprint = BehaviorSubject<String>();
+  final _projectID = BehaviorSubject<int>();
+  final _tglMulai = BehaviorSubject<String>();
+  final _tglAkhir = BehaviorSubject<String>();
+  final _status = BehaviorSubject<String>();
+
   Observable<ItemModelSprint> get allSprints => _sprintsFetcher.stream;
+
+  Function(String) get insertNamaSprint => _namaSprint.sink.add;
+  Function(int) get insertProjectID => _projectID.sink.add;
+  Function(String) get insertTglMulai => _tglMulai.sink.add;
+  Function(String) get insertTglAkhir => _tglAkhir.sink.add;
 
   fetchAllSprints() async {
     ItemModelSprint itemModel = await _repository.fetchAllSprints();
     _sprintsFetcher.sink.add(itemModel);
+  }
+  
+  addSaveSprint() {
+    _repository.createNewSprint(_projectID.value, _namaSprint.value, _tglMulai.value, _tglAkhir.value);
+  }
+
+  updateSaveSprint(_id){
+    _repository.updateSprint(_id, _projectID.value, _namaSprint.value, _tglMulai.value, _tglAkhir.value);
   }
 
   deleteSprint(_id) {

@@ -43,13 +43,13 @@ class Repository {
 
   // CRUD Sprint
   Future deleteOldSprint(id) => SprintsApiProvider.deleteSprint(id);
+  Future createNewSprint(projectID, namaSprint, tglMulai, tglAkhir) =>
+      SprintsApiProvider.createNewSprint(
+          projectID, namaSprint, tglMulai, tglAkhir);
+  Future updateSprint(id, projectID, namaSprint, tglMulai, tglAkhir) =>
+      SprintsApiProvider.updateSprint(
+          id, projectID, namaSprint, tglMulai, tglAkhir);
 
-
-
-
-  Future createNewTask(sprint_id, nama_task, kesulitan_id, status) =>
-      TasksApiProvider.createNewTask(
-          sprint_id, nama_task, kesulitan_id, status);
   Future updateTask(id, sprint_id, nama_task, kesulitan_id, status) =>
       TasksApiProvider.updateTask(
           id, sprint_id, nama_task, kesulitan_id, status);

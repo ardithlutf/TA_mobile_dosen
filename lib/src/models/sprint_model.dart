@@ -21,13 +21,15 @@ class _Sprint {
   String _projectId;
   String _tanggalMulai;
   String _tanggalAkhir;
-  String _status;
+  // String _status;
 
   _Sprint(result) {
     _id = result['id'];
     _nama = result['nama'];
     _projectId = result['project_id'];
-    _status = result['_status'];
+    _tanggalMulai = result['tanggal_mulai'];
+    _tanggalAkhir = result['tanggal_akhir'];
+    // _status = result['status'];
   }
 
   int get id => _id;
@@ -35,5 +37,5 @@ class _Sprint {
   String get projectId => _projectId;
   String get tanggalMulai => _tanggalMulai;
   String get tanggalAkhir => _tanggalAkhir;
-  String get status => _status;
+  // String get status => _status;
 }

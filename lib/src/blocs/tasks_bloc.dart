@@ -13,7 +13,7 @@ class TasksBloc {
   final _status = BehaviorSubject<bool>();
 
   Observable<ItemModelTask> get allTasks => _tasksFetcher.stream;
-  Observable<ItemModelTask> get sprintTasks => _tasksFetcher.stream;
+  // Observable<ItemModelTask> get sprintTasks => _tasksFetcher.stream;
 
   Function(int) get insertSprintID => _sprintID.sink.add;
   Function(String) get insertJudul => _namaTask.sink.add;
@@ -25,10 +25,10 @@ class TasksBloc {
     _tasksFetcher.sink.add(itemModel);
   }
 
-  addSaveTask() {
-    _repository.createNewTask(
-        _sprintID.value, _namaTask.value, _kesulitanID.value, _status.value);
-  }
+  // addSaveTask() {
+  //   _repository.createNewSprint(
+  //       _sprintID.value, _namaTask.value, _kesulitanID.value, _status.value);
+  // }
 
   updateSaveTask(_id) {
     _repository.updateTask(_id, _sprintID.value, _namaTask.value,
