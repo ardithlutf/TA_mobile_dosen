@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lima_enam/src/blocs/auth/login_bloc2.dart';
 import 'package:lima_enam/src/models/auth/login_body.dart';
+import 'package:lima_enam/src/ui/widgets/splash/splash_page.dart';
 import '../loading.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -34,8 +35,11 @@ class LoginScreen extends StatelessWidget {
                 },
               );
             } else if (state is LoginSuccess) {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/dashboard_user_screen', (r) => false);
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      SplashPage()), (route) => false);
+              // Navigator.pushNamedAndRemoveUntil(
+              //     context, '/dashboard_user_screen', (r) => false);
             }
           },
           child: Container(
