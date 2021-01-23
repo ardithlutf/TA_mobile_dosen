@@ -33,6 +33,7 @@ dependencies:
   datetime_picker_formfield: ^1.0.0
   localization: ^0.1.0
   dio: ^3.0.7
+  intl: ^0.16.0
   get_it: ^3.0.3
 
 dev_dependencies:

@@ -12,17 +12,11 @@ class UpdateSprint extends StatefulWidget {
   final int id;
   final String namaSprint;
   final String projectID;
-  final String tgl_mulai;
-  final String tgl_akhir;
-  final String status;
+  final String tglMulai;
+  final String tglAkhir;
 
   UpdateSprint(
-      {this.id,
-      this.namaSprint,
-        this.projectID,
-      this.tgl_mulai,
-      this.tgl_akhir,
-      this.status});
+      {this.id, this.namaSprint, this.projectID, this.tglMulai, this.tglAkhir});
 
   @override
   State<StatefulWidget> createState() {
@@ -30,9 +24,8 @@ class UpdateSprint extends StatefulWidget {
         id: id,
         namaSprint: namaSprint,
         projectID: projectID,
-        tgl_mulai: tgl_mulai,
-        tgl_akhir: tgl_akhir,
-        status: status);
+        tglMulai: tglMulai,
+        tglAkhir: tglAkhir);
   }
 }
 
@@ -67,9 +60,8 @@ class UpdateSprintState extends State<UpdateSprint> {
   final int id;
   final String projectID;
   final String namaSprint;
-  final String tgl_mulai;
-  final String tgl_akhir;
-  final String status;
+  final String tglMulai;
+  final String tglAkhir;
 
   @override
   void initState() {
@@ -79,9 +71,9 @@ class UpdateSprintState extends State<UpdateSprint> {
       _isFieldNamaValid = true;
       _controllerNama.text = widget.namaSprint;
       _isFieldTglMulaiValid = true;
-      _controllerTglMulai.text = widget.tgl_mulai.toString();
+      _controllerTglMulai.text = widget.tglMulai.toString();
       _isFieldTglAkhirValid = true;
-      _controllerTglAkhir.text = widget.tgl_akhir.toString();
+      _controllerTglAkhir.text = widget.tglAkhir.toString();
     }
     super.initState();
     getProject();
@@ -91,21 +83,14 @@ class UpdateSprintState extends State<UpdateSprint> {
   bool _isFieldNamaValid;
   bool _isFieldTglMulaiValid;
   bool _isFieldTglAkhirValid;
-  // bool _isFieldStatusValid;
   bool _isLoading = false;
 
   TextEditingController _controllerNama = TextEditingController();
   TextEditingController _controllerTglMulai = TextEditingController();
   TextEditingController _controllerTglAkhir = TextEditingController();
-  // TextEditingController _controllerStatus = TextEditingController();
 
   UpdateSprintState(
-      {this.id,
-      this.projectID,
-      this.namaSprint,
-      this.tgl_mulai,
-      this.tgl_akhir,
-      this.status});
+      {this.id, this.projectID, this.namaSprint, this.tglMulai, this.tglAkhir});
 
   @override
   Widget build(BuildContext context) {

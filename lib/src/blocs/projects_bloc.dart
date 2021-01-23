@@ -6,7 +6,7 @@ class ProjectsBloc {
   final _repository = Repository();
   final _projectsFetcher = PublishSubject<ItemModelProject>();
 
-  Observable<ItemModelProject> get allSprints => _projectsFetcher.stream;
+  Observable<ItemModelProject> get allProjects => _projectsFetcher.stream;
 
   fetchAllProjects() async {
     ItemModelProject itemModel = await _repository.fetchAllProjects();

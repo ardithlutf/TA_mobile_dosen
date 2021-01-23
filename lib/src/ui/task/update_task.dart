@@ -14,11 +14,7 @@ class UpdateTask extends StatefulWidget {
   final bool status;
 
   UpdateTask(
-      {this.id,
-      this.namaTask,
-      this.sprintID,
-      this.kesulitanID,
-      this.status});
+      {this.id, this.namaTask, this.sprintID, this.kesulitanID, this.status});
 
   @override
   State<StatefulWidget> createState() => UpdateTaskState(
@@ -80,11 +76,7 @@ class UpdateTaskState extends State<UpdateTask> {
   TextEditingController _controllerStatus = TextEditingController();
 
   UpdateTaskState(
-      {this.id,
-      this.namaTask,
-      this.sprintID,
-      this.kesulitanID,
-      this.status});
+      {this.id, this.namaTask, this.sprintID, this.kesulitanID, this.status});
 
   @override
   Widget build(BuildContext context) {

@@ -61,8 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Padding(padding: EdgeInsets.only(top: 20)),
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage:
-                          NetworkImage('$foto'),
+                      backgroundImage: NetworkImage('$foto'),
                     ),
                     Text('$nama',
                         style: TextStyle(
@@ -82,7 +81,8 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.black26,
                       ),
                     ),
-                    ProfileCard(field: username, icon: Icons.confirmation_number),
+                    ProfileCard(
+                        field: username, icon: Icons.confirmation_number),
                     ProfileCard(field: email, icon: Icons.email),
                     ProfileCard(field: noHp, icon: Icons.phone),
                   ],

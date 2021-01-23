@@ -39,7 +39,6 @@ class SprintApiProvider {
       'project_id': projectID,
       'tanggal_mulai': tglMulai,
       'tanggal_akhir': tglAkhir,
-      // 'status': status,
     };
 
     var body = json.encode(data);
@@ -68,7 +67,6 @@ class SprintApiProvider {
       'project_id': projectID,
       'tanggal_mulai': tglMulai,
       'tanggal_akhir': tglAkhir,
-      // 'status': status,
     };
     var body = json.encode(data);
 
@@ -85,6 +83,30 @@ class SprintApiProvider {
       return ItemModelSprint.fromJson(json.decode(response.body));
     } else {
       throw Exception('Gagal mengupdate sprint');
+    }
+  }
+
+  Future updateStatusSprint(id, status) async {
+    String token = await getToken();
+
+    Map data = {
+      'status': status,
+    };
+    var body = json.encode(data);
+
+    final response = await client.put("$baseurl/api/sprint/$id",
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: body);
+
+    print("updated");
+
+    if (response.statusCode == 200) {
+      return ItemModelSprint.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Gagal mengupdate status sprint');
     }
   }
 

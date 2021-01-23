@@ -3,6 +3,7 @@ import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:lima_enam/src/models/sprint_model.dart';
 import 'package:lima_enam/src/ui/sprint/create_sprint.dart';
 
+import 'detail_sprint.dart';
 import 'update_sprint.dart';
 
 class SprintList extends StatefulWidget {
@@ -67,13 +68,17 @@ class _SprintListState extends State<SprintList> {
                     style:
                         TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   ),
+                  subtitle: Text(
+                    '${snapshot.data.results[index].projectId.toString()}',
+                    style: TextStyle(fontSize: 15.0),
+                  ),
                 ),
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
-                      child: const Text('DETAIL'),
+                      child: const Text('LIHAT DETAIL'),
                       onPressed: () {
-                        return null;
+                        openDetailPage(snapshot.data, index);
                       },
                     ),
                     FlatButton(
@@ -142,8 +147,23 @@ class _SprintListState extends State<SprintList> {
           id: data.results[index].id,
           namaSprint: data.results[index].nama,
           projectID: data.results[index].projectId.toString(),
-          tgl_mulai: data.results[index].tanggalMulai,
-          tgl_akhir: data.results[index].tanggalAkhir,
+          tglMulai: data.results[index].tanggalMulai,
+          tglAkhir: data.results[index].tanggalAkhir,
+        );
+      }),
+    );
+  }
+
+  openDetailPage(ItemModelSprint data, int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return SprintDetail(
+          id: data.results[index].id,
+          nama: data.results[index].nama,
+          tanggalMulai: data.results[index].tanggalAkhir,
+          tanggalAkhir: data.results[index].tanggalMulai,
+          status: data.results[index].status,
         );
       }),
     );

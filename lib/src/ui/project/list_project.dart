@@ -22,7 +22,7 @@ class _ProjectListState extends State<ProjectList> {
         title: Text('Project'),
       ),
       body: StreamBuilder(
-        stream: blocProject.allSprints,
+        stream: blocProject.allProjects,
         builder: (context, AsyncSnapshot<ItemModelProject> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);
@@ -74,7 +74,7 @@ class _ProjectListState extends State<ProjectList> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
-        return SprintDetail(
+        return ProjectDetail(
           id: data.results[index].id,
           nama: data.results[index].nama,
           deskripsi: data.results[index].deskripsi,

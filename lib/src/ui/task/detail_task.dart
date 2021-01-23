@@ -13,11 +13,7 @@ class TaskDetail extends StatefulWidget {
   final bool status;
 
   TaskDetail(
-      {this.id,
-      this.sprintID,
-      this.namaTask,
-      this.kesulitanID,
-      this.status});
+      {this.id, this.sprintID, this.namaTask, this.kesulitanID, this.status});
 
   @override
   State<StatefulWidget> createState() {
@@ -49,11 +45,7 @@ class TaskDetailState extends State<TaskDetail> {
   final bool status;
 
   TaskDetailState(
-      {this.id,
-      this.sprintID,
-      this.namaTask,
-      this.kesulitanID,
-      this.status});
+      {this.id, this.sprintID, this.namaTask, this.kesulitanID, this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +147,7 @@ class TaskDetailState extends State<TaskDetail> {
                     height: 141,
                     child: Scaffold(
                       body: StreamBuilder(
-                          stream: blocProject.allSprints,
+                          stream: blocProject.allProjects,
                           builder: (context,
                               AsyncSnapshot<ItemModelProject> snapshot) {
                             if (snapshot.hasData) {

@@ -35,9 +35,11 @@ class LoginScreen extends StatelessWidget {
                 },
               );
             } else if (state is LoginSuccess) {
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      SplashPage()), (route) => false);
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => SplashPage()),
+                  (route) => false);
               // Navigator.pushNamedAndRemoveUntil(
               //     context, '/dashboard_user_screen', (r) => false);
             }

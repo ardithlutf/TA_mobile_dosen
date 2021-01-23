@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/tasks_bloc.dart';
 import 'package:lima_enam/src/models/task_model.dart';
 import '../../blocs/projects_bloc.dart';
 
-class SprintDetail extends StatefulWidget {
+class ProjectDetail extends StatefulWidget {
   final int id;
   final String nama;
   final String deskripsi;
@@ -16,7 +15,7 @@ class SprintDetail extends StatefulWidget {
   final String persen;
   final String productOwnerId;
 
-  SprintDetail(
+  ProjectDetail(
       {this.id,
       this.nama,
       this.deskripsi,
@@ -30,7 +29,7 @@ class SprintDetail extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return SprintDetailState(
+    return ProjectDetailState(
         id: id,
         nama: nama,
         deskripsi: deskripsi,
@@ -44,7 +43,7 @@ class SprintDetail extends StatefulWidget {
   }
 }
 
-class SprintDetailState extends State<SprintDetail> {
+class ProjectDetailState extends State<ProjectDetail> {
   void initState() {
     blocTask.fetchAllTasks();
     super.initState();
@@ -61,7 +60,7 @@ class SprintDetailState extends State<SprintDetail> {
   final String persen;
   final String productOwnerId;
 
-  SprintDetailState(
+  ProjectDetailState(
       {this.id,
       this.nama,
       this.deskripsi,
@@ -423,8 +422,8 @@ Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
             return Card(
               child: ListTile(
                 leading: Icon(icons[index]),
-                title: Text(
-                    '${snapshot.data.results[index].namaTask.toString()}'),
+                title:
+                    Text('${snapshot.data.results[index].namaTask.toString()}'),
               ),
             );
           } else {

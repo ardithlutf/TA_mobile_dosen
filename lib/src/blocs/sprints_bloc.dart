@@ -18,26 +18,38 @@ class SprintsBloc {
   Function(int) get insertProjectID => _projectID.sink.add;
   Function(String) get insertTglMulai => _tglMulai.sink.add;
   Function(String) get insertTglAkhir => _tglAkhir.sink.add;
+  Function(String) get insertStatus => _status.sink.add;
 
   fetchAllSprints() async {
     ItemModelSprint itemModel = await _repository.fetchAllSprints();
     _sprintsFetcher.sink.add(itemModel);
   }
-  
+
   addSaveSprint() {
-    _repository.createNewSprint(_projectID.value, _namaSprint.value, _tglMulai.value, _tglAkhir.value);
+    _repository.createNewSprint(
+        _projectID.value, _namaSprint.value, _tglMulai.value, _tglAkhir.value);
   }
 
-  updateSaveSprint(_id){
-    _repository.updateSprint(_id, _projectID.value, _namaSprint.value, _tglMulai.value, _tglAkhir.value);
+  updateSaveSprint(_id) {
+    _repository.updateSprint(_id, _projectID.value, _namaSprint.value,
+        _tglMulai.value, _tglAkhir.value);
+  }
+
+  updateStatusSprint(_id) {
+    _repository.updateStatusSprint(_id, _status.value);
   }
 
   deleteSprint(_id) {
-    _repository.deleteOldSprint(_id);
+    _repository.deleteOldProject(_id);
   }
 
   dispose() {
     _sprintsFetcher.close();
+    _namaSprint.close();
+    _projectID.close();
+    _tglMulai.close();
+    _tglAkhir.close();
+    _status.close();
   }
 }
 

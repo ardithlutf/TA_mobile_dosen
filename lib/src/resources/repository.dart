@@ -20,38 +20,39 @@ class Repository {
   //AUTH
   final AuthProvider authProvider = AuthProvider();
 
-  final UsersApiProvider = UserApiProvider();
-  final ProjectsApiProvider = ProjectApiProvider();
-  final SprintsApiProvider = SprintApiProvider();
-  final TasksApiProvider = TaskApiProvider();
-  final TeamsApiProvider = TeamApiProvider();
+  final usersApiProvider = UserApiProvider();
+  final projectsApiProvider = ProjectApiProvider();
+  final sprintsApiProvider = SprintApiProvider();
+  final tasksApiProvider = TaskApiProvider();
+  final teamsApiProvider = TeamApiProvider();
 
   Future<String> login(String username, String password) =>
       authProvider.login(username: username, password: password);
   Future<String> loginUsers(String username, String password) =>
-      UsersApiProvider.loginUser(username, password);
+      usersApiProvider.loginUser(username, password);
 
   Future<ItemModelProject> fetchAllProjects() =>
-      ProjectsApiProvider.fetchProjectList();
+      projectsApiProvider.fetchProjectList();
   Future<ItemModelSprint> fetchAllSprints() =>
-      SprintsApiProvider.fetchSprintList();
-  Future<ItemModelTask> fetchAllTasks() => TasksApiProvider.fetchTaskList();
-  Future<ItemModelUser> fetchAllUsers() => UsersApiProvider.fetchUserList();
+      sprintsApiProvider.fetchSprintList();
+  Future<ItemModelTask> fetchAllTasks() => tasksApiProvider.fetchTaskList();
+  Future<ItemModelUser> fetchAllUsers() => usersApiProvider.fetchUserList();
   Future<ItemModelUserProfile> fetchUserProfile() =>
-      UsersApiProvider.fetchUserProfile();
-  Future<ItemModelTeam> fetchAllTeams() => TeamsApiProvider.fetchTeamList();
+      usersApiProvider.fetchUserProfile();
+  Future<ItemModelTeam> fetchAllTeams() => teamsApiProvider.fetchTeamList();
 
   // CRUD Sprint
-  Future deleteOldSprint(id) => SprintsApiProvider.deleteSprint(id);
+  Future deleteOldProject(id) => sprintsApiProvider.deleteSprint(id);
   Future createNewSprint(projectID, namaSprint, tglMulai, tglAkhir) =>
-      SprintsApiProvider.createNewSprint(
+      sprintsApiProvider.createNewSprint(
           projectID, namaSprint, tglMulai, tglAkhir);
   Future updateSprint(id, projectID, namaSprint, tglMulai, tglAkhir) =>
-      SprintsApiProvider.updateSprint(
+      sprintsApiProvider.updateSprint(
           id, projectID, namaSprint, tglMulai, tglAkhir);
+  Future updateStatusSprint(id, status) =>
+      sprintsApiProvider.updateStatusSprint(id, status);
 
-  Future updateTask(id, sprint_id, nama_task, kesulitan_id, status) =>
-      TasksApiProvider.updateTask(
-          id, sprint_id, nama_task, kesulitan_id, status);
-  Future deleteOldTask(id) => TasksApiProvider.deleteTask(id);
+  Future updateTask(id, sprintID, namaTask, kesulitanID, status) =>
+      tasksApiProvider.updateTask(id, sprintID, namaTask, kesulitanID, status);
+  Future deleteOldTask(id) => tasksApiProvider.deleteTask(id);
 }

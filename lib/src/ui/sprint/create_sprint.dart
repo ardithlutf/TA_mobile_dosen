@@ -11,25 +11,18 @@ final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 class AddSprint extends StatefulWidget {
   final String projectID;
   final String namaSprint;
-  final String tgl_mulai;
-  final String tgl_akhir;
-  final String status;
+  final String tglMulai;
+  final String tglAkhir;
 
-  AddSprint(
-      {this.projectID,
-      this.namaSprint,
-      this.tgl_mulai,
-      this.tgl_akhir,
-      this.status});
+  AddSprint({this.projectID, this.namaSprint, this.tglMulai, this.tglAkhir});
 
   @override
   State<StatefulWidget> createState() {
     return AddSprintState(
         projectID: projectID,
         namaSprint: namaSprint,
-        tgl_mulai: tgl_mulai,
-        tgl_akhir: tgl_akhir,
-        status: status);
+        tglMulai: tglMulai,
+        tglAkhir: tglAkhir);
   }
 }
 
@@ -63,9 +56,8 @@ class AddSprintState extends State<AddSprint> {
 
   final String projectID;
   final String namaSprint;
-  final String tgl_mulai;
-  final String tgl_akhir;
-  final String status;
+  final String tglMulai;
+  final String tglAkhir;
 
   @override
   void initState() {
@@ -77,20 +69,14 @@ class AddSprintState extends State<AddSprint> {
   bool _isFieldNamaValid;
   bool _isFieldTglMulaiValid;
   bool _isFieldTglAkhirValid;
-  // bool _isFieldStatusValid;
   bool _isLoading = false;
 
   TextEditingController _controllerNama = TextEditingController();
   TextEditingController _controllerTglMulai = TextEditingController();
   TextEditingController _controllerTglAkhir = TextEditingController();
-  // TextEditingController _controllerStatus = TextEditingController();
 
   AddSprintState(
-      {this.projectID,
-      this.namaSprint,
-      this.tgl_mulai,
-      this.tgl_akhir,
-      this.status});
+      {this.projectID, this.namaSprint, this.tglMulai, this.tglAkhir});
 
   @override
   Widget build(BuildContext context) {
@@ -147,6 +133,22 @@ class AddSprintState extends State<AddSprint> {
                       blocSprint.insertProjectID(value);
                     },
                   ),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: <Widget>[
+                  //     Text('Tanggal Mulai'),
+                  //     DateTimeField(
+                  //       format: format,
+                  //       onShowPicker: (context, currentValue) async {
+                  //         final date = await showDatePicker(
+                  //             context: context,
+                  //             firstDate: DateTime(1900),
+                  //             initialDate: currentValue ?? DateTime.now(),
+                  //             lastDate: DateTime(2100));
+                  //       },
+                  //     ),
+                  //   ],
+                  // ),
                   TextField(
                     controller: _controllerTglMulai,
                     keyboardType: TextInputType.text,
