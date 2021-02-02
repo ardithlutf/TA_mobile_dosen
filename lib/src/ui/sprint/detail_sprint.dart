@@ -28,6 +28,12 @@ class SprintDetailState extends State<SprintDetail> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    // blocSprint.dispose();
+    super.dispose();
+  }
+
   final int id;
   final String nama;
   final String tanggalMulai;
@@ -260,12 +266,6 @@ class SprintDetailState extends State<SprintDetail> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    blocSprint.dispose();
-    super.dispose();
   }
 
   openSprintPage() {

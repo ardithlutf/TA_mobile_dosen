@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lima_enam/src/blocs/tasks_bloc.dart';
-import 'package:lima_enam/src/models/task_model.dart';
 import '../../blocs/projects_bloc.dart';
 
 class ProjectDetail extends StatefulWidget {
@@ -45,7 +43,7 @@ class ProjectDetail extends StatefulWidget {
 
 class ProjectDetailState extends State<ProjectDetail> {
   void initState() {
-    blocTask.fetchAllTasks();
+    blocProject.fetchAllProjects();
     super.initState();
   }
 
@@ -74,7 +72,6 @@ class ProjectDetailState extends State<ProjectDetail> {
 
   @override
   Widget build(BuildContext context) {
-    blocTask.fetchAllTasks();
     blocProject.fetchAllProjects();
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -91,15 +88,6 @@ class ProjectDetailState extends State<ProjectDetail> {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                actions: <Widget>[
-                  IconButton(
-                      icon: Icon(Icons.refresh),
-                      onPressed: () {
-                        setState(() {
-                          blocTask.fetchAllTasks();
-                        });
-                      }),
-                ],
                 expandedHeight: 200.0,
                 floating: false,
                 pinned: true,
@@ -384,53 +372,38 @@ class ProjectDetailState extends State<ProjectDetail> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    blocTask.dispose();
-    super.dispose();
-  }
-
-  openSprintPage() {
-    var count = 0;
-
-    blocProject.fetchAllProjects();
-    Navigator.popUntil(context, (route) {
-      return count++ == 1;
-    });
-  }
 }
 
-Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
-  var panjangList = snapshot.data.results.length;
-
-  final icons = [
-    Icons.directions_bike,
-    Icons.directions_boat,
-    Icons.directions_bus,
-    Icons.directions_car,
-    Icons.directions_railway,
-  ];
-
-  return ListView.builder(
-      primary: false,
-      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-      itemCount: panjangList,
-      itemBuilder: (context, index) {
-        for (var i = index; i < panjangList; i++) {
-          if (snapshot.data.results.elementAt(index).sprintID == id) {
-            return Card(
-              child: ListTile(
-                leading: Icon(icons[index]),
-                title:
-                    Text('${snapshot.data.results[index].namaTask.toString()}'),
-              ),
-            );
-          } else {
-            snapshot.data.results
-                .removeWhere((element) => element.sprintID != id);
-            return null;
-          }
-        }
-      });
-}
+// Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
+//   var panjangList = snapshot.data.results.length;
+//
+//   final icons = [
+//     Icons.directions_bike,
+//     Icons.directions_boat,
+//     Icons.directions_bus,
+//     Icons.directions_car,
+//     Icons.directions_railway,
+//   ];
+//
+//   return ListView.builder(
+//       primary: false,
+//       padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
+//       itemCount: panjangList,
+//       itemBuilder: (context, index) {
+//         for (var i = index; i < panjangList; i++) {
+//           if (snapshot.data.results.elementAt(index).sprintID == id) {
+//             return Card(
+//               child: ListTile(
+//                 leading: Icon(icons[index]),
+//                 title:
+//                     Text('${snapshot.data.results[index].namaTask.toString()}'),
+//               ),
+//             );
+//           } else {
+//             snapshot.data.results
+//                 .removeWhere((element) => element.sprintID != id);
+//             return null;
+//           }
+//         }
+//       });
+// }

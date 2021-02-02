@@ -7,13 +7,11 @@ import 'team_api_provider.dart';
 import 'auth/auth_provider.dart';
 import 'project_api_provider.dart';
 import 'sprint_api_provider.dart';
-import 'task_api_provider.dart';
 import 'user_api_provider.dart';
 
 // model
 import '../models/team_model.dart';
 import '../models/project_model.dart';
-import '../models/task_model.dart';
 import '../models/user_model.dart';
 
 class Repository {
@@ -23,7 +21,6 @@ class Repository {
   final usersApiProvider = UserApiProvider();
   final projectsApiProvider = ProjectApiProvider();
   final sprintsApiProvider = SprintApiProvider();
-  final tasksApiProvider = TaskApiProvider();
   final teamsApiProvider = TeamApiProvider();
 
   Future<String> login(String username, String password) =>
@@ -35,7 +32,6 @@ class Repository {
       projectsApiProvider.fetchProjectList();
   Future<ItemModelSprint> fetchAllSprints() =>
       sprintsApiProvider.fetchSprintList();
-  Future<ItemModelTask> fetchAllTasks() => tasksApiProvider.fetchTaskList();
   Future<ItemModelUser> fetchAllUsers() => usersApiProvider.fetchUserList();
   Future<ItemModelUserProfile> fetchUserProfile() =>
       usersApiProvider.fetchUserProfile();
@@ -51,8 +47,4 @@ class Repository {
           id, projectID, namaSprint, tglMulai, tglAkhir);
   Future updateStatusSprint(id, status) =>
       sprintsApiProvider.updateStatusSprint(id, status);
-
-  Future updateTask(id, sprintID, namaTask, kesulitanID, status) =>
-      tasksApiProvider.updateTask(id, sprintID, namaTask, kesulitanID, status);
-  Future deleteOldTask(id) => tasksApiProvider.deleteTask(id);
 }
