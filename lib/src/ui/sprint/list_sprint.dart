@@ -106,9 +106,10 @@ class _SprintListState extends State<SprintList> {
                                     FlatButton(
                                       child: Text("Lanjut",
                                           style: TextStyle(color: Colors.red)),
-                                      onPressed: () {
+                                      onPressed: () async {
                                         blocSprint.deleteSprint(
                                             snapshot.data.results[index].id);
+                                        await Future.delayed(const Duration(milliseconds: 699));
                                         Navigator.of(context).pop();
                                         setState(() {
                                           blocSprint.fetchAllSprints();
@@ -137,6 +138,11 @@ class _SprintListState extends State<SprintList> {
             ),
           ));
         });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   openUpdatePage(ItemModelSprint data, int index) {

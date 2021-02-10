@@ -1,4 +1,6 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lima_enam/src/blocs/projects_bloc.dart';
 import 'package:lima_enam/src/blocs/sprints_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -78,6 +80,8 @@ class AddSprintState extends State<AddSprint> {
   AddSprintState(
       {this.projectID, this.namaSprint, this.tglMulai, this.tglAkhir});
 
+  final format = DateFormat("yyyy-MM-dd");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,92 +137,60 @@ class AddSprintState extends State<AddSprint> {
                       blocSprint.insertProjectID(value);
                     },
                   ),
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: <Widget>[
-                  //     Text('Tanggal Mulai'),
-                  //     DateTimeField(
-                  //       format: format,
-                  //       onShowPicker: (context, currentValue) async {
-                  //         final date = await showDatePicker(
-                  //             context: context,
-                  //             firstDate: DateTime(1900),
-                  //             initialDate: currentValue ?? DateTime.now(),
-                  //             lastDate: DateTime(2100));
-                  //       },
-                  //     ),
-                  //   ],
-                  // ),
-                  TextField(
+                  DateTimeField(
                     controller: _controllerTglMulai,
-                    keyboardType: TextInputType.text,
+                    format: format,
                     decoration: InputDecoration(
                       labelText: "Tanggal Mulai",
                       errorText:
-                          _isFieldTglMulaiValid == null || _isFieldTglMulaiValid
-                              ? null
-                              : "Tanggal Mulai harus diisi",
+                      _isFieldTglMulaiValid == null || _isFieldTglMulaiValid
+                          ? null
+                          : "Tanggal Mulai harus diisi",
                     ),
-                    onChanged: (value) {
-                      bool isFieldValid = value.trim().isNotEmpty;
+                    onShowPicker: (context, value) async {
+                      final date = await showDatePicker(
+                          context: context,
+                          initialDate: value ?? DateTime.now(),
+                          firstDate: DateTime(1900),
+                          lastDate: DateTime(2100));
+                      return date;
+                    },
+                    onChanged: (date) {
+                      bool isFieldValid = true;
                       if (isFieldValid != _isFieldTglMulaiValid) {
                         setState(() => _isFieldTglMulaiValid = isFieldValid);
                       }
-                      print(value.runtimeType);
-                      blocSprint.insertTglMulai(value);
+                      print(date.runtimeType);
+                      blocSprint.insertTglMulai(date.toString());
                     },
                   ),
-                  TextField(
+                  DateTimeField(
                     controller: _controllerTglAkhir,
-                    keyboardType: TextInputType.text,
+                    format: format,
                     decoration: InputDecoration(
                       labelText: "Tanggal Akhir",
                       errorText:
-                          _isFieldTglAkhirValid == null || _isFieldTglAkhirValid
-                              ? null
-                              : "Tanggal Akhir harus diisi",
+                      _isFieldTglAkhirValid == null || _isFieldTglAkhirValid
+                          ? null
+                          : "Tanggal Akhir harus diisi",
                     ),
-                    onChanged: (value) {
-                      bool isFieldValid = value.trim().isNotEmpty;
+                    onShowPicker: (context, value) async {
+                      final date =  await showDatePicker(
+                          context: context,
+                          initialDate: value ?? DateTime.now(),
+                          firstDate: DateTime(1900),
+                          lastDate: DateTime(2100));
+                      return date;
+                    },
+                    onChanged: (date) {
+                      bool isFieldValid = true;
                       if (isFieldValid != _isFieldTglAkhirValid) {
                         setState(() => _isFieldTglAkhirValid = isFieldValid);
                       }
-                      print(value.runtimeType);
-                      blocSprint.insertTglAkhir(value);
+                      print(date.runtimeType);
+                      blocSprint.insertTglAkhir(date.toString());
                     },
                   ),
-                  // TextField(
-                  //   controller: _controllerStatus,
-                  //   keyboardType: TextInputType.number,
-                  //   decoration: InputDecoration(
-                  //     labelText: "Status",
-                  //     hintText: "Selesai, Belum",
-                  //     errorText:
-                  //         _isFieldStatusValid == null || _isFieldStatusValid
-                  //             ? null
-                  //             : "Status harus diisi",
-                  //   ),
-                  //   onChanged: (value) {
-                  //     bool isFieldValid = value.trim().isNotEmpty;
-                  //     if (isFieldValid != _isFieldStatusValid) {
-                  //       setState(() => _isFieldStatusValid = isFieldValid);
-                  //     }
-                  //     blocSprint.insertStatus(value);
-                  //   },
-                  // ),
-                  // DropdownButton<Status>(
-                  //   value: Status.Belum,
-                  //   items: Status.values.map((Status classType) {
-                  //     return DropdownMenuItem<Status>(
-                  //         value: classType, child: Text(classType.toString()));
-                  //   }).toList(),
-                  //   onChanged: (Status newValue) {
-                  //     setState(() {
-                  //       _valStatus = newValue as String;
-                  //     });
-                  //     blocSprint.insertStatus(newValue.toString());
-                  //   },
-                  // ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: RaisedButton(
@@ -226,22 +198,26 @@ class AddSprintState extends State<AddSprint> {
                         if (_isFieldNamaValid == null ||
                             _isFieldTglMulaiValid == null ||
                             _isFieldTglAkhirValid == null ||
-                            // _isFieldStatusValid == null ||
                             !_isFieldNamaValid ||
                             !_isFieldTglMulaiValid ||
-                            !_isFieldTglAkhirValid) {
+                            !_isFieldTglAkhirValid
+                        ) {
                           _scaffoldState.currentState.showSnackBar(
                             SnackBar(
-                              content: Text("Please fill all field"),
+                              content: Text("Data tidak boleh kosong!"),
                             ),
                           );
                           return;
                         }
+                        setState(() {
+                          _isLoading = true;
+                        });
                         blocSprint.addSaveSprint();
-                        setState(() => _isLoading = true);
-                        await Future.delayed(const Duration(milliseconds: 699));
+                        await Future.delayed(const Duration(milliseconds: 1699));
+                        setState(() {
+                          blocSprint.fetchAllSprints();
+                        });
                         Navigator.of(context).pop();
-                        blocSprint.fetchAllSprints();
                       },
                       child: Text(
                         'Simpan'.toUpperCase(),

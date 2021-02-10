@@ -40,8 +40,6 @@ class LoginScreen extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (BuildContext context) => SplashPage()),
                   (route) => false);
-              // Navigator.pushNamedAndRemoveUntil(
-              //     context, '/dashboard_user_screen', (r) => false);
             }
           },
           child: Container(

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lima_enam/src/blocs/user_bloc.dart';
 import 'package:lima_enam/src/models/user_model.dart';

@@ -70,6 +70,11 @@ class _ProjectListState extends State<ProjectList> {
         });
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   openDetailPage(ItemModelProject data, int index) {
     Navigator.push(
       context,

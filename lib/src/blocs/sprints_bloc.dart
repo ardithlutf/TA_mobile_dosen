@@ -40,7 +40,7 @@ class SprintsBloc {
   }
 
   deleteSprint(_id) {
-    _repository.deleteOldProject(_id);
+    _repository.deleteSprint(_id);
   }
 
   dispose() {

@@ -38,7 +38,7 @@ class Repository {
   Future<ItemModelTeam> fetchAllTeams() => teamsApiProvider.fetchTeamList();
 
   // CRUD Sprint
-  Future deleteOldProject(id) => sprintsApiProvider.deleteSprint(id);
+  Future deleteSprint(id) => sprintsApiProvider.deleteSprint(id);
   Future createNewSprint(projectID, namaSprint, tglMulai, tglAkhir) =>
       sprintsApiProvider.createNewSprint(
           projectID, namaSprint, tglMulai, tglAkhir);

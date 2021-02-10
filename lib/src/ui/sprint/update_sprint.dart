@@ -231,11 +231,15 @@ class UpdateSprintState extends State<UpdateSprint> {
                           );
                           return;
                         }
+                        setState(() {
+                          _isLoading = true;
+                        });
                         blocSprint.updateSaveSprint(id);
-                        setState(() => _isLoading = true);
-                        await Future.delayed(const Duration(milliseconds: 699));
+                        await Future.delayed(const Duration(milliseconds: 1699));
+                        setState(() {
+                          blocSprint.fetchAllSprints();
+                        });
                         Navigator.of(context).pop();
-                        blocSprint.fetchAllSprints();
                       },
                       child: Text(
                         'Simpan'.toUpperCase(),

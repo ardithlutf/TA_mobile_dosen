@@ -372,6 +372,11 @@ class ProjectDetailState extends State<ProjectDetail> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }
 
 // Widget buildListTask(AsyncSnapshot<ItemModelTask> snapshot, id) {
