@@ -173,7 +173,7 @@ class SprintDetailState extends State<SprintDetail> {
 
                       if (status == statusSprint[0]) {
                         return Column(
-                          children: [
+                          children: <Widget>[
                             Container(
                               margin: EdgeInsets.only(top: 8.0, bottom: 8.0),
                               width: double.maxFinite,
