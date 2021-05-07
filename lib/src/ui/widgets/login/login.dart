@@ -27,7 +27,7 @@
 //   Widget build(BuildContext context) {
 //     return Scaffold(
 //       backgroundColor: Colors.blue[100],
-//       resizeToAvoidBottomPadding: false,
+//
 //       body: Column(
 //         crossAxisAlignment: CrossAxisAlignment.start,
 //         children: <Widget>[

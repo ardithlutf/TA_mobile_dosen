@@ -61,7 +61,7 @@ class TeamDetailState extends State<TeamDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+
       body: SafeArea(
         top: false,
         bottom: false,

@@ -74,7 +74,6 @@ class ProjectDetailState extends State<ProjectDetail> {
   Widget build(BuildContext context) {
     blocProject.fetchAllProjects();
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       body: SafeArea(
         top: false,
         bottom: false,

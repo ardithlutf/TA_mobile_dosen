@@ -95,7 +95,7 @@ class UpdateSprintState extends State<UpdateSprint> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
+
         key: _scaffoldState,
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),

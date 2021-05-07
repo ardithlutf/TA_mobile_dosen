@@ -41,7 +41,7 @@ class SprintDetailState extends State<SprintDetail> {
   Widget build(BuildContext context) {
     blocSprint.fetchAllSprints();
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+
       body: SafeArea(
         top: false,
         bottom: false,
